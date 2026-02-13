@@ -1,0 +1,31 @@
+{
+  "defaults": {
+    "aspect_ratio": "16:9",
+    "resolution": "2K"
+  },
+  "jobs": [
+    {
+      "prompt": "A serene mountain landscape at golden hour with snow-capped peaks",
+      "output_name": "mountain_golden"
+    },
+    {
+      "prompt": "Tropical beach with crystal clear turquoise water and palm trees",
+      "aspect_ratio": "21:9",
+      "output_name": "tropical_beach"
+    },
+    {
+      "prompt": "Northern lights dancing over a frozen forest at night",
+      "resolution": "4K",
+      "output_name": "aurora_forest"
+    },
+    {
+      "prompt": "Modern minimalist living room with large windows and natural light",
+      "aspect_ratio": "4:3"
+    },
+    {
+      "prompt": "Abstract colorful fluid art with vibrant gradients",
+      "aspect_ratio": "1:1",
+      "resolution": "1K"
+    }
+  ]
+}

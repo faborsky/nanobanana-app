@@ -1,0 +1,61 @@
+{
+  "metadata": {
+    "name": "DOG TRAVEL Title Screen Variants",
+    "description": "5 variant title screen pro výběr - obě postavy spolu",
+    "title": "DOG TRAVEL",
+    "subtitle": "by Hack Your Way (Sora-like clean geometric sans-serif font)",
+    "characters": {
+      "main": "Young entrepreneur with messy brown hair, round glasses, lime green hoodie with dog paw logo",
+      "alt": "Young woman with long wavy dark brown hair, arm tattoos visible, lime green hoodie",
+      "dog_max": "Golden retriever Max, friendly expression, sitting or standing loyally",
+      "dog_kesu": "Medium-sized border collie Kesu, light golden cream and white fluffy coat, white blaze on face, expressive brown eyes"
+    },
+    "color_palette": {
+      "primary": "#baf122 (lime/neon green)",
+      "accent": "#ff3131 (red)",
+      "shadow": "#5e17eb (purple)",
+      "base": "#000000 (black)"
+    }
+  },
+  "defaults": {
+    "aspect_ratio": "16:9",
+    "resolution": "1K"
+  },
+  "jobs": [
+    {
+      "variant": 1,
+      "name": "Neon Brno Night",
+      "style": "Epic cyberpunk cityscape",
+      "prompt": "16-bit pixel art title screen, SNES game style, visible pixels, no smoothing. Epic wide establishing shot of Brno cityscape at night with Spilberk castle and Petrov cathedral silhouettes glowing. Large stylized game title 'DOG TRAVEL' in bold pixel font centered at top, glowing with neon lime effect. Subtitle 'by Hack Your Way' below in clean geometric sans-serif font like Sora. On rooftop in foreground: two friends standing together - young man with messy brown hair, round glasses, lime green hoodie AND young woman with long wavy dark brown hair, arm tattoos, lime green hoodie. Between them their dogs: golden retriever and cream-white border collie, both looking at the glowing city. Neon signs throughout city in lime and purple. Color palette: lime #baf122 for title and neon lights, red #ff3131 for accent highlights, purple #5e17eb for night sky and shadows, black base. Cyberpunk meets retro gaming aesthetic. 16:9 widescreen, epic adventure awaits energy.",
+      "output_name": "title_v1_neon_brno"
+    },
+    {
+      "variant": 2,
+      "name": "Sunrise Flat White",
+      "style": "Cozy morning coffee moment",
+      "prompt": "16-bit pixel art title screen, SNES game style, visible pixels, no smoothing. Peaceful sunrise scene on hilltop terrace cafe overlooking misty valley and distant mountains. Warm golden and pink sunrise colors. Two friends sitting at small wooden table with flat white coffees - young man with messy brown hair, round glasses, lime green hoodie AND young woman with long wavy dark brown hair, arm tattoos, lime green hoodie. Their dogs relaxed beside them: golden retriever lying down, cream-white border collie sitting alert watching sunrise. Steam rising from coffee cups. Game title 'DOG TRAVEL' in bold pixel font at top with subtle lime glow. Subtitle 'by Hack Your Way' in clean geometric sans-serif font. Color palette: lime #baf122 for title glow and clothing, red #ff3131 for warm sunrise accents, purple #5e17eb for morning shadows, golden hour warmth. Serene adventure beginning energy. 16:9 widescreen.",
+      "output_name": "title_v2_sunrise_coffee"
+    },
+    {
+      "variant": 3,
+      "name": "Clean Minimalist",
+      "style": "Simple gradient with characters",
+      "prompt": "16-bit pixel art title screen, SNES game style, visible pixels, no smoothing. Clean minimalist design. Simple gradient background from deep purple #5e17eb at top through black to subtle lime #baf122 glow at bottom horizon line. Large bold game title 'DOG TRAVEL' centered in clean pixel font with lime glow effect. Subtitle 'by Hack Your Way' below in geometric sans-serif font like Sora. Four silhouettes standing in a row at bottom as small figures: young man with glasses and hoodie, golden retriever, border collie, young woman with long wavy hair. All silhouettes have subtle lime outline glow. Minimalist pixel icons floating subtly around title: paw print, airplane, coffee cup, mountain, camera. No complex backgrounds, focus on typography and characters. Color palette: lime #baf122, red #ff3131 for small accents, purple #5e17eb, black. Elegant and modern. 16:9 widescreen.",
+      "output_name": "title_v3_minimalist"
+    },
+    {
+      "variant": 4,
+      "name": "Mountain Trail Adventure",
+      "style": "Epic outdoor hiking scene",
+      "prompt": "16-bit pixel art title screen, SNES game style, visible pixels, no smoothing. Epic mountain trail scene at golden hour. Dramatic mountain peaks in background with snow caps catching sunset light. Two hikers on scenic overlook trail - young man with messy brown hair, round glasses, lime green hoodie with backpack AND young woman with long wavy dark brown hair, arm tattoos, lime green hoodie with backpack. Their dogs beside them on the trail: golden retriever and cream-white border collie, both looking excited for adventure. Wildflowers in foreground, pine trees framing the scene. Game title 'DOG TRAVEL' in bold pixel font at top with lime glow against mountain sky. Subtitle 'by Hack Your Way' in clean geometric sans-serif font. Color palette: lime #baf122 for title and clothing accents, red #ff3131 for sunset warmth and trail markers, purple #5e17eb for mountain shadows. Epic adventure energy. 16:9 widescreen.",
+      "output_name": "title_v4_mountain_trail"
+    },
+    {
+      "variant": 5,
+      "name": "Retro Arcade Cabinet",
+      "style": "Meta arcade game aesthetic",
+      "prompt": "16-bit pixel art title screen, SNES game style, visible pixels, no smoothing. Creative meta design showing retro arcade cabinet screen. Scanlines and CRT screen effect subtle overlay. Large game title 'DOG TRAVEL' in bold chunky pixel font with lime neon glow, arcade style. Subtitle 'by Hack Your Way' in clean geometric font below. Center composition: two pixel art characters standing ready - young man with messy brown hair, round glasses, lime green hoodie AND young woman with long wavy dark brown hair, arm tattoos, lime green hoodie. Their dogs at their feet: golden retriever and cream-white border collie. Floating pixel icons around them: airplane, paw prints, coffee cup, camera, suitcase, mountains. 'PRESS START' blinking at bottom in red. Coin slot graphic in corner. Color palette: lime #baf122 for neon and highlights, red #ff3131 for press start and accents, purple #5e17eb for deep background, black. Nostalgic arcade energy. 16:9 widescreen.",
+      "output_name": "title_v5_arcade"
+    }
+  ]
+}

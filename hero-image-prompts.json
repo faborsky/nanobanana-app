@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "description": "Hero image prompts for local business website generator",
+    "aspectRatio": "16:9",
+    "guidelines": {
+      "noHumans": true,
+      "noBrands": true,
+      "style": "professional, clean, modern photography"
+    }
+  },
+  "industries": [
+    {
+      "id": "restaurant",
+      "name": "Restaurace/Gastronomie",
+      "prompt": "Professional interior photograph of an elegant restaurant dining room, empty tables with white tablecloths, warm ambient lighting, wine glasses and folded napkins on tables, exposed brick wall, soft bokeh background, no people, no visible brand logos, cinematic composition, 16:9 aspect ratio, high-end food photography style"
+    },
+    {
+      "id": "cafe",
+      "name": "Kavárny/Coffee shopy",
+      "prompt": "Cozy coffee shop interior with wooden counter, espresso machine, glass jars with coffee beans, warm natural light streaming through large windows, exposed brick and industrial pipes, hanging pendant lights, plants on shelves, empty seats, no people, no brand logos visible, minimalist Scandinavian aesthetic, 16:9 aspect ratio, lifestyle photography"
+    },
+    {
+      "id": "salon",
+      "name": "Kadeřnictví/Beauty",
+      "prompt": "Modern beauty salon interior, row of styling chairs facing large mirrors with warm ring lights, clean marble countertops with brushes and tools neatly arranged, fresh flowers in vase, soft pink and gold accents, bright and airy atmosphere, no people, no product brand labels visible, luxury spa aesthetic, 16:9 aspect ratio, interior design photography"
+    },
+    {
+      "id": "auto",
+      "name": "Autoservisy/Pneuservisy",
+      "prompt": "Professional auto repair workshop interior, clean concrete floor with hydraulic car lift, organized tool wall with wrenches and equipment, bright industrial LED lighting, stacked tires on rack, no vehicles or people visible, modern and organized garage aesthetic, blue and grey color scheme, 16:9 aspect ratio, industrial photography"
+    },
+    {
+      "id": "hotel",
+      "name": "Hotely/Ubytování",
+      "prompt": "Luxurious hotel bedroom with king-size bed, crisp white linens and decorative pillows, bedside lamps with warm glow, large window with sheer curtains showing blurred nature view, wooden furniture, fresh flowers on nightstand, no people, neutral earth tones, boutique hotel aesthetic, 16:9 aspect ratio, hospitality photography"
+    },
+    {
+      "id": "dental",
+      "name": "Zubaři/Zdravotnictví",
+      "prompt": "Modern dental clinic treatment room, contemporary dental chair, bright overhead examination light, clean white and mint green interior, organized instrument tray, large window with natural light, potted plant for warmth, no people, no medical brand logos, calm and reassuring medical aesthetic, 16:9 aspect ratio, healthcare interior photography"
+    },
+    {
+      "id": "fitness",
+      "name": "Fitness centra",
+      "prompt": "Modern gym interior with rows of dumbbells on rack, kettlebells, weight benches, rubber flooring, large mirrors, industrial ceiling with exposed ductwork, motivational lighting, no people, no equipment brand logos visible, clean and energetic atmosphere, dark grey and orange accents, 16:9 aspect ratio, fitness lifestyle photography"
+    },
+    {
+      "id": "other",
+      "name": "Vše ostatní (Kanceláře/Služby)",
+      "prompt": "Professional modern office workspace, clean white desk with laptop and notebook, minimalist desk lamp, potted succulent plant, large window with city skyline view blurred in background, floating shelves with books, no people, no brand logos, bright and productive atmosphere, neutral white and wood tones, 16:9 aspect ratio, corporate interior photography"
+    }
+  ]
+}

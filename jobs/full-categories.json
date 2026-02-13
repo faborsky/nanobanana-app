@@ -1,0 +1,168 @@
+{
+  "defaults": {
+    "aspect_ratio": "16:9",
+    "resolution": "2K"
+  },
+  "jobs": [
+    {
+      "prompt": "Modern sushi restaurant interior with wooden counter, fresh sushi display, minimalist Japanese aesthetic, warm ambient lighting, empty elegant seating, no people visible, professional hospitality design, 16:9 aspect ratio",
+      "output_name": "sushi"
+    },
+    {
+      "prompt": "Contemporary pizzeria interior with wood-fired oven, fresh ingredients on counter, warm Italian ambiance, checkered accents, empty dining area, no people visible, rustic modern design, 16:9 aspect ratio",
+      "output_name": "pizzeria"
+    },
+    {
+      "prompt": "Premium steakhouse interior with dark wood, leather seating, warm ambient lighting, wine glasses on table, sophisticated dining atmosphere, no people visible, upscale professional design, 16:9 aspect ratio",
+      "output_name": "steakhouse"
+    },
+    {
+      "prompt": "Modern bakery interior with display cases of fresh pastries, warm bread on shelves, pastry-making counter, flour dusting, warm inviting lighting, empty shop, no people visible, artisanal design, 16:9 aspect ratio",
+      "output_name": "bakery"
+    },
+    {
+      "prompt": "Contemporary bar interior with sleek counter, bottle shelves with ambient lighting, modern bar stools, warm accent lighting, empty lounge area, no people visible, upscale nightlife design, 16:9 aspect ratio",
+      "output_name": "bar"
+    },
+    {
+      "prompt": "Charming pension interior with cozy common area, rustic wooden furniture, fireplace, warm textiles, traditional European aesthetic, empty comfortable seating, no people visible, homey welcoming design, 16:9 aspect ratio",
+      "output_name": "pension"
+    },
+    {
+      "prompt": "Modern apartment interior with contemporary furniture, bright windows, minimalist decor, comfortable living space, light neutral tones, empty clean design, no people visible, residential aesthetic, 16:9 aspect ratio",
+      "output_name": "apartment"
+    },
+    {
+      "prompt": "Luxury spa interior with peaceful ambiance, water features, natural stone, soft warm lighting, spa treatment beds, fresh flowers, empty serene space, no people visible, wellness design, 16:9 aspect ratio",
+      "output_name": "spa"
+    },
+    {
+      "prompt": "Modern nail studio interior with comfortable stations, professional nail workstations, bright mirrors and lighting, soft pink accents, luxury seating, empty clean design, no people visible, beauty aesthetic, 16:9 aspect ratio",
+      "output_name": "nail-studio"
+    },
+    {
+      "prompt": "Contemporary cosmetics studio interior with display shelves of beauty products, makeup stations, bright professional lighting, mirrors, organized luxury design, empty elegant space, no people visible, 16:9 aspect ratio",
+      "output_name": "cosmetics"
+    },
+    {
+      "prompt": "Serene massage studio interior with massage tables, soft warm lighting, natural wood, essential oil diffusers, calm peaceful atmosphere, fresh plants, empty relaxation space, no people visible, wellness design, 16:9 aspect ratio",
+      "output_name": "massage"
+    },
+    {
+      "prompt": "Professional tire shop interior with organized tire racks, modern equipment, hydraulic lift, bright LED lighting, clean concrete floor, no people or vehicles, industrial organized design, 16:9 aspect ratio",
+      "output_name": "pneuservis"
+    },
+    {
+      "prompt": "Modern driving school interior with classroom setup, training materials, large clear windows, comfortable seating, bright natural lighting, organized professional space, no people visible, educational design, 16:9 aspect ratio",
+      "output_name": "autoskola"
+    },
+    {
+      "prompt": "Professional car wash facility interior, modern equipment, clean organized space, bright lighting, water recycling systems visible, spotless floor, no vehicles or people, industrial clean design, 16:9 aspect ratio",
+      "output_name": "car-wash"
+    },
+    {
+      "prompt": "Modern car dealership showroom with display vehicles illuminated by professional lighting, sleek contemporary design, glass windows, polished floor, minimalist professional aesthetic, no people visible, 16:9 aspect ratio",
+      "output_name": "car-dealer"
+    },
+    {
+      "prompt": "Contemporary medical office interior with professional examination room, clean white design, modern equipment, comfortable seating area, bright natural lighting, reassuring calm atmosphere, no people visible, healthcare design, 16:9 aspect ratio",
+      "output_name": "doctor"
+    },
+    {
+      "prompt": "Modern pharmacy interior with organized medicine shelves, professional counter, bright white design, pharmaceutical products displayed, clean organized space, warm professional lighting, no people visible, healthcare design, 16:9 aspect ratio",
+      "output_name": "pharmacy"
+    },
+    {
+      "prompt": "Professional veterinary clinic interior with clean examination room, modern equipment, pet-friendly design, comfortable waiting area, bright lighting, organized professional space, no people or animals visible, 16:9 aspect ratio",
+      "output_name": "vet"
+    },
+    {
+      "prompt": "Modern optician shop interior with eyewear display, professional fitting stations, clear glass cases showing frames, bright professional lighting, mirror walls, clean organized design, no people visible, 16:9 aspect ratio",
+      "output_name": "optician"
+    },
+    {
+      "prompt": "Contemporary yoga studio interior with wooden floor, mirrors, minimalist design, meditation cushions, natural light, peaceful calming atmosphere, empty serene space, no people visible, wellness design, 16:9 aspect ratio",
+      "output_name": "yoga"
+    },
+    {
+      "prompt": "Modern crossfit gym interior with kettlebells, pull-up bars, open floor space, industrial ceiling, motivational lighting, rubber flooring, no people visible, energetic athletic design, 16:9 aspect ratio",
+      "output_name": "crossfit"
+    },
+    {
+      "prompt": "Professional martial arts studio interior with training mats, mirrored walls, wooden flooring, punching bags, organized equipment, bright lighting, empty clean space, no people visible, athletic design, 16:9 aspect ratio",
+      "output_name": "martial-arts"
+    },
+    {
+      "prompt": "Beautiful flower shop interior with colorful fresh flowers in displays, arranged bouquets, professional florist counter, warm natural lighting, elegant aesthetic, empty organized space, no people visible, floral design, 16:9 aspect ratio",
+      "output_name": "flower-shop"
+    },
+    {
+      "prompt": "Modern bookstore interior with organized bookshelves, reading displays, comfortable seating areas, warm ambient lighting, wooden shelves, literary aesthetic, empty peaceful space, no people visible, 16:9 aspect ratio",
+      "output_name": "bookstore"
+    },
+    {
+      "prompt": "Contemporary clothing boutique interior with fashion displays, organized clothing racks, mirrors, soft ambient lighting, minimalist aesthetic, empty elegant space, no people visible, retail fashion design, 16:9 aspect ratio",
+      "output_name": "clothing"
+    },
+    {
+      "prompt": "Modern electronics store interior with product displays, lit tech showcases, organized shelving, bright professional lighting, contemporary minimalist design, empty clean space, no people visible, retail design, 16:9 aspect ratio",
+      "output_name": "electronics"
+    },
+    {
+      "prompt": "Professional law office interior with mahogany furniture, booklined walls with legal references, professional desk, leather chairs, formal elegant design, bright natural lighting, no people visible, corporate design, 16:9 aspect ratio",
+      "output_name": "lawyer"
+    },
+    {
+      "prompt": "Modern accounting office interior with professional workspace, computer stations, organized filing systems, bright natural lighting, clean professional design, minimalist aesthetic, no people visible, corporate design, 16:9 aspect ratio",
+      "output_name": "accountant"
+    },
+    {
+      "prompt": "Contemporary IT company office with open workspace, modern computers, collaborative design, bright natural lighting, tech aesthetic, glass walls, organized clean space, no people visible, tech design, 16:9 aspect ratio",
+      "output_name": "it-company"
+    },
+    {
+      "prompt": "Professional real estate office interior with property display boards, modern desk, comfortable client seating, bright natural lighting, professional organized design, minimalist aesthetic, no people visible, corporate design, 16:9 aspect ratio",
+      "output_name": "real-estate"
+    },
+    {
+      "prompt": "Professional plumber's workshop interior with organized pipe racks, modern tools, workbench, clean organized space, bright industrial lighting, professional equipment display, no people visible, workshop design, 16:9 aspect ratio",
+      "output_name": "plumber"
+    },
+    {
+      "prompt": "Professional electrician's workshop interior with organized electrical equipment, tool wall, organized wiring racks, bright industrial lighting, clean professional space, safety equipment visible, no people visible, 16:9 aspect ratio",
+      "output_name": "electrician"
+    },
+    {
+      "prompt": "Construction company office interior with blueprints on walls, project displays, professional workspace, bright natural lighting, organized professional design, safety equipment visible, no people visible, industrial design, 16:9 aspect ratio",
+      "output_name": "construction"
+    },
+    {
+      "prompt": "Professional locksmith workshop interior with key displays, organized tools, lock samples, workbench, bright professional lighting, organized clean space, no people visible, workshop design, 16:9 aspect ratio",
+      "output_name": "locksmith"
+    },
+    {
+      "prompt": "Modern language school classroom interior with educational displays, learning materials, comfortable seating, bright natural lighting, organized educational design, language posters, no people visible, 16:9 aspect ratio",
+      "output_name": "language-school"
+    },
+    {
+      "prompt": "Contemporary tutoring center interior with individual study spaces, comfortable learning stations, educational materials, bright natural lighting, organized peaceful design, books and resources, no people visible, 16:9 aspect ratio",
+      "output_name": "tutoring"
+    },
+    {
+      "prompt": "Modern training facility interior with conference setup, presentation screens, comfortable seating, professional staging, bright natural lighting, organized educational space, no people visible, training design, 16:9 aspect ratio",
+      "output_name": "training"
+    },
+    {
+      "prompt": "Historic theater interior with ornate stage, theatrical lighting, velvet seating rows, dramatic ambient lighting, classic architectural design, empty elegant venue, no people visible, cultural design, 16:9 aspect ratio",
+      "output_name": "theater"
+    },
+    {
+      "prompt": "Modern art gallery interior with white walls, professional gallery lighting, artwork displays, minimalist aesthetic, spacious elegant design, empty peaceful space, no people visible, cultural design, 16:9 aspect ratio",
+      "output_name": "gallery"
+    },
+    {
+      "prompt": "Contemporary cinema interior with modern seating, big screen, theatrical lighting, comfortable auditorium design, luxury cinema aesthetic, empty elegant space, no people visible, entertainment design, 16:9 aspect ratio",
+      "output_name": "cinema"
+    }
+  ]
+}

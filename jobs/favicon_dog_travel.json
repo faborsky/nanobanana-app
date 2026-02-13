@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "name": "Dog Travel Favicon",
+    "description": "Favicon/icon varianty - 1:1 pro web icon"
+  },
+  "defaults": {
+    "aspect_ratio": "1:1",
+    "resolution": "1K"
+  },
+  "jobs": [
+    {
+      "variant": 1,
+      "name": "Paw Print Icon",
+      "prompt": "16-bit pixel art icon, SNES game style, visible pixels, no smoothing. Simple dog paw print centered on dark purple #5e17eb background. Paw print in bright lime green #baf122 with subtle glow effect. Clean minimal design, bold and recognizable at small sizes. Perfect for favicon. No text, no additional elements, just the iconic paw symbol. Square composition.",
+      "output_name": "favicon_paw"
+    },
+    {
+      "variant": 2,
+      "name": "Golden Retriever Head",
+      "prompt": "16-bit pixel art icon, SNES game style, visible pixels, no smoothing. Cute golden retriever dog face portrait centered, friendly happy expression with tongue out. Dark purple #5e17eb background. Dog has warm golden fur, lime green #baf122 collar visible. Simple bold design readable at small sizes. Perfect for favicon. No text. Square composition.",
+      "output_name": "favicon_retriever"
+    },
+    {
+      "variant": 3,
+      "name": "Border Collie Head",
+      "prompt": "16-bit pixel art icon, SNES game style, visible pixels, no smoothing. Cute border collie dog face portrait centered, cream-white fluffy coat with white blaze on face, expressive brown eyes, friendly alert expression. Dark purple #5e17eb background. Lime green #baf122 collar visible. Simple bold design readable at small sizes. Perfect for favicon. No text. Square composition.",
+      "output_name": "favicon_collie"
+    },
+    {
+      "variant": 4,
+      "name": "Paw with Travel",
+      "prompt": "16-bit pixel art icon, SNES game style, visible pixels, no smoothing. Creative icon combining dog paw print with tiny airplane silhouette or compass element. Lime green #baf122 paw on dark purple #5e17eb background. Red #ff3131 small accent detail. Represents dog + travel concept. Bold simple design for favicon. No text. Square composition.",
+      "output_name": "favicon_paw_travel"
+    }
+  ]
+}

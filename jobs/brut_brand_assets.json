@@ -1,0 +1,64 @@
+{
+  "jobs": [
+    {
+      "prompt": "Minimalist logo design for a craft cider brand called BRUT. with a period at the end. Clean grotesk sans-serif typography, bold uppercase letters, off-black #1A1A1A on warm white #F5F2ED background. The period is emphasized as a design element. No decoration, no icons, pure typography. Swiss design influence, Aesop-like aesthetic, contemporary branding, sharp clean edges",
+      "output_name": "logo_v1_typography",
+      "aspect_ratio": "1:1",
+      "resolution": "1K"
+    },
+    {
+      "prompt": "Minimalist logo design for craft cider brand BRUT. featuring bold sans-serif type in off-black #1A1A1A with an electric lime green #C8FF00 accent dot/period. Clean warm white background. The dot after BRUT is highlighted in electric lime as the signature brand element. Modern, confident, no-frills design. Flat design, no gradients, no shadows",
+      "output_name": "logo_v2_lime_dot",
+      "aspect_ratio": "1:1",
+      "resolution": "1K"
+    },
+    {
+      "prompt": "Logo design for premium craft cider brand BRUT. Stacked vertical layout with BRUT on top and a bold period below. Off-black #1A1A1A heavy weight grotesk typeface on clean warm white #F5F2ED. Extremely minimal, architectural typography, generous negative space. Inspired by luxury minimalist brands like Aesop. No icons, no embellishments, pure letterforms",
+      "output_name": "logo_v3_stacked",
+      "aspect_ratio": "1:1",
+      "resolution": "1K"
+    },
+    {
+      "prompt": "Brand mark for BRUT. craft cider company. Monogram style using the letter B with a bold geometric period. Off-black #1A1A1A on warm white background. Ultra-clean sans-serif, geometric construction, modernist design principles. Could work as an app icon or can stamp. Minimal, precise, no decorative elements",
+      "output_name": "logo_v4_monogram",
+      "aspect_ratio": "1:1",
+      "resolution": "1K"
+    },
+    {
+      "prompt": "Reversed logo for craft cider brand BRUT. White bold grotesk sans-serif text on solid off-black #1A1A1A background with the period in electric lime #C8FF00. High contrast, striking, minimal. The text is centered with generous spacing. Clean edges, no texture, flat design. Works as a dark mode brand identity, premium feel",
+      "output_name": "logo_v5_reversed",
+      "aspect_ratio": "1:1",
+      "resolution": "1K"
+    },
+    {
+      "prompt": "Product photography of a slim 330ml craft cider can labeled BRUT. Original. The can has minimal off-black and warm white design with amber gold #E8A838 accent stripe. Bone-dry sparkling cider. The can sits centered on a solid amber gold #E8A838 background, clean flat color, no gradients. Soft studio lighting, subtle shadow beneath the can. Professional product shot, commercial photography, sharp focus, clean aesthetic. The can is slightly angled, premium feel",
+      "output_name": "product_original",
+      "aspect_ratio": "4:5",
+      "resolution": "2K"
+    },
+    {
+      "prompt": "Product photography of a slim 330ml craft cider can labeled BRUT. Haze. The can has minimal off-black and warm white design with pale cloud #E6DFD0 cream accent. Unfiltered cloudy semi-dry cider. The can sits centered on a solid pale cloud beige #E6DFD0 background, clean flat single color, no gradients. Soft diffused studio lighting, gentle shadow. Professional product shot, commercial photography, sharp focus, clean minimal aesthetic. Slightly angled can, premium positioning",
+      "output_name": "product_haze",
+      "aspect_ratio": "4:5",
+      "resolution": "2K"
+    },
+    {
+      "prompt": "Product photography of a slim 330ml craft cider can labeled BRUT. Cassis. The can has minimal off-black and warm white design with deep berry purple #4A1942 accent. Blackcurrant-infused dry cider. The can sits centered on a solid deep berry purple #4A1942 background, clean flat single color. Dramatic studio lighting with soft highlights on the can, subtle shadow. Professional product shot, commercial photography, sharp focus. The dark background makes the can pop, moody premium feel",
+      "output_name": "product_cassis",
+      "aspect_ratio": "4:5",
+      "resolution": "2K"
+    },
+    {
+      "prompt": "Product photography of a slim 330ml craft cider can labeled BRUT. Ginger. The can has minimal off-black and warm white design with warm coral #E85D3A accent. Ginger and apple dry cider. The can sits centered on a solid warm coral #E85D3A background, clean flat single color, no gradients. Bright studio lighting, crisp shadow beneath. Professional product shot, commercial photography, sharp focus, energetic yet clean aesthetic. Can slightly angled, bold and confident positioning",
+      "output_name": "product_ginger",
+      "aspect_ratio": "4:5",
+      "resolution": "2K"
+    },
+    {
+      "prompt": "Lifestyle hero photo for a craft cider brand website. A group of stylish young adults (mid-20s) sitting at an outdoor terrace of a modern urban bar in a European city like Ghent. They are casually enjoying slim cans of craft cider, laughing and talking. The scene is golden hour with warm sunlight. Modern minimalist bar design, exposed concrete, greenery. The people are design-aware, wearing contemporary casual clothes. Natural, candid moment, not posed. Editorial photography style, warm color grading, shallow depth of field on the foreground. Aspirational but authentic atmosphere",
+      "output_name": "hero_lifestyle",
+      "aspect_ratio": "16:9",
+      "resolution": "2K"
+    }
+  ]
+}

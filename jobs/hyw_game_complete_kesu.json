@@ -1,0 +1,355 @@
+{
+  "metadata": {
+    "name": "Hack Your Way: Dog Travel Edition - Kesu Character",
+    "version": "2.0",
+    "description": "Kompletní sada grafik pro alternativní postavu (žena + Kešu)",
+    "character": "Young woman with long wavy dark brown hair, arm tattoos (butterfly and other designs), lime tie-dye top, athletic outdoorsy style",
+    "dog": "Medium-sized border collie named Kesu - ee red (light golden/cream) and white coloring, long fluffy double coat, white blaze on face, white chest and belly, golden/cream patches on head ears and back, expressive brown eyes, athletic border collie build",
+    "color_palette": {
+      "primary": "#baf122 (lime/neon green)",
+      "accent": "#ff3131 (red)",
+      "shadow": "#5e17eb (purple)",
+      "base": "#000000 (black)"
+    },
+    "total_images": 37,
+    "structure": {
+      "game_scenes": "21 scén (scene_00 - scene_18, včetně scene_15b)",
+      "endings": "16 konců (5 strategií × 3 výsledky + 1 default)"
+    }
+  },
+  "defaults": {
+    "resolution": "1K"
+  },
+  "jobs": [
+    {
+      "category": "GAME_SCENES",
+      "scene_id": "scene_00",
+      "scene_name": "Title Screen / Splash",
+      "phase": "INTRO",
+      "aspect_ratio": "21:9",
+      "prompt": "16-bit pixel art title screen, SNES game style, visible pixels, no smoothing. Epic wide establishing shot of Brno cityscape at night with Spilberk castle and Petrov cathedral silhouettes. Large stylized game title 'DOG TRAVEL' in bold pixel font centered, glowing with neon lime effect. Subtitle 'by Hack Your Way' below. Flying pixel elements around title: airplane, paw print, camera, suitcase, dog silhouette, hiking boots. Medium-sized border collie with fluffy cream and white coat sitting proudly on rooftop looking at city. Neon signs and tech glow throughout city. Color palette: lime #baf122 for title glow and neon lights, red #ff3131 for accent highlights, purple #5e17eb for night sky and shadows, black base. Retro arcade aesthetic. Cyberpunk meets retro gaming aesthetic. Main character: young woman with long wavy dark brown hair, arm tattoos, lime tie-dye top, standing next to the dog on rooftop. 21:9 ultrawide, epic intro energy, adventure awaits.",
+      "output_name": "kesu_scene_00_title"
+    },
+    {
+      "category": "GAME_SCENES",
+      "scene_id": "scene_01",
+      "scene_name": "Máš nápad",
+      "phase": "PHASE_1_ZAKLADY",
+      "aspect_ratio": "21:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Sunny outdoor terrace cafe in Brno with plants and string lights. Main character: young woman with long wavy dark brown hair, arm tattoos visible, lime tie-dye top, sitting at wooden table with laptop and iced coffee. Medium-sized border collie with fluffy cream and white coat Kesu lying on her lap, looking up adoringly with expressive brown eyes. Lightbulb appearing above protagonist's head - eureka moment. Thought bubble showing: airplane + paw print + camera icons. Other cafe patrons with their dogs in background. Through terrace view: Petrov cathedral silhouette at golden hour. Color palette: lime #baf122 for lightbulb glow and laptop screen, red #ff3131 for warm sunset accents, purple #5e17eb for evening shadows. Iced latte on table with dog paw latte art. Easter egg: hiking backpack with travel patches leaning against chair. 21:9 ultrawide, warm golden hour mood, the birth of an idea.",
+      "output_name": "kesu_scene_01_idea"
+    },
+    {
+      "category": "GAME_SCENES",
+      "scene_id": "scene_02",
+      "scene_name": "Název a doména",
+      "phase": "PHASE_1_ZAKLADY",
+      "aspect_ratio": "21:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Cozy bedroom workspace with fairy lights and travel photos on wall. Main character: young woman with long wavy dark brown hair, arm tattoos, wearing cozy sweater, cross-legged on bed with laptop showing domain search results. Medium-sized border collie Kesu with fluffy cream and white coat curled up sleeping next to her, cream and brown fur visible. Sticky notes and sketches scattered on bed with crossed-out name ideas. One name circled with lime marker glowing. Domain availability checker showing '.com AVAILABLE!' in green. Color palette: lime #baf122 for screen glow and available domain highlight, red #ff3131 for fairy lights warmth, purple #5e17eb for night shadows. Clock showing midnight. Through window: Brno city lights and stars. Easter egg: vision board with dog travel destinations pinned. 21:9 ultrawide, cozy late night brainstorm energy.",
+      "output_name": "kesu_scene_02_name_domain"
+    },
+    {
+      "category": "GAME_SCENES",
+      "scene_id": "scene_03",
+      "scene_name": "První webovka",
+      "phase": "PHASE_1_ZAKLADY",
+      "aspect_ratio": "21:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Split screen composition showing two paths. Left side: sterile agency meeting room with suited people, price tag showing 120000 Kc, calendar showing '3 months'. Right side: Main character: young woman with long wavy dark brown hair, arm tattoos, lime top, at cozy home desk with plants, Lovable/Framer interface on screen. Medium-sized border collie Kesu with fluffy cream and white coat watching the screen from desk corner, head tilted curiously. Website preview showing dog travel service with mountain and paw icons. Progress bar at 80%. Color palette: lime #baf122 for DIY path glow and website elements, red #ff3131 for creative energy, purple #5e17eb for contrast shadows. Timer showing '3 hours'. Easter egg: travel journal with pressed flowers as bookmark. 21:9 ultrawide, empowering DIY energy, indie maker vibe.",
+      "output_name": "kesu_scene_03_first_website"
+    },
+    {
+      "category": "GAME_SCENES",
+      "scene_id": "scene_04",
+      "scene_name": "Tvorba webu",
+      "phase": "PHASE_1_ZAKLADY",
+      "aspect_ratio": "21:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Creative workspace with plants and mood board. Main character: young woman with long wavy dark brown hair, arm tattoos visible, lime tie-dye top, typing enthusiastically at standing desk. Large monitor showing AI chat interface or Framer templates with design suggestions flowing. Website preview materializing with dog travel adventure aesthetic. Medium-sized border collie Kesu with fluffy cream and white coat sitting in dog bed nearby, occasionally glancing at floating design elements curiously. Multiple screens showing: design options, color palettes, live preview. Color palette: lime #baf122 for website elements and progress, red #ff3131 for creative sparks, purple #5e17eb for interface shadows. Flying pixel elements: mountains, paw prints, compass merging into website. Morning light through large window. Easter egg: succulent plants arranged like website wireframe. 21:9 ultrawide, creative flow state energy.",
+      "output_name": "kesu_scene_04_web_building"
+    },
+    {
+      "category": "GAME_SCENES",
+      "scene_id": "scene_05",
+      "scene_name": "Učíš se nový nástroj",
+      "phase": "PHASE_1_ZAKLADY",
+      "aspect_ratio": "21:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Learning by doing scene in sunny room. Main character: young woman with long wavy dark brown hair, arm tattoos, comfortable clothes, at desk with split screen: left showing YouTube tutorial (progress bar at 2%), right showing actual workspace with hands-on editing. AI chat window open with helpful explanations. Medium-sized border collie Kesu with fluffy cream and white coat sleeping in sunshine patch on floor nearby, peaceful. Crossed out: 6-hour course certificate. Highlighted: quick targeted lessons being applied immediately. Color palette: lime #baf122 for active learning highlights, red #ff3131 for sunshine warmth, purple #5e17eb for background elements. Clock showing time-lapse effect. NotebookLM interface visible on tablet. Easter egg: yoga mat rolled up in corner - balance in learning. 21:9 ultrawide, efficient learning visualization, mindful productivity.",
+      "output_name": "kesu_scene_05_learning"
+    },
+    {
+      "category": "GAME_SCENES",
+      "scene_id": "scene_06",
+      "scene_name": "Logo a vizuální identita",
+      "phase": "PHASE_1_ZAKLADY",
+      "aspect_ratio": "21:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Artistic creative workspace with inspiration everywhere. Main character: young woman with long wavy dark brown hair, arm tattoos, lime top, surrounded by logo sketches in notebook and on tablet screen. Midjourney/DALL-E interface showing AI-generated logo concepts with dog and mountain adventure motifs. Canva open for final touches. Medium-sized border collie Kesu with fluffy cream and white coat posing dramatically as reference model, looking majestic with fluffy fur. Rejected expensive quote (25000 Kc) crumpled in recycling bin. Timer showing '30 minutes'. Final logo emerging: stylized fluffy dog with trail/path. Color palette: lime #baf122 for chosen logo glow, red #ff3131 for creative warmth, purple #5e17eb for artistic shadows. Watercolor supplies visible as aesthetic touch. Easter egg: hand-drawn character sketches of Kesu. 21:9 ultrawide, artistic creative energy, handcrafted digital vibe.",
+      "output_name": "kesu_scene_06_logo"
+    },
+    {
+      "category": "GAME_SCENES",
+      "scene_id": "scene_07",
+      "scene_name": "Perfectionism Paralysis",
+      "phase": "PHASE_1_ZAKLADY",
+      "aspect_ratio": "21:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Perfectionism paralysis visualization. Main character: young woman with long wavy dark brown hair, arm tattoos, looking stressed, surrounded by 47 versions of same website design floating around head in spiral. Spiral eyes, hands in hair. Calendar showing 2 weeks crossed out. Medium-sized border collie Kesu with fluffy cream and white coat at door with leash in mouth, wanting to go hiking, giving puppy eyes. Ghost-like 'perfect' website floating just out of reach. Meanwhile: stack of DMs and inquiries piling up, phone notifications ignored. Thought bubbles: 'colors not right', 'font feels off', 'photos need editing'. Color palette: lime #baf122 dimmed for elusive perfection, red #ff3131 for stress indicators, purple #5e17eb for overthinking clouds. Through window: beautiful hiking trail visible - life waiting. Easter egg: self-care reminder sticky note fallen off wall. 21:9 ultrawide, relatable anxiety, perfectionism trap.",
+      "output_name": "kesu_scene_07_perfectionism"
+    },
+    {
+      "category": "GAME_SCENES",
+      "scene_id": "scene_08",
+      "scene_name": "Go-to-market strategie",
+      "phase": "PHASE_2_PRVNI_ZAKAZNICI",
+      "aspect_ratio": "21:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Content creation in nature setting. Main character: young woman with long wavy dark brown hair, arm tattoos, athletic outfit, surrounded by adventure photos and videos from hikes with Kesu. Phone showing Instagram Reels editor with dog adventure content. Multiple floating screens: trail photos transforming into engaging reels, campfire podcast setup, story highlights. Medium-sized border collie Kesu with fluffy cream and white coat in various adventure poses (mountain top, forest trail, lake). Authentic outdoor UGC content floating as pixel cards. Rejected: expensive ad budget visualization fading. Color palette: lime #baf122 for content highlights and engagement, red #ff3131 for adventure warmth, purple #5e17eb for creative flow. Map of hiked trails on wall with pins. Easter egg: GoPro and hiking poles visible. 21:9 ultrawide, adventure content creator energy, authentic outdoor storytelling.",
+      "output_name": "kesu_scene_08_go_to_market"
+    },
+    {
+      "category": "GAME_SCENES",
+      "scene_id": "scene_09",
+      "scene_name": "První zákazník",
+      "phase": "PHASE_2_PRVNI_ZAKAZNICI",
+      "aspect_ratio": "21:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Pricing anxiety moment at home. Main character: young woman with long wavy dark brown hair, arm tattoos, casual clothes, staring nervously at phone screen showing message notification. Phone displays chat bubble from customer: question mark and money symbol. Nervous expression, biting lip. Medium-sized border collie Kesu with fluffy cream and white coat nudging her hand supportively with nose, sensing anxiety. Thought bubbles floating: calculator with question marks, euro symbols of different sizes, crossed out numbers, internal conflict. Empty pricing notebook on table with pen. Background: cozy room with Brno view through window, evening light. Split visualization: confident pricing path (lime glow) vs fear of rejection (red warning). Customer avatar: woman with husky silhouette, mountain icon. Color palette: lime #baf122 for opportunity, red #ff3131 for anxiety warmth, purple #5e17eb for uncertainty shadows. Easter egg: imposter syndrome book on shelf. 21:9 ultrawide, pivotal moment, first customer nerves.",
+      "output_name": "kesu_scene_09_first_customer"
+    },
+    {
+      "category": "GAME_SCENES",
+      "scene_id": "scene_10",
+      "scene_name": "Video obsah",
+      "phase": "PHASE_2_PRVNI_ZAKAZNICI",
+      "aspect_ratio": "21:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Outdoor video shooting setup. Main character: young woman with long wavy dark brown hair, arm tattoos, athletic wear, filming with iPhone on flexible tripod attached to tree. Medium-sized border collie Kesu with fluffy cream and white coat as adventure co-star, wearing cute red bandana, posing on scenic rock. Natural golden hour lighting. CapCut timeline visible on tablet propped against backpack. Forest trail transformed into natural studio. B-roll clips floating: Kesu running through meadow, mountain vistas, happy trail moments. Rejected: expensive production company quote (35000 Kc) crumpled. Color palette: lime #baf122 for recording indicator, red #ff3131 for golden hour warmth and bandana, purple #5e17eb for forest shadows. Drone flying overhead for aerial shots. Easter egg: trail mix snacks for rewards. 21:9 ultrawide, adventure creator vibe, nature as studio.",
+      "output_name": "kesu_scene_10_video_content"
+    },
+    {
+      "category": "GAME_SCENES",
+      "scene_id": "scene_11",
+      "scene_name": "Podcast setup",
+      "phase": "PHASE_2_PRVNI_ZAKAZNICI",
+      "aspect_ratio": "21:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Podcast recording in cozy outdoor-indoor space. Main character: young woman with long wavy dark brown hair, arm tattoos, comfortable flannel, recording with iPhone as microphone, guest (fellow hiker with their dog) sitting across at picnic table. Medium-sized border collie Kesu with fluffy cream and white coat lying between them, perking ears at interesting conversation. Laptop showing Adobe Podcast Enhance transforming audio - magic waveform visualization. Sound waves: raw trail recording becoming studio quality. Cozy cabin/patio setting with mountain view. Rejected: expensive studio rental. Color palette: lime #baf122 for enhanced audio glow, red #ff3131 for warm cabin lighting, purple #5e17eb for ambient shadows. Topic cards: 'Best dog-friendly trails', 'Camping with dogs'. Easter egg: two dog bowls with water nearby. 21:9 ultrawide, intimate trail stories energy, outdoor podcast magic.",
+      "output_name": "kesu_scene_11_podcast"
+    },
+    {
+      "category": "GAME_SCENES",
+      "scene_id": "scene_12",
+      "scene_name": "Psí veletrh",
+      "phase": "PHASE_2_PRVNI_ZAKAZNICI",
+      "aspect_ratio": "21:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Bustling outdoor dog festival scene. Main character: young woman with long wavy dark brown hair, arm tattoos, branded lime shirt, walking through crowd without own booth. Medium-sized border collie Kesu with fluffy cream and white coat on leash with red harness, attracting attention from other dogs and admirers of the fluffy fur. Expensive booth price tag floating (65000 Kc) with X mark. Creative alternatives highlighted: partnering with outdoor gear booth, guerrilla marketing at water stations and rest areas. Hundreds of dogs and active owners filling the venue - more outdoorsy crowd. Color palette: lime #baf122 for opportunity spots, red #ff3131 for energy and Kesu's harness, purple #5e17eb for crowd shadows. Various adventure dog breeds visible (huskies, aussies, border collies). Easter egg: trail map with 'networking spots' marked. 21:9 ultrawide, outdoor festival energy, resourceful thinking.",
+      "output_name": "kesu_scene_12_dog_fair"
+    },
+    {
+      "category": "GAME_SCENES",
+      "scene_id": "scene_13",
+      "scene_name": "Jak zaujmout (Open Question)",
+      "phase": "PHASE_2_PRVNI_ZAKAZNICI",
+      "aspect_ratio": "21:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Standing out at festival with creative approach. Main character: young woman with long wavy dark brown hair, arm tattoos visible, wearing eye-catching adventure costume - maybe pixel hiking backpack hat or creative trail guide outfit. Medium-sized border collie Kesu with fluffy cream and white coat in matching adventure costume (tiny explorer vest and goggles), looking adorable and fluffy. Crowd gathering around, taking photos, laughing at the creative duo. QR code visible on backpack leading to website. Contrast: standard flyers being ignored on ground. Other attendees pointing and engaging. Color palette: lime #baf122 for attention-grabbing costume elements, red #ff3131 for Kesu's gear and engagement hearts, purple #5e17eb for crowd shadows. Festival tents and nature backdrop. Easter egg: someone already following on phone in crowd. 21:9 ultrawide, guerrilla marketing creativity, memorable adventure duo.",
+      "output_name": "kesu_scene_13_attention"
+    },
+    {
+      "category": "GAME_SCENES",
+      "scene_id": "scene_14",
+      "scene_name": "AI FOMO",
+      "phase": "PHASE_2_PRVNI_ZAKAZNICI",
+      "aspect_ratio": "21:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. AI tool overload visualization. Main character: young woman with long wavy dark brown hair, arm tattoos, overwhelmed expression, surrounded by hundreds of floating AI tool logos swirling chaotically like tornado. FOMO anxiety visualization with social media notifications about 'must-try' tools. But clarity emerging: small focused toolkit of 4 tools glowing brightly in center, others fading to gray. Medium-sized border collie Kesu with fluffy cream and white coat sitting calmly at her feet, grounding presence, looking up reassuringly. 'MY TOOLS' sticky note with selected essentials. Calendar showing real work vs endless testing. Color palette: lime #baf122 for chosen tools, red #ff3131 for FOMO chaos and notifications, purple #5e17eb for overwhelming background. Through window: peaceful hiking trail - reminder of what matters. Easter egg: 'Digital Minimalism' book on desk. 21:9 ultrawide, FOMO to focus journey, finding calm in chaos.",
+      "output_name": "kesu_scene_14_ai_fomo"
+    },
+    {
+      "category": "GAME_SCENES",
+      "scene_id": "scene_15",
+      "scene_name": "Automatizace",
+      "phase": "PHASE_3_RUST_EXPANZE",
+      "aspect_ratio": "21:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Automation command center with natural light. Main character: young woman with long wavy dark brown hair, arm tattoos, casual clothes, setting up automation flows on laptop and tablet. Make/Zapier/n8n interface showing connected blocks: Trail Podcast RSS -> AI Transcription -> Blog Post -> Instagram. Medium-sized border collie Kesu with fluffy cream and white coat watching data flow visualization like watching butterflies, head following the connections. Workflow visualization: one hike story multiplying into multiple content pieces. Time saved counter increasing - more time for actual adventures. Rejected: manual posting chaos calendar. Color palette: lime #baf122 for automation flow, red #ff3131 for trigger points, purple #5e17eb for system shadows. Clock showing efficiency gains. Easter egg: packed hiking bag ready for adventure with freed-up time. 21:9 ultrawide, automation magic, work smarter energy.",
+      "output_name": "kesu_scene_15_automation"
+    },
+    {
+      "category": "GAME_SCENES",
+      "scene_id": "scene_15b",
+      "scene_name": "Automation Builder (Minigame)",
+      "phase": "PHASE_3_RUST_EXPANZE",
+      "aspect_ratio": "21:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Automation puzzle minigame visualization. Main character: young woman with long wavy dark brown hair, arm tattoos, arranging colorful blocks/nodes on screen like trail waypoints. Puzzle interface showing: [Podcast RSS] -> [?] -> [?] -> [Website]. Available blocks floating: AI Transcription, AI Summary, Email Newsletter, Social Post, Delay. Medium-sized border collie Kesu with fluffy cream and white coat tilting fluffy head at the puzzle, one ear up. Correct path glowing when connected properly like completed trail. Color palette: lime #baf122 for correct connections, red #ff3131 for block borders, purple #5e17eb for interface background. Satisfying completion visualization. Easter egg: trail map puzzle similarity on wall. 21:9 ultrawide, puzzle satisfaction energy, logical adventure planning.",
+      "output_name": "kesu_scene_15b_automation_minigame"
+    },
+    {
+      "category": "GAME_SCENES",
+      "scene_id": "scene_16",
+      "scene_name": "Škálování byznysu",
+      "phase": "PHASE_3_RUST_EXPANZE",
+      "aspect_ratio": "21:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Scaling and community building scene. Main character: young woman with long wavy dark brown hair, arm tattoos, engaging with multiple screens showing dog hiking communities - Facebook groups, Reddit r/hikingwithdogs, outdoor forums. AI assistant helping find relevant discussions and opportunities. Medium-sized border collie Kesu with fluffy cream and white coat appearing in posted adventure photos, becoming recognizable mascot. Network visualization: connections growing from online communities to real adventure clients. Influencer outreach to outdoor/dog creators visible. Meta Ads dashboard with targeted outdoor audiences. Color palette: lime #baf122 for community connections, red #ff3131 for notification badges and engagement, purple #5e17eb for screen glows. Map showing trail networks and customer spread. Easter egg: community meetup event being planned. 21:9 ultrawide, tribe building energy, adventure community growth.",
+      "output_name": "kesu_scene_16_scaling"
+    },
+    {
+      "category": "GAME_SCENES",
+      "scene_id": "scene_17",
+      "scene_name": "Expanze do Polska",
+      "phase": "PHASE_3_RUST_EXPANZE",
+      "aspect_ratio": "21:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Polish mountain expansion adventure. Main character: young woman with long wavy dark brown hair, arm tattoos, hiking gear, sitting on scenic viewpoint in Tatra Mountains with laptop, researching Polish market. Medium-sized border collie Kesu with fluffy cream and white coat beside her wearing Polish flag bandana (white and red), enjoying the mountain breeze with fur flowing. Iconic Tatra peaks visible in background. Phone showing Polish hiking community engagement. Laptop screen split: left side Czech content (podcast, reels), right side AI translation interface transforming to Polish. Floating visualization: CZ flag morphing into PL flag through AI particles. Claude/ChatGPT with tone of voice settings visible. Zakopane town visible below. ElevenLabs showing voice adaptation. Polish text bubbles: hiking terms floating. Color palette: lime #baf122 for AI translation magic, red #ff3131 for Polish flag warmth, purple #5e17eb for mountain shadows. Alpine scenery, wooden mountain hut nearby. Easter egg: Polish trail map with highlighter marks. 21:9 ultrawide, mountain expansion adventure, new trails to explore.",
+      "output_name": "kesu_scene_17_poland_expansion"
+    },
+    {
+      "category": "GAME_SCENES",
+      "scene_id": "scene_18",
+      "scene_name": "Služba vs. produkt",
+      "phase": "PHASE_3_RUST_EXPANZE",
+      "aspect_ratio": "21:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Scaling dilemma - service to product crossroads. Main character: young woman with long wavy dark brown hair, arm tattoos, sitting at desk surrounded by booking calendars and trip planning documents, phone buzzing constantly. Medium-sized border collie Kesu with fluffy cream and white coat sleeping peacefully on dog bed - representing the dream of passive income while adventuring. Split visualization above head: LEFT SIDE (red glow) showing service trap - endless client calls, always planning others' trips never her own. RIGHT SIDE (lime glow) showing product freedom - app generating income, course running, merchandise selling while she hikes. Floating product ideas: smartphone app with trail + paw icon (dog hiking app), outdoor gear with adventure dog branding (merch), dog hiking accessories (gear line), video play button with mountains (content empire), premium badge (boutique guided experiences). Each option sparkles. Wall shows success metrics but tired expression. Window: sunset over trails she hasn't walked in weeks. Color palette: lime #baf122 for product possibilities, red #ff3131 for current overwhelm, purple #5e17eb for dreamy future. Easter egg: bucket list of unhiked trails pinned to wall. 21:9 ultrawide, pivotal moment, finding freedom in business.",
+      "output_name": "kesu_scene_18_service_vs_product"
+    },
+
+    {
+      "category": "ENDINGS",
+      "strategy": "BUILD_APP",
+      "ending_type": "SUCCESS",
+      "description": "Trail App na vzestupu - tisíce uživatelů, investoři, expanze",
+      "aspect_ratio": "16:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Main character: young woman with long wavy dark brown hair, arm tattoos, branded lime outdoor jacket, standing proudly in modern co-working space with plants and adventure posters. Large monitor showing trail app dashboard with user counter glowing, map with thousands of dog-friendly trails pinned. Medium-sized border collie Kesu with fluffy cream and white coat wearing tiny 'Chief Trail Officer' bandana, wagging tail at tablet showing app. Wall covered with trail photos and version iterations. Phone showing messages from outdoor accelerator programs. Growth chart shooting upward. Globe showing Poland and Austria expansion. Vibe coding visualization: nature elements flowing into app interface. Small team celebrating with hiking gear around. Color palette: lime #baf122 for success metrics and app glow, red #ff3131 for milestone markers, purple #5e17eb for office shadows. Confetti pixels falling. 16:9 widescreen, adventure startup triumph.",
+      "output_name": "kesu_ending_build_app_success"
+    },
+    {
+      "category": "ENDINGS",
+      "strategy": "BUILD_APP",
+      "ending_type": "NEUTRAL",
+      "description": "Appka v beta verzi - stovky uživatelů, iterace, hledání PMF",
+      "aspect_ratio": "16:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Main character: young woman with long wavy dark brown hair, arm tattoos, casual clothes, sitting at cozy desk with laptop showing trail app dashboard with modest user count. Medium-sized border collie Kesu with fluffy cream and white coat looking at screen with tilted head and perked ears. Mixed feedback visualization: thumbs up and question marks floating. Feature request sticky notes around monitor - 'offline maps', 'better filters'. Loading bar at 60%. Herbal tea cups accumulated. Small engaged community chat visible. Growth chart showing slow steady climb like a hiking trail. Bug reports organized. Color palette: lime #baf122 for working features, red #ff3131 for bugs to fix, purple #5e17eb for contemplative shadows. Window showing sunrise - new day of building. 16:9 widescreen, determined builder energy.",
+      "output_name": "kesu_ending_build_app_neutral"
+    },
+    {
+      "category": "ENDINGS",
+      "strategy": "BUILD_APP",
+      "ending_type": "FAILURE",
+      "description": "Appka se nepovedla - nula uživatelů, ale svítání za oknem",
+      "aspect_ratio": "16:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Main character: young woman with long wavy dark brown hair, arm tattoos, sitting at desk in dim room, head resting on arms, tired but not defeated. Monitor showing trail app dashboard with zeros - zero users, zero downloads, flat graphs. Medium-sized border collie Kesu with fluffy cream and white coat lying beside chair, looking up with gentle supportive eyes, paw touching her foot. Empty tea mug and energy bar wrappers on desk. Crumpled sketches scattered. But through window: beautiful mountain sunrise beginning, golden and pink light breaking through - new trails, new chances. Hiking boots by door ready. Color palette: lime #baf122 dimmed, red #ff3131 for warning zeros and sunrise hope, purple #5e17eb dominant for shadows. Dawn light providing warm accent. 16:9 widescreen, setback but not defeat, trails still waiting.",
+      "output_name": "kesu_ending_build_app_failure"
+    },
+
+    {
+      "category": "ENDINGS",
+      "strategy": "MERCH_BRAND",
+      "ending_type": "SUCCESS",
+      "description": "Adventure lifestyle značka - stovky prodejů, outdoor community",
+      "aspect_ratio": "16:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Main character: young woman with long wavy dark brown hair, arm tattoos, wearing her OWN branded adventure hoodie with trail dog logo, standing at bustling booth at outdoor festival. Medium-sized border collie Kesu with fluffy cream and white coat as brand mascot, wearing matching bandana, posing for photos with fans. Queue of adventure-loving customers. Clothing rack displaying trail hoodies, performance tees, hiking caps with dog adventure designs. Phone showing follower surge. Outdoor influencers wearing the merch in floating frames. Outdoor shop wholesale forms stacked. Wall of customer photos hiking in merch with their dogs. Sales strong. Color palette: lime #baf122 for brand colors and success, red #ff3131 for energy and engagement, purple #5e17eb for shadows. Festival energy with confetti. 16:9 widescreen, adventure brand triumph.",
+      "output_name": "kesu_ending_merch_brand_success"
+    },
+    {
+      "category": "ENDINGS",
+      "strategy": "MERCH_BRAND",
+      "ending_type": "NEUTRAL",
+      "description": "Značka na startu - desítky prodejů, rostoucí komunita",
+      "aspect_ratio": "16:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Main character: young woman with long wavy dark brown hair, arm tattoos, designing new adventure merch on tablet. Medium-sized border collie Kesu with fluffy cream and white coat modeling prototype bandana, looking at camera like professional model. E-shop showing modest but real sales. Happy customer review cards pinned to wall - photos of people hiking in the merch. Phone showing growing follower count. New design sketches scattered - trail-themed patterns. Print-on-demand site open on laptop. First returning customer notification. Photo setup in corner with outdoor backdrop. Content calendar half-filled. Color palette: lime #baf122 for sales and positive reviews, red #ff3131 for design accents, purple #5e17eb for workspace shadows. Morning light through window. 16:9 widescreen, creative momentum building.",
+      "output_name": "kesu_ending_merch_brand_neutral"
+    },
+    {
+      "category": "ENDINGS",
+      "strategy": "MERCH_BRAND",
+      "ending_type": "FAILURE",
+      "description": "Značka se neprosadila - neprodané zásoby, ale nové nápady",
+      "aspect_ratio": "16:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Main character: young woman with long wavy dark brown hair, arm tattoos, standing in garage surrounded by boxes of unsold adventure merch - hoodies, trail tees with dog hiking logo. Medium-sized border collie Kesu with fluffy cream and white coat sitting on one box wearing company shirt, the most loyal customer, tail still wagging. Dusty shelves, price tags attached. Inventory high, sales zero. But entrepreneur holds sketchbook, drawing new designs with fresh perspective - planning pivot. Determined expression despite circumstances. Color palette: lime #baf122 subtle on merch, red #ff3131 for unsold tags, purple #5e17eb for dusty shadows. Single warm light bulb. Hiking boots visible - ready to hit trails and think. 16:9 widescreen, inventory reality but spirit alive.",
+      "output_name": "kesu_ending_merch_brand_failure"
+    },
+
+    {
+      "category": "ENDINGS",
+      "strategy": "ACCESSORIES",
+      "ending_type": "SUCCESS",
+      "description": "Adventure gear linka - produkty v outdoor shopech, B2B",
+      "aspect_ratio": "16:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Main character: young woman with long wavy dark brown hair, arm tattoos, lime outdoor vest, standing proudly in outdoor gear shop aisle next to shelf displaying her branded products - collapsible trail bowls, adventure leashes, hiking dog backpacks with distinctive logo. Medium-sized border collie Kesu with fluffy cream and white coat wearing the signature hiking backpack, looking like professional product model. B2B order forms stacked. Quality outdoor certification visible. Customer trying on dog backpack giving thumbs up. Wholesale truck outside. Premium outdoor packaging. Repeat order notification. Map showing outdoor shops carrying products. Color palette: lime #baf122 for products and success glow, red #ff3131 for popular items, purple #5e17eb for store shadows. Proud entrepreneur moment. 16:9 widescreen, outdoor retail victory.",
+      "output_name": "kesu_ending_accessories_success"
+    },
+    {
+      "category": "ENDINGS",
+      "strategy": "ACCESSORIES",
+      "ending_type": "NEUTRAL",
+      "description": "Produkty v testování - first-adopter feedback, iterace",
+      "aspect_ratio": "16:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Main character: young woman with long wavy dark brown hair, arm tattoos, at workshop table surrounded by adventure gear prototypes - collapsible bowls, innovative leashes, dog hiking packs in various iterations. Medium-sized border collie Kesu with fluffy cream and white coat wearing test version of pack, tilting head with thought bubble showing paw up/down rating. Customer feedback forms - mix of checkmarks and suggestions. E-shop showing first sales. Outdoor shop contact list with meeting notes. Trail testing photos pinned to wall. 3D design software on laptop. Material samples from outdoor suppliers. Color palette: lime #baf122 for approved features, red #ff3131 for iteration markers, purple #5e17eb for workshop shadows. Garage workshop with hiking gear everywhere. 16:9 widescreen, product development grind.",
+      "output_name": "kesu_ending_accessories_neutral"
+    },
+    {
+      "category": "ENDINGS",
+      "strategy": "ACCESSORIES",
+      "ending_type": "FAILURE",
+      "description": "Produkty se neprodávají - zero objednávek, konkurence naproti",
+      "aspect_ratio": "16:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Main character: young woman with long wavy dark brown hair, arm tattoos, sitting at desk looking at laptop showing zero orders. Around desk: unsold adventure gear samples - trail bowls, leashes, dog hiking packs, price tags on. Medium-sized border collie Kesu with fluffy cream and white coat happily playing with collapsible bowl, at least someone enjoys them, tail wagging. Supplier invoices stacked, empty cash register. Through window: successful outdoor gear shop across street with customers. Entrepreneur gazing at competitor thoughtfully - learning moment. Color palette: lime #baf122 muted on products, red #ff3131 for zero notifications and invoices, purple #5e17eb for dejected shadows. Afternoon light. 16:9 widescreen, product graveyard but lessons visible.",
+      "output_name": "kesu_ending_accessories_failure"
+    },
+
+    {
+      "category": "ENDINGS",
+      "strategy": "CONTENT_CREATOR",
+      "ending_type": "SUCCESS",
+      "description": "Adventure Content Empire - massive following, outdoor sponsors",
+      "aspect_ratio": "16:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Main character: young woman with long wavy dark brown hair, arm tattoos, in outdoor-styled home studio with plants and trail photos - authentic adventure vibe. Medium-sized border collie Kesu with fluffy cream and white coat as co-host star, sitting on designated spot with tiny microphone, internet famous floof. Multiple platform dashboards floating showing huge follower counts. Outdoor sponsor logos floating (hiking gear, dog food, outdoor apps). Affiliate clicks rising. Fan messages flooding in from global adventure community. World map showing audience reach across hiking communities. Authentic trail moments in floating frames - real adventures not staged. Color palette: lime #baf122 for follower counts and deals, red #ff3131 for engagement hearts, purple #5e17eb for studio shadows. Trail creator play button on wall. 16:9 widescreen, adventure creator empire.",
+      "output_name": "kesu_ending_content_creator_success"
+    },
+    {
+      "category": "ENDINGS",
+      "strategy": "CONTENT_CREATOR",
+      "ending_type": "NEUTRAL",
+      "description": "Rostoucí Adventure Creator - growing audience, first sponsor talks",
+      "aspect_ratio": "16:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Main character: young woman with long wavy dark brown hair, arm tattoos, at desk recording trail content with iPhone setup - consistent authentic approach. Medium-sized border collie Kesu with fluffy cream and white coat in frame, being photogenic as always, treat visible as motivation. Dashboard showing modest but growing follower count. Engagement graph trending up overall. Content calendar on wall - many boxes filled with hike dates. First outdoor sponsor email open - interest expressed. Scheduled posts ready. Comments showing engaged hiking community. Analytics showing top performing trails content. Color palette: lime #baf122 for growth indicators, red #ff3131 for notifications and hearts, purple #5e17eb for home studio shadows. Morning light and hiking boots ready by door. 16:9 widescreen, creator persistence energy.",
+      "output_name": "kesu_ending_content_creator_neutral"
+    },
+    {
+      "category": "ENDINGS",
+      "strategy": "CONTENT_CREATOR",
+      "ending_type": "FAILURE",
+      "description": "Obsah nezaujal - minimal followers, dusty equipment",
+      "aspect_ratio": "16:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Main character: young woman with long wavy dark brown hair, arm tattoos, sitting dejected looking at phone showing tiny follower count (52). On desk: dusty ring light, unused microphone with cobwebs, camera gathering dust. Medium-sized border collie Kesu with fluffy cream and white coat lying next to equipment, bored expression, yawning at camera. Bulletin board with content ideas all crossed out in red. Zero likes, zero comments notifications floating. But on phone screen corner: one new message notification blinking lime - maybe a hiking buddy, maybe opportunity. Color palette: lime #baf122 only for hopeful notification, red #ff3131 for crossed out ideas and zeros, purple #5e17eb for dusty equipment shadows. Late night atmosphere. 16:9 widescreen, creator burnout but spark remains.",
+      "output_name": "kesu_ending_content_creator_failure"
+    },
+
+    {
+      "category": "ENDINGS",
+      "strategy": "FOCUS_SERVICES",
+      "ending_type": "SUCCESS",
+      "description": "Premium Adventure Guide - waitlist pro měsíce, premium pricing",
+      "aspect_ratio": "16:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Main character: young woman with long wavy dark brown hair, arm tattoos, in beautiful home office with panoramic mountain photo wall. Calendar showing months of fully booked adventures. Medium-sized border collie Kesu with fluffy cream and white coat wearing premium adventure gear, photos of their guided trips covering walls - summits, valleys, happy clients with dogs. Waiting list visualization with eager customers queuing. Premium price tag glowing proudly. Five star reviews floating like trail badges. Returning customer notifications. Quality over quantity - fewer trips but extraordinary. Thank you cards from life-changing adventures. Referral chain growing. Adventure photo albums showing dozens of successful guided hikes. Color palette: lime #baf122 for bookings and premium indicators, red #ff3131 for five star ratings, purple #5e17eb for elegant office shadows. Champagne celebrating another successful season. 16:9 widescreen, boutique adventure success.",
+      "output_name": "kesu_ending_focus_services_success"
+    },
+    {
+      "category": "ENDINGS",
+      "strategy": "FOCUS_SERVICES",
+      "ending_type": "NEUTRAL",
+      "description": "Adventure služby běží - steady bookings, room to grow",
+      "aspect_ratio": "16:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Main character: young woman with long wavy dark brown hair, arm tattoos, at organized desk with booking system showing steady stream of adventure clients. Medium-sized border collie Kesu with fluffy cream and white coat resting after another guided hike, trail photos pinned nearby. Customer satisfaction showing consistently good ratings. Price list with arrow up and question mark - room to raise. Process documentation being written for scaling. Returning customer percentage growing. Solid margins on calculator. To-do notes about systematizing and premium tier. Happy testimonials framed. Trail partnership certificates with outdoor brands. Color palette: lime #baf122 for completed bookings, red #ff3131 for growth opportunities, purple #5e17eb for office shadows. Afternoon light after a good hike. 16:9 widescreen, sustainable adventure business.",
+      "output_name": "kesu_ending_focus_services_neutral"
+    },
+    {
+      "category": "ENDINGS",
+      "strategy": "FOCUS_SERVICES",
+      "ending_type": "FAILURE",
+      "description": "Zákazníci nechodí - prázdný kalendář, čas na přehodnocení",
+      "aspect_ratio": "16:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Main character: young woman with long wavy dark brown hair, arm tattoos, sitting at desk in quiet home office. Silent phone on desk, wall calendar completely empty - no bookings. Laptop showing empty email inbox. Medium-sized border collie Kesu with fluffy cream and white coat lying by hiking boots at door, head on paws, looking hopefully outside - ready for adventures that aren't booked. Through window: other hikers passing by on trail, not knowing about the service. Empty client waiting area. But on desk: well-worn book about adventure entrepreneurship with bookmarks - time to learn and pivot. Hand reaching for the book with curious determination. Color palette: lime #baf122 for hopeful book glow, red #ff3131 for empty calendar, purple #5e17eb for quiet office shadows. Afternoon light, trails still calling. 16:9 widescreen, quiet moment before comeback.",
+      "output_name": "kesu_ending_focus_services_failure"
+    },
+
+    {
+      "category": "ENDINGS",
+      "strategy": "DEFAULT",
+      "ending_type": "DEFAULT",
+      "description": "Cesta pokračuje - crossroads na trail, mnoho směrů",
+      "aspect_ratio": "16:9",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Main character: young woman with long wavy dark brown hair, arm tattoos, standing at actual trail crossroads in nature - multiple glowing paths ahead representing different futures through forest. Medium-sized border collie Kesu with fluffy cream and white coat sitting beside her, looking up encouragingly, tail wagging, ready for any direction. Behind them: montage of journey so far in small frames floating (website launch, first client, podcast episode, festival). Ahead: beautiful sunrise over mountain horizon. Floating elements: skill badges collected, achievement icons glowing like trail markers. Multiple trail signs pointing to different opportunities, each glowing with potential. Hiking backpack ready for next adventure. Phone showing supportive community messages. Color palette: lime #baf122 for opportunities ahead, red #ff3131 for passion and community hearts, purple #5e17eb for forest shadows and unknown paths. Inspirational dawn light breaking through trees. 16:9 widescreen, adventure continues, all trails lead forward.",
+      "output_name": "kesu_ending_default"
+    }
+  ]
+}

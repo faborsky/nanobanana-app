@@ -1,0 +1,48 @@
+{
+  "defaults": {
+    "aspect_ratio": "4:3",
+    "resolution": "1K"
+  },
+  "jobs": [
+    {
+      "prompt": "Abstract aerial view of a modern glass office building atrium at golden hour, warm sunlight streaming through floor-to-ceiling windows casting long geometric shadows across polished concrete floors, blurred silhouettes of professionals walking purposefully, startup tech company atmosphere, teal and warm amber color palette, architectural photography, cinematic mood, high detail, soft focus on background",
+      "output_name": "hero_saas_v1"
+    },
+    {
+      "prompt": "Wide shot of a sleek modern tech office corridor with glass walls, soft bokeh lights and reflections, abstract and minimal, blurred figures of business professionals in motion, early morning light flooding in from the left, cool blue and warm gold tones, sense of momentum and growth, clean lines, architectural editorial photography, cinematic depth of field",
+      "output_name": "hero_saas_v2"
+    },
+    {
+      "prompt": "Artistic overhead flat lay of a content creator workspace, wooden desk surface with scattered colorful sticky notes, open notebook with handwritten ideas, a coffee cup, headphones, fairy lights draped along the edge, warm natural light from above, soft dreamy atmosphere, creative chaos aesthetic, warm earth tones with pops of coral and teal, editorial lifestyle photography, shallow depth of field, high detail",
+      "output_name": "hero_courses_v1"
+    },
+    {
+      "prompt": "Warm atmospheric photo of a cozy home studio at golden hour, soft bokeh from string lights and window light, blurred camera equipment and books on shelves in background, a steaming cup of coffee on a wooden desk in focus, creative and inspirational mood, warm amber and soft cream tones, sense of passion and hustle, lifestyle editorial photography, cinematic shallow depth of field, high detail",
+      "output_name": "hero_courses_v2"
+    },
+    {
+      "prompt": "Beautiful lifestyle product photography, elegant branded shipping boxes and tissue paper being unwrapped on a marble surface, soft natural side lighting, minimalist aesthetic, blurred plant and linen fabric in background, premium direct-to-consumer brand feeling, muted pastel tones with white and kraft paper, sense of anticipation and delight, editorial commercial photography, shallow depth of field, high detail",
+      "output_name": "hero_dtc_v1"
+    },
+    {
+      "prompt": "Artistic wide shot of a trendy fashion brand pop-up space, clothing rack with curated pieces slightly blurred, warm Edison bulb lighting overhead, exposed brick and concrete walls, a person walking through in soft motion blur, premium DTC brand atmosphere, warm earth tones with copper and cream accents, aspirational lifestyle editorial photography, cinematic shallow depth of field, high detail",
+      "output_name": "hero_dtc_v2"
+    },
+    {
+      "prompt": "Dynamic overhead shot of a creative agency brainstorming table, scattered color swatches, printed charts and campaign mockups, multiple hands reaching in from edges of frame, coffee cups and markers, blurred laptop edges, vibrant and energetic teamwork atmosphere, bold colors against white table surface, editorial business photography, high energy creative mood, shallow depth of field, high detail",
+      "output_name": "hero_agency_v1"
+    },
+    {
+      "prompt": "Atmospheric wide shot of a modern marketing agency open workspace at blue hour, rows of glowing screens creating soft colorful bokeh, blurred team members collaborating in background, dramatic mix of cool blue ambient light and warm desk lamps, creative energy and fast pace feeling, urban loft with industrial ceiling, editorial architectural photography, cinematic mood, high detail",
+      "output_name": "hero_agency_v2"
+    },
+    {
+      "prompt": "Beautiful close-up of neatly stacked shipping boxes with brown kraft paper and twine on a wooden table, morning sunlight streaming through a warehouse window creating warm light rays and dust particles, blurred shelves of inventory in background, sense of small business hustle and fulfillment, warm golden tones, editorial product photography, cinematic shallow depth of field, high detail",
+      "output_name": "hero_ecommerce_v1"
+    },
+    {
+      "prompt": "Atmospheric wide shot of a small warehouse fulfillment space at morning golden hour, warm light flooding through industrial windows, rows of organized shelving with products, a hand truck in foreground slightly blurred, sense of momentum and daily operations, warm amber and natural wood tones, entrepreneurial spirit, editorial documentary photography, cinematic depth of field, high detail",
+      "output_name": "hero_ecommerce_v2"
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "defaults": {
+    "aspect_ratio": "1:1",
+    "resolution": "1K",
+    "reference_path": "aifrist/aifirsticon.png"
+  },
+  "jobs": [
+    {
+      "prompt": "Clean minimalist remarketing banner design for an online course called AI First. White background with subtle light gray grid pattern. In the top-left corner, a small orange hexagonal logo with a white hummingbird silhouette inside. Large bold text in center: 'AI First' in dark charcoal color. Below in smaller orange text: '3 990 Kč'. At the bottom, a rounded orange call-to-action button with white text 'Koupit kurz'. Professional, corporate, clean typography, flat design style, digital ad banner aesthetic.",
+      "output_name": "banner_01_clean_minimal"
+    },
+    {
+      "prompt": "Professional remarketing banner for AI First online course. Solid deep navy blue background. In the top-right corner, an orange hexagonal badge with a white hummingbird logo. Center-aligned bold white text: 'AI First kurz'. Below in orange: '1100+ studentů'. Bottom section has a bright orange CTA button with 'Začněte tvořit' in white. Simple, elegant, corporate blue and orange color scheme, flat design, digital advertising banner.",
+      "output_name": "banner_02_corporate_navy"
+    },
+    {
+      "prompt": "Remarketing ad banner with warm orange gradient background from dark orange at top to light orange at bottom. White bold sans-serif text in the center reading 'Nechte AI dělat práci za vás'. Small orange hexagonal hummingbird logo in the bottom-right corner with white outline. Clean modern typography, minimalist composition, professional digital banner for Google Display Network, warm inviting feel.",
+      "output_name": "banner_03_orange_gradient"
+    },
+    {
+      "prompt": "Split-design remarketing banner. Left half is white with large bold black text 'AI First' and below it '15 hodin obsahu' in gray. Right half is vibrant orange with a large white hummingbird silhouette icon centered. A thin horizontal orange line separates the text elements. Price '3 990 Kč' in small orange text at bottom left. Clean, structured, geometric, modern advertising banner, Swiss design inspired typography.",
+      "output_name": "banner_04_split_design"
+    },
+    {
+      "prompt": "Simple technology-themed remarketing banner. Light gray background with very subtle circuit board pattern lines in lighter gray. Center: bold dark text 'Kurz AI First'. Below: 'Vibe Coding & AI mindset' in medium gray. Small orange hexagonal hummingbird logo in the top-left corner. Bottom: orange pill-shaped button reading 'Zjistit více'. Professional tech aesthetic, muted colors with orange accents, clean digital ad banner.",
+      "output_name": "banner_05_tech_subtle"
+    },
+    {
+      "prompt": "Modern gradient mesh remarketing banner for AI First course. Background with flowing gradient mesh of deep purple, electric blue, and orange tones. Large bold white text in center: 'AI First'. Subtitle in light text: 'Změňte svůj mindset'. Orange hexagonal hummingbird logo in the top-right corner glowing softly. Floating translucent UI cards and code snippets in the background. Modern, trendy, tech-forward, vibrant digital ad banner.",
+      "output_name": "banner_06_gradient_mesh"
+    },
+    {
+      "prompt": "Remarketing banner with dark charcoal background. A glowing neural network visualization in orange and white connecting dots and lines across the background. Bold white text: 'AI First kurz'. Below in orange glow: '1100+ lidí už tvoří'. Orange hexagonal hummingbird logo in the bottom-left corner with subtle orange glow. Modern, data-driven aesthetic, technology theme, digital advertising banner, sophisticated dark mode design.",
+      "output_name": "banner_07_neural_network"
+    },
+    {
+      "prompt": "Code editor inspired remarketing banner for AI First vibe coding course. Dark background resembling a code editor with syntax-highlighted code lines blurred in the background in green, blue, and orange. Centered overlay with semi-transparent dark panel: bold white text 'Vibe Coding Masterclass' and below '6+ hodin praxe'. Orange hexagonal hummingbird logo in the top-left corner. Terminal aesthetic, developer-friendly, modern coding vibes, digital ad banner.",
+      "output_name": "banner_08_code_editor"
+    },
+    {
+      "prompt": "Glassmorphism style remarketing banner. Soft gradient background in peach and light purple tones. Center: frosted glass card with blur effect containing bold dark text 'AI First' and subtitle 'Začněte tvořit s AI'. Orange hexagonal hummingbird logo sits on top of the glass card in the upper right. Small text at bottom '3 990 Kč | Přístup napořád'. Modern glassmorphism UI design, trendy, elegant, digital advertising banner with depth and layering.",
+      "output_name": "banner_09_glassmorphism"
+    },
+    {
+      "prompt": "Isometric illustration remarketing banner. Light clean background with colorful isometric 3D illustrations of a laptop, smartphone, floating app screens, code blocks, and a small robot assistant, all in orange, white, and blue color palette. Bold text at top: 'AI First kurz'. Text at bottom: 'Weby a aplikace bez programování'. Orange hexagonal hummingbird logo in the corner. Playful, modern isometric design, tech illustration style, digital ad banner.",
+      "output_name": "banner_10_isometric"
+    },
+    {
+      "prompt": "Dynamic wave pattern remarketing banner for AI First course. Deep dark blue background with flowing abstract waves in bright orange and coral gradient sweeping across the lower third. Bold white text centered: 'Ušetřete čas s AI'. Below: 'Kurz AI First | 3 990 Kč'. Orange hexagonal hummingbird logo positioned in the top-right corner. Fluid, dynamic, energetic, modern abstract design, premium feel, digital advertising banner.",
+      "output_name": "banner_11_dynamic_waves"
+    },
+    {
+      "prompt": "Geometric mosaic remarketing banner. Dark background covered in a mosaic pattern of hexagonal tiles in shades of orange, dark gray, and white, some tiles glowing. In the center, a large clear space with bold white text: 'AI First'. Below in orange: 'Mindset, který mění kariéry'. The orange hummingbird logo naturally fits into one of the larger hexagonal tiles in the top-left area. Modern geometric, pattern-driven, bold, tech-inspired digital ad banner.",
+      "output_name": "banner_12_hexagonal_mosaic"
+    },
+    {
+      "prompt": "Rocket launch metaphor remarketing banner. Dark gradient background from deep blue to black with stars. A stylized orange rocket ship launching upward with a bright orange and white exhaust trail. The rocket has a subtle hexagonal hummingbird logo on its body. Bold white text: 'Akcelerujte svou kariéru'. Below: 'AI First kurz'. Dynamic energy, upward momentum, aspirational, vibrant orange and dark blue palette, digital advertising banner, modern illustration style.",
+      "output_name": "banner_13_rocket_launch"
+    },
+    {
+      "prompt": "Brain and technology hybrid remarketing banner for AI First course. Dark background. Center illustration: a stylized human brain profile where one half is organic in warm orange tones and the other half is digital with circuit board patterns in electric blue and white. Bold text above: 'AI First'. Text below: 'Nový způsob myšlení'. Orange hexagonal hummingbird logo in the bottom-right corner. Futuristic, smart, conceptual, technology meets creativity, digital ad banner.",
+      "output_name": "banner_14_brain_hybrid"
+    },
+    {
+      "prompt": "Portal doorway concept remarketing banner. Dark moody background. A glowing doorway or portal in the center emitting bright orange and golden light, with digital particles and code symbols flowing through it. A silhouette of a person standing before the portal about to step through. Text above: 'Otevřete dveře do světa AI'. Small orange hexagonal hummingbird logo in the corner. Cinematic, dramatic lighting, aspirational, mysterious, digital advertising banner.",
+      "output_name": "banner_15_portal_doorway"
+    },
+    {
+      "prompt": "Transformation metamorphosis remarketing banner. Split composition: left side shows a gray, slow, traditional desk with paper and old computer in muted tones. Right side explodes into vibrant orange, showing floating holographic screens, AI interfaces, colorful apps, and dynamic energy. Bold text spanning both sides: 'Před AI → Po AI'. Orange hexagonal hummingbird logo on the vibrant right side. Dramatic contrast, before-and-after concept, energetic, digital ad banner.",
+      "output_name": "banner_16_transformation"
+    },
+    {
+      "prompt": "Constellation and star map remarketing banner for AI First course. Deep dark blue-black space background with a beautiful constellation pattern where stars are connected by thin orange and golden lines forming the shape of a hummingbird. Scattered smaller stars and nebula wisps. Bold white text: 'AI First'. Below: 'Navigujte budoucnost'. The constellation itself serves as the logo representation. Elegant, cosmic, premium, aspirational, digital advertising banner.",
+      "output_name": "banner_17_constellation"
+    },
+    {
+      "prompt": "Social proof focused remarketing banner with bold typography. Vibrant orange background. Giant bold white quotation marks at the top. Center quote text in white: 'Tenhle kurz mi změnil kariéru'. Below in smaller dark text: '— 1 z 1100+ absolventů'. Orange hexagonal hummingbird logo in the bottom-right corner with white background circle behind it. Bottom: white CTA button 'Přidejte se'. Bold, testimonial-driven, social proof, high contrast, modern typography, digital ad banner.",
+      "output_name": "banner_18_social_proof"
+    },
+    {
+      "prompt": "Surreal floating workspace remarketing banner. Dreamy gradient background in soft purple, pink, and orange sunset tones. A floating desk in the center of the scene hovering above clouds, with a glowing laptop showing colorful code, holographic AI assistant, floating app icons and website mockups orbiting around it. Orange hexagonal hummingbird logo glowing in the sky like a sun. Bold text: 'Tvořte cokoliv'. Surreal, imaginative, dreamlike, inspiring, digital advertising banner.",
+      "output_name": "banner_19_surreal_workspace"
+    },
+    {
+      "prompt": "Explosive creative energy remarketing banner. Black background. From the center, a dramatic explosion of colorful elements: orange light rays, fragments of website screens, lines of code, app interfaces, charts, creative tools, all bursting outward in a dynamic radial pattern. At the center of the explosion is the orange hexagonal hummingbird logo glowing intensely. Bold white text through the explosion: 'AI First'. Small text: '3 990 Kč | Začněte dnes'. Maximum visual impact, explosive energy, creative chaos, vibrant, avant-garde digital ad banner.",
+      "output_name": "banner_20_explosive_creative"
+    }
+  ]
+}

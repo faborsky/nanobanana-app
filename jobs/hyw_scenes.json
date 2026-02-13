@@ -1,0 +1,104 @@
+{
+  "defaults": {
+    "aspect_ratio": "21:9",
+    "resolution": "1K"
+  },
+  "jobs": [
+    {
+      "prompt": "16-bit pixel art title screen, SNES game style, visible pixels, no smoothing. Epic wide establishing shot of Brno cityscape at night with Špilberk castle and Petrov cathedral silhouettes. Large stylized game title 'HACK YOUR WAY' in bold pixel font centered, glowing with neon effect. Subtitle 'THE GAME' below in smaller text. Flying pixel elements around title: lightbulb (ideas), bottle (product), laptop (tech), coins (business). Šalina tram crossing bottom of screen. Neon signs and tech glow throughout city. Color palette: lime green #baf122 for title glow and neon lights, red #ff3131 for accent highlights, purple #5e17eb for night sky and shadows, black base. Retro arcade 'PRESS START' blinking at bottom. Cyberpunk meets retro gaming aesthetic. Easter egg: small pixel entrepreneur character standing on rooftop looking at city with determination. 21:9 ultrawide, epic intro energy, inviting and exciting.",
+      "output_name": "scene_00_title"
+    },
+    {
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Cozy home kitchen interior, young entrepreneur standing at counter surrounded by colorful homemade lemonades in glass jugs (lime green, red, orange shades), sliced citrus fruits and herbs scattered around. 2-3 friends sitting nearby giving thumbs up, tasting drinks. Pixel lightbulb appearing above protagonist's head - eureka moment. Color palette: lime green #baf122 for neon highlights and lightbulb glow, red #ff3131 for accents, purple #5e17eb for shadows. Healthy drink bottle with green-red label prominent on counter. Through window: distant Špilberk castle silhouette at sunset. Easter egg: old beige 90s PC on desk in corner with floppy disks. 21:9 ultrawide, foreground-middle-background depth, dithering for shadows, warm optimistic mood, not overcrowded.",
+      "output_name": "scene_01_idea"
+    },
+    {
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Late night home office setup, entrepreneur sitting at desk with laptop showing website mockups and price quotes (50000 Kč visible on screen). Multiple browser tabs open - Framer, Webflow, Lovable logos visible. Clock showing 2 AM. Expression of determination on character's face. Color palette: lime green #baf122 for screen glow and code highlights, red #ff3131 for price tags, purple #5e17eb for night shadows. Healthy drink bottle next to keyboard, half-empty. On wall: poster of Brno tram (šalina) blueprint. Easter egg: Nokia 3310 phone charging on desk. 21:9 ultrawide, dramatic screen lighting in dark room, cyberpunk coder aesthetic, dithering for light rays.",
+      "output_name": "scene_02_first_website"
+    },
+    {
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Split-screen composition: left side shows boring 15-hour online course video on monitor with progress bar at 2%, right side shows hands-on Canva workspace with colorful social media designs being created. AI chat window open with helpful tips. Character looking energized on right side, sleepy on left. Color palette: lime green #baf122 for creative sparks and AI highlights, red #ff3131 for play buttons, purple #5e17eb for UI elements. Healthy drink can design being created in Canva. Background: coffee shop interior with Brno cobblestone street visible through window. Easter egg: VHS tape labeled 'Photoshop 1998 Tutorial'. 21:9 ultrawide, learning-by-doing energy, bright and motivating.",
+      "output_name": "scene_03_learning_tech"
+    },
+    {
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Creative workspace chaos: desk covered with logo sketches on paper, tablet showing Midjourney generations, Canva open on laptop. Character confidently picking a simple minimalist logo while crumpled expensive quote (15000 Kč) lies in trash. Timer showing '10 minutes'. Multiple logo iterations floating around - from complex to beautifully simple. Color palette: lime green #baf122 for the chosen logo glow, red #ff3131 for rejected options, purple #5e17eb for creative shadows. Healthy drink bottles arranged as reference for brand colors. Window view: Petrov cathedral spires. Easter egg: old Macintosh computer displaying 'Hello'. 21:9 ultrawide, creative energy, done-is-better-than-perfect vibe.",
+      "output_name": "scene_04_logo"
+    },
+    {
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Kitchen table turned into design studio: bottles with prototype labels, Canva on tablet showing label layout, printed color swatches. One side shows expensive studio quote (25000 Kč) crossed out, other side shows DIY minimalist label being applied to bottle. Character focused on clean typography design. Color palette: lime green #baf122 for label highlights, red #ff3131 for fruit illustrations on label, purple #5e17eb for shadows. Multiple healthy drink bottles in production line. On shelf: small Brno dragon (crocodile) souvenir figurine. Easter egg: dot matrix printer producing labels. 21:9 ultrawide, craftsman workshop feel, satisfying DIY energy.",
+      "output_name": "scene_05_label_design"
+    },
+    {
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Improvised photo studio by large window: iPhone on tripod, white backdrop made from bedsheet, natural golden hour light streaming in. Healthy drink bottles arranged with fresh fruits, mint leaves, ice cubes as props. Character adjusting phone angle. Rejected expensive photographer quote (15000 Kč) on floor. Lightroom presets visible on laptop nearby. Color palette: lime green #baf122 for product glow, red #ff3131 for fruit accents, purple #5e17eb for soft shadows. Through window: Brno astronomical clock (orloj) visible in square below. Easter egg: Polaroid camera and old photos scattered on table. 21:9 ultrawide, warm natural lighting, authentic DIY photography mood.",
+      "output_name": "scene_06_product_photos"
+    },
+    {
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Frustrated entrepreneur at desk surrounded by 47 versions of same label design. Calendar showing 3 weeks crossed out. Character with spiral eyes, pulling hair. Thought bubbles: 'font not right', 'color off by 1%', 'kerning!'. Ghost-like 'perfect' label floating just out of reach. Meanwhile: stack of finished bottles gathering dust, customers waiting outside window. Color palette: lime green #baf122 for the elusive 'perfect' glow, red #ff3131 for stress indicators, purple #5e17eb for overthinking clouds. Healthy drink bottles ready but unlaunched. Brno tram passing outside - life moving on. Easter egg: old calculator showing '85% = good enough'. 21:9 ultrawide, comedic anxiety, perfectionism paralysis visualization.",
+      "output_name": "scene_07_perfectionism"
+    },
+    {
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Bustling farmers market scene: wooden stall with colorful healthy drink bottles displayed, hand-painted sign. Entrepreneur having animated conversation with curious customer, making direct eye contact. Other vendors nearby with vegetables, bread. Queue forming at drink stall. Cash box with first earnings visible. Rejected options floating above: lonely e-shop, ignored cold emails. Color palette: lime green #baf122 for bottles and positive energy, red #ff3131 for price tags, purple #5e17eb for morning shadows. Brno Zelný trh (cabbage market) architecture in background with Petrov visible. Easter egg: customer paying with old Czech koruna coins. 21:9 ultrawide, morning market energy, human connection warmth.",
+      "output_name": "scene_08_first_sale"
+    },
+    {
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Living room turned into video studio: iPhone on stack of books as tripod, ring light made from desk lamp, CapCut timeline visible on laptop. Entrepreneur mid-recording, telling their story with passion, healthy drink in hand. Raw authentic setup vs imagined expensive production crew (ghosted out). Instagram UI frame overlay. Color palette: lime green #baf122 for ring light glow, red #ff3131 for record button, purple #5e17eb for video timeline. Multiple takes shown as small thumbnails. Brno skyline poster on wall. Easter egg: old camcorder from 90s on shelf, collecting dust. 21:9 ultrawide, creator economy vibe, authentic over polished.",
+      "output_name": "scene_09_social_video"
+    },
+    {
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Two people recording podcast in casual setting: sitting across from each other with iPhones as microphones, laptop showing Adobe Podcast Enhance transforming wavy amateur audio into clean studio waveform. Sound waves visualized - messy going in, pristine coming out. Rejected options: expensive studio (2500 Kč/h), pro microphones. Healthy drink bottles on table between hosts. Color palette: lime green #baf122 for enhanced audio glow, red #ff3131 for record indicators, purple #5e17eb for sound shadows. Background: cozy Brno café interior with vintage concert posters. Easter egg: cassette tape recorder as decoration. 21:9 ultrawide, intimate conversation mood, AI magic transformation.",
+      "output_name": "scene_10_podcast"
+    },
+    {
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Entrepreneur back at farmers market with notebook, actively interviewing customers who bought drinks. Speech bubbles with honest feedback - some positive, some constructive criticism. Counter showing '100 bottles sold'. AI chat window on phone analyzing patterns from feedback. Crossed out: biased family feedback, generic surveys. Color palette: lime green #baf122 for valuable insights, red #ff3131 for critical feedback, purple #5e17eb for thinking shadows. Empty and full healthy drink bottles showing sales progress. Brno tram stop visible with people waiting. Easter egg: old suggestion box with cobwebs (unused). 21:9 ultrawide, market research energy, real customer connection.",
+      "output_name": "scene_11_feedback"
+    },
+    {
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Computer screen showing 'fake door test' in action: beautiful product mockup of new flavor (cucumber-mint) on website with 'Coming Soon' button, small ad spend counter (500 Kč), click analytics rising. Real production cost warning (30000 Kč) ghosted in background. Character watching interest metrics with excitement. Color palette: lime green #baf122 for cucumber-mint flavor and positive metrics, red #ff3131 for call-to-action buttons, purple #5e17eb for analytics graphs. Healthy drink bottles - current flavors plus mockup of new one. Brno Špilberk at night through window. Easter egg: Magic 8-Ball saying 'Test First'. 21:9 ultrawide, lean startup validation, data-driven excitement.",
+      "output_name": "scene_12_fake_door_test"
+    },
+    {
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Instagram interface with 800 followers shown. Multiple content variations being tested: story polls, product mockup posts with engagement metrics, pre-order campaign with progress bar. Character analyzing which content gets most genuine interest vs just likes. Comments showing real customer intent. Color palette: lime green #baf122 for high engagement, red #ff3131 for hearts and notifications, purple #5e17eb for app interface. Healthy drink appearing in various creative posts - lifestyle shots, behind-scenes, polls. Background: Brno coffee shop with laptop users. Easter egg: MySpace page screenshot pinned ironically on wall. 21:9 ultrawide, social media as research tool, community building vibe.",
+      "output_name": "scene_13_social_research"
+    },
+    {
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Crowded food festival scene: expensive stalls (80000 Kč price tags), but protagonist found clever alternatives. Split view: partnering with existing café stall that now features healthy drinks, guerrilla marketing in unexpected spot (bathroom door ad, entrance area). Thinking outside the box visualization. Color palette: lime green #baf122 for creative solutions glowing, red #ff3131 for high prices crossed out, purple #5e17eb for festival shadows. Healthy drink bottles visible in partner's stall and on creative ad placements. Festival banner with Brno landmarks. Easter egg: food festival map with 'secret' spots marked. 21:9 ultrawide, festival energy, resourceful entrepreneur spirit.",
+      "output_name": "scene_14_festival_no_booth"
+    },
+    {
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Festival crowd scene: entrepreneur standing out with creative costume/prop - maybe giant pixel fruit hat or eye-catching branded outfit. People taking photos, gathering around, asking questions. Contrast with boring business card handouts being ignored. QR code on costume leading to product. Color palette: lime green #baf122 for attention-grabbing elements, red #ff3131 for costume accents, purple #5e17eb for crowd shadows. Healthy drink bottles being handed out from backpack cooler. Brno food stalls in background with šalina passing. Easter egg: 'Where's Waldo' style hidden character in crowd. 21:9 ultrawide, festival chaos, standing out from crowd energy.",
+      "output_name": "scene_15_getting_attention"
+    },
+    {
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. David vs Goliath visualization: small entrepreneur character with slingshot facing giant corporate drink bottles (Mattoni, Kofola sized as building-tall monsters) in supermarket battlefield. But smart path shown: side routes to farmers markets, local bistros, fitness centers - places giants can't reach. Map overlay showing blue ocean strategy. Color palette: lime green #baf122 for protagonist and smart paths, red #ff3131 for corporate giants, purple #5e17eb for supermarket shadows. Healthy drink as David's 'stone'. Brno map with local spots highlighted. Easter egg: David statue (Michelangelo reference) holding drink bottle. 21:9 ultrawide, strategic thinking, underdog energy.",
+      "output_name": "scene_16_where_not_compete"
+    },
+    {
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Cozy Brno café interior: entrepreneur walking in with sample bottles, meeting friendly café owner across counter. Contrast: laptop showing ignored cold emails vs warm handshake happening now. Clock showing off-peak hours (14:00). Tasting in progress, owner's expression changing from skeptical to interested. First delivery box ready. Color palette: lime green #baf122 for positive connection glow, red #ff3131 for café accents, purple #5e17eb for cozy shadows. Healthy drink bottles on counter for tasting. Brno café culture details: specialty coffee equipment, local art on walls. Easter egg: rolodex with 'VIP contacts' collecting dust. 21:9 ultrawide, B2B relationship building, personal connection over cold outreach.",
+      "output_name": "scene_17_b2b_customers"
+    },
+    {
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Research command center: multiple screens showing Reddit threads, Facebook groups, forum discussions about healthy lifestyle - all being fed into AI analysis (NotebookLM, Claude visible). Pattern visualization: word clouds, sentiment graphs, insight highlights emerging. Crossed out: expensive market research quote (50000 Kč). Color palette: lime green #baf122 for AI processing and insights, red #ff3131 for key findings, purple #5e17eb for data visualization. Healthy drink bottle as the 'answer' to discovered customer needs. Through window: Brno university building (target demographic). Easter egg: old encyclopedia set labeled 'Market Research 1995'. 21:9 ultrawide, data detective energy, AI-powered insights.",
+      "output_name": "scene_18_ai_market_analysis"
+    },
+    {
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Overwhelmed entrepreneur surrounded by floating AI tool logos (hundreds of them) swirling chaotically. Anxiety visualization. But clarity emerging: small focused toolkit of 3-4 tools glowing brightly, others fading away. 'My Stack' post-it with selected tools. Calendar showing actual work getting done vs endless tool testing. Color palette: lime green #baf122 for chosen tools, red #ff3131 for FOMO notifications, purple #5e17eb for overwhelming chaos. Healthy drink bottle grounding the scene - focus on core business. Brno Špilberk as stable anchor in background. Easter egg: 'AI Tool of the Day' subscription being unsubscribed. 21:9 ultrawide, FOMO to focus journey, clarity emerging from chaos.",
+      "output_name": "scene_19_ai_fomo"
+    },
+    {
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Split screen battle: left side shows huge corporate competitor launching 'healthy drinks' line with massive budget (team, trucks, TV ads), right side shows small entrepreneur moving fast - already on 5th flavor prototype, personal customer relationships, authentic story. Speed lines showing agility vs bureaucracy (competitor stuck in 'meeting #47'). Color palette: lime green #baf122 for protagonist's speed and agility, red #ff3131 for corporate threat, purple #5e17eb for contrast shadows. Healthy drink as nimble David. Brno local market as home advantage. Easter egg: tortoise vs hare race illustration on wall. 21:9 ultrawide, agility vs resources, small-is-beautiful energy.",
+      "output_name": "scene_20_competition"
+    },
+    {
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. A/B testing visualization: two identical café scenes side by side, one with 45 Kč price tag, one with 65 Kč. Sales counters running, customer reactions being observed. AI assistant analyzing results on laptop. Rejected approaches: random pricing, copying competitors, gut feeling. Data flowing into pricing decision. Color palette: lime green #baf122 for winning price option, red #ff3131 for price tags, purple #5e17eb for analytical shadows. Healthy drink bottles with different price tags being tested. Brno café interior with diverse customers. Easter egg: old cash register with 'DOES NOT COMPUTE' display. 21:9 ultrawide, experiment-driven pricing, scientific entrepreneur energy.",
+      "output_name": "scene_21_pricing"
+    },
+    {
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Video editing setup: original Czech video on one screen, HeyGen interface showing AI lip-sync dubbing to German on another. Before/after: original audio waveform transforming into German with matching mouth movements. Map showing expansion to Austria. Rejected: expensive dubbing studio quote (20000 Kč). Color palette: lime green #baf122 for AI translation magic, red #ff3131 for language flags, purple #5e17eb for video editing interface. Healthy drink appearing in the video being dubbed. Austrian Alps visible through window, Brno in rearview. Easter egg: phrase book 'German in 30 Days' unopened. 21:9 ultrawide, global expansion energy, AI breaking language barriers.",
+      "output_name": "scene_22_foreign_video"
+    },
+    {
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. Multi-screen content creation hub: AI avatar with cloned voice recording German content, Claude translating social posts, native speaker doing quick review on video call. World map showing content spreading to Germany and Austria. Original entrepreneur watching their message reach new markets without speaking the language. Color palette: lime green #baf122 for AI avatar glow, red #ff3131 for expanding reach indicators, purple #5e17eb for international night. Healthy drink brand going global - same product, new languages. Dual flags: Czech and German/Austrian. Easter egg: Rosetta Stone software still in shrink wrap. 21:9 ultrawide, global entrepreneur energy, technology enabling growth.",
+      "output_name": "scene_22_foreign_content"
+    }
+  ]
+}

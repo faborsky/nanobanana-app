@@ -1,0 +1,228 @@
+{
+  "metadata": {
+    "name": "Hack Your Way: Dog Travel Edition - Max Character FINAL",
+    "version": "3.0",
+    "description": "Finalni sada grafik pro Max postavu - 16:9, bez title bars",
+    "character": "Young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo",
+    "dog": "Golden retriever named Max"
+  },
+  "defaults": {
+    "aspect_ratio": "16:9",
+    "resolution": "1K"
+  },
+  "jobs": [
+    {
+      "scene_id": "scene_01",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Cozy Brno cafe interior with exposed brick walls and vintage posters. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, sitting at wooden table with laptop. Golden retriever dog named Max lying under the table, looking up adoringly. Lightbulb appearing above protagonist's head - eureka moment. Thought bubble showing: airplane + paw print + camera icons. Other cafe patrons with their dogs in background. Through large window: Petrov cathedral silhouette at sunset. Color palette: lime green #baf122 for lightbulb glow and laptop screen, red #ff3131 for cafe accents and coffee cups, purple #5e17eb for evening shadows. Steaming coffee cup on table. Easter egg: travel magazine with dog on cover. Foreground-middle-background depth, dithering for shadows, warm optimistic mood, the birth of an idea.",
+      "output_name": "max/scene_01"
+    },
+    {
+      "scene_id": "scene_02",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Home office desk setup, late evening. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, intensely focused on laptop screen showing domain search results. Multiple browser tabs open with domain registrars. Golden retriever Max sleeping on dog bed nearby. Sticky notes on wall with crossed-out name ideas. One name circled with green marker glowing. Domain availability checker showing green checkmark. Color palette: lime green #baf122 for screen glow and available domain highlight, red #ff3131 for taken domains and crossed names, purple #5e17eb for night shadows. Clock showing 11 PM. Through window: Brno city lights twinkling. Easter egg: old phone book labeled 'Yellow Pages' collecting dust. Naming brainstorm energy, determination in the details.",
+      "output_name": "max/scene_02"
+    },
+    {
+      "scene_id": "scene_03",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Split screen composition showing two paths. Left side: expensive agency office with suited people, price tag showing high cost, calendar showing '3 months'. Right side: Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, at home desk with website builder interface on screen, building website themselves. Golden retriever Max watching the screen curiously. Website preview showing dog travel service with paw prints and airplane icons. Progress bar at 80%. Color palette: lime green #baf122 for DIY path glow and website elements, red #ff3131 for expensive price tags, purple #5e17eb for contrast shadows. Timer showing '4 hours'. Easter egg: 'Web Design for Dummies' book unopened on shelf. Empowering DIY energy, choice visualization.",
+      "output_name": "max/scene_03"
+    },
+    {
+      "scene_id": "scene_04",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Web building workspace visualization. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, typing enthusiastically at desk. Large monitor showing either template gallery or AI chat interface with code suggestions flowing - dual possibility. Website preview materializing on screen with dog travel service design. Golden retriever Max with head tilted, watching the screen curiously. Multiple screens showing: design options, templates, live preview of dog travel website. Color palette: lime green #baf122 for website elements and progress indicators, red #ff3131 for cursor and important elements, purple #5e17eb for interface shadows. Flying pixel elements: design blocks, paw prints merging into website. Brno Spilberk visible through window at dawn. Easter egg: rubber duck debugger on desk. Web creation magic, builder energy.",
+      "output_name": "max/scene_04"
+    },
+    {
+      "scene_id": "scene_05",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Learning by doing scene. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, at desk with split screen: left showing tutorial video (progress bar at beginning), right showing actual workspace with hands-on editing. AI chat window open with helpful explanations. Golden retriever Max napping on lap, providing comfort. Crossed out: long course certificate. Highlighted: small focused lessons being applied immediately. Color palette: lime green #baf122 for active learning highlights, red #ff3131 for skipped content, purple #5e17eb for background elements. Clock showing fast-forward effect. Tablet with notes nearby. Easter egg: dusty textbook stack vs. glowing laptop. Efficient learning visualization, hands-on energy.",
+      "output_name": "max/scene_05"
+    },
+    {
+      "scene_id": "scene_06",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Creative design workspace. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, at desk surrounded by logo iterations on paper and screen. AI image generation interface showing logo concepts with dog and travel motifs. Design software open for final touches. Golden retriever Max posing as reference model, looking proud. Rejected expensive quote crumpled in trash. Timer showing '45 minutes'. Final logo emerging: stylized dog with airplane trail. Color palette: lime green #baf122 for chosen logo glow, red #ff3131 for rejected options, purple #5e17eb for creative shadows. Brno landmarks visible through window. Easter egg: old design software icon with cobwebs. Creative DIY energy, logo birth moment.",
+      "output_name": "max/scene_06"
+    },
+    {
+      "scene_id": "scene_07",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Perfectionism paralysis visualization. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, surrounded by 47 versions of same website design floating around head in spiral. Stressed expression, spiral eyes. Calendar showing 2 weeks crossed out. Golden retriever Max pawing at leg, wanting to go outside, leash in mouth. Ghost-like 'perfect' website floating just out of reach. Meanwhile: stack of customer inquiries piling up, phone notifications ignored. Thought bubbles: 'font spacing off', 'button color wrong', 'photo not perfect'. Color palette: lime green #baf122 for elusive perfection glow, red #ff3131 for stress indicators and notifications, purple #5e17eb for overthinking clouds. Brno tram passing outside window - life moving on. Easter egg: motivational poster 'Done > Perfect' fallen off wall. Comedic anxiety, perfectionism trap visualization.",
+      "output_name": "max/scene_07"
+    },
+    {
+      "scene_id": "scene_08",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Content creation montage. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, surrounded by travel photos and videos from trips with Max. Phone showing video editor with dog travel content. Multiple screens: old photos transforming into engaging reels, podcast microphone setup, story highlights. Golden retriever Max in various poses from past adventures (mountains, beach, city). Authentic content floating as pixel cards. Rejected: expensive ad budget visualization fading away. Color palette: lime green #baf122 for content highlights and engagement metrics, red #ff3131 for heart reactions, purple #5e17eb for creative flow. Map of traveled destinations on wall. Easter egg: Polaroid camera and nostalgic travel photos. Content creator energy, authentic storytelling.",
+      "output_name": "max/scene_08"
+    },
+    {
+      "scene_id": "scene_09",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Pricing anxiety moment. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, staring nervously at phone screen showing message notification. Phone displays chat bubble from customer: question mark and money symbol visible. Sweat drops appearing on character's forehead. Golden retriever Max looking up with encouraging expression. Thought bubbles floating around head showing: calculator with question marks, euro symbols of different sizes, crossed out numbers, conflict between pricing options. Empty price list paper on desk, pen hovering. Background: home office with Brno cityscape through window, evening light. Split visualization: one side showing confident pricing (green glow), other side showing fear of rejection (red warning). Customer avatar in corner: lady with dachshund silhouette. Color palette: lime green #baf122 for opportunity and confidence path, red #ff3131 for anxiety indicators and price fears, purple #5e17eb for uncertainty shadows. First sale tension energy. Easter egg: pricing guide book hidden under papers. Pivotal moment visualization, first customer excitement mixed with pricing fear.",
+      "output_name": "max/scene_09"
+    },
+    {
+      "scene_id": "scene_10",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. DIY video production setup. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, filming with smartphone on tripod made of books. Golden retriever Max as co-star, wearing cute bandana, sitting perfectly for camera. Ring light improvised from desk lamp. Video editing timeline visible on laptop nearby. Living room transformed into mini studio with bedsheet backdrop. B-roll clips floating: Max playing, travel destinations, happy dogs. Rejected: expensive production company quote on floor. Color palette: lime green #baf122 for recording indicator and good takes, red #ff3131 for record button, purple #5e17eb for ambient shadows. Brno skyline poster as backdrop decoration. Easter egg: old VHS camcorder as doorstop. Authentic creator vibe, smartphone filmmaking energy.",
+      "output_name": "max/scene_10"
+    },
+    {
+      "scene_id": "scene_11",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Podcast recording scene. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, recording with smartphone as microphone, guest (another dog owner) sitting across. Golden retriever Max lying between them, occasionally looking at speakers. Laptop showing audio enhancement transforming wavy audio into clean waveform - magic transformation visualization. Sound waves: messy input becoming pristine output. Cozy setting with dog beds and travel photos on walls. Rejected: expensive studio rental. Color palette: lime green #baf122 for enhanced audio glow, red #ff3131 for record indicators, purple #5e17eb for cozy podcast shadows. Topic cards visible: 'Dog-friendly hotels', 'Travel tips'. Easter egg: old radio microphone as decoration. Intimate podcast energy, AI audio magic.",
+      "output_name": "max/scene_11"
+    },
+    {
+      "scene_id": "scene_12",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Bustling dog fair scene. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, walking through crowd without own booth. Golden retriever Max on leash, attracting attention from other dogs and owners. Expensive booth price tag floating with X mark. Creative alternatives highlighted: partnering with existing pet hotel booth, guerrilla marketing spots (bathroom door, entrance area). Thousands of dogs and owners filling the venue. Color palette: lime green #baf122 for opportunity highlights, red #ff3131 for expensive options crossed out, purple #5e17eb for crowd shadows. Various dog breeds visible. Easter egg: map with 'secret marketing spots' marked. Festival energy, resourceful thinking.",
+      "output_name": "max/scene_12"
+    },
+    {
+      "scene_id": "scene_13",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Standing out at fair scene. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, wearing creative attention-grabbing costume - giant pixel paw print hat or eye-catching branded outfit. Golden retriever Max in matching cute travel-themed costume (tiny pilot hat and goggles). Crowd gathering around, taking photos, laughing and engaging. QR code visible on costume leading to website. Contrast: boring business cards being ignored on ground. Other fair attendees pointing and smiling. Color palette: lime green #baf122 for attention-grabbing costume elements, red #ff3131 for engagement hearts, purple #5e17eb for crowd shadows. Festival booths in background. Easter egg: 'Where's Waldo' style hidden character in crowd. Guerrilla marketing energy, memorable moment.",
+      "output_name": "max/scene_13"
+    },
+    {
+      "scene_id": "scene_14",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. AI tool overload visualization. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, overwhelmed expression, surrounded by hundreds of floating AI tool logos swirling chaotically like a tornado. FOMO anxiety visualization. But clarity emerging: small focused toolkit of 4 tools glowing brightly in center, others fading to gray. Golden retriever Max calmly sitting, grounding the scene. 'MY STACK' sticky note with selected tools. Calendar showing actual work vs endless testing. Color palette: lime green #baf122 for chosen tools, red #ff3131 for FOMO notifications and chaos, purple #5e17eb for overwhelming background. Brno Spilberk as stable anchor through window. Easter egg: 'AI Tool of the Day' newsletter being unsubscribed. FOMO to focus journey, clarity from chaos.",
+      "output_name": "max/scene_14"
+    },
+    {
+      "scene_id": "scene_15",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Automation command center. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, setting up automation flows on multiple screens. Workflow automation interface showing connected colorful blocks forming a pipeline. Golden retriever Max watching data flow like watching birds. Workflow visualization: content multiplying automatically. Time saved counter increasing. Rejected: manual posting calendar with overwhelming tasks. Color palette: lime green #baf122 for automation flow highlights, red #ff3131 for trigger points, purple #5e17eb for system shadows. Clock showing efficiency gains. Easter egg: robot assistant pixel figure giving thumbs up. Automation magic, systems thinking energy.",
+      "output_name": "max/scene_15"
+    },
+    {
+      "scene_id": "scene_15b",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Automation puzzle minigame visualization. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, arranging colorful abstract blocks and nodes on screen like a puzzle game. Puzzle interface showing workflow with some blocks connected and empty slots with question marks waiting to be filled. Various abstract colorful blocks floating around as available pieces - each block has a unique symbol or icon but no readable text. Golden retriever Max tilting head at the puzzle curiously. Color palette: lime green #baf122 for correct connections glowing, red #ff3131 for block borders, purple #5e17eb for interface background. Satisfying 'click' visualization when blocks connect. Easter egg: old flowchart paper crumpled nearby. Puzzle game energy, logic visualization.",
+      "output_name": "max/scene_15b"
+    },
+    {
+      "scene_id": "scene_16",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Scaling and lead generation scene. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, engaging with multiple screens showing dog owner communities - online groups, forums, discussions. AI assistant helping analyze discussions and find opportunities. Golden retriever Max appearing in posted photos, becoming recognizable. Network visualization: connections growing from online communities to real customers. Influencer outreach emails visible. Ads dashboard in one corner. Color palette: lime green #baf122 for community connections and positive engagement, red #ff3131 for notification badges, purple #5e17eb for screen glows. Map showing customer locations spreading. Easter egg: old Rolodex labeled 'contacts' unused. Scaling energy, network building.",
+      "output_name": "max/scene_16"
+    },
+    {
+      "scene_id": "scene_17",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Polish market expansion adventure. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, sitting on bench in Warsaw Old Town (Stare Miasto) with laptop open, researching Polish market. Golden retriever Max beside him wearing tiny Polish flag bandana (white and red), sniffing pierogi from nearby street vendor. Iconic Palace of Culture and Science visible in background skyline. Phone showing Polish community comments and engagement notifications. Laptop screen split: left side Czech content (podcast waveform, reels thumbnails), right side showing AI translation interface transforming content to Polish with glowing arrows. Floating visualization: CZ flag morphing into PL flag through AI magic particles. Warsaw Mermaid (Syrenka) statue visible in plaza. Audio waveform showing voice adaptation to Polish. Automation pipeline visualization. Polish text bubbles floating. Color palette: lime green #baf122 for AI translation magic and opportunity glow, red #ff3131 for Polish flag elements and engagement hearts, purple #5e17eb for Warsaw evening shadows. Cobblestone streets, colorful townhouses typical for Warsaw Old Town. Easter egg: Polish phrasebook unopened in backpack. Exploration meets expansion energy, new market adventure with faithful companion.",
+      "output_name": "max/scene_17"
+    },
+    {
+      "scene_id": "scene_18",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Scaling dilemma - service to product transition. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, sitting at desk surrounded by multiple calendars full of bookings, phone ringing, emails piling up. Golden retriever Max sleeping peacefully on dog bed - representing passive income dream. Split visualization above head: LEFT SIDE (red glow) showing time equals money trap - clock with chains, character running on hamster wheel serving customers one by one. RIGHT SIDE (green glow) showing product freedom - money flowing while character sleeps, moon and stars, automated systems. Floating product ideas as glowing options: smartphone app icon with paw print and map pin, t-shirt and hoodie with dog travel logo, stylish dog travel accessories (bowls, leashes, backpacks), video play button with globe, premium service badge. Each option has sparkle effect. Wall shows growth chart trending up but character looking tired. Window view: night sky over Brno, symbolizing works while you sleep dream. Color palette: lime green #baf122 for product ideas and passive income visualization, red #ff3131 for time-trap and exhaustion indicators, purple #5e17eb for dreamy product possibilities. Phase 3 energy - growth ceiling moment. Easter egg: book '4-Hour Work Week' highlighted on shelf. Pivotal scaling decision, service vs product crossroads.",
+      "output_name": "max/scene_18"
+    },
+
+    {
+      "category": "ENDINGS",
+      "strategy": "BUILD_APP",
+      "ending_type": "SUCCESS",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, standing proudly in modern startup office space with exposed brick and neon signs. Large monitor showing app dashboard with user counter glowing green, map with thousands of dog-friendly locations pinned. Golden retriever Max wearing small badge, wagging tail at tablet screen. Wall covered with sticky notes showing many version iterations. Phone showing messages from accelerator programs. Growth chart shooting upward like rocket. Split globe showing Poland and Austria flags. Vibe coding visualization: code particles flowing into beautiful app interface. Team of 2-3 co-workers celebrating in background. Color palette: lime green #baf122 for success metrics and app glow, red #ff3131 for notification badges and milestone markers, purple #5e17eb for startup office shadows. Confetti pixels falling. Energy: explosive growth. Triumphant tech startup energy.",
+      "output_name": "max/ending_build_app_success"
+    },
+    {
+      "category": "ENDINGS",
+      "strategy": "BUILD_APP",
+      "ending_type": "NEUTRAL",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, sitting at desk with laptop showing app dashboard with modest user count. Golden retriever Max looking at screen with tilted head. Mixed feedback visualization: some green thumbs up, some yellow question marks floating. Feature request sticky notes covering monitor edges. Loading bar at 60%. Coffee cups accumulated. Small but engaged community chat visible. Growth chart showing slow but steady upward trend. Bug reports in organized board. Color palette: lime green #baf122 for working features and progress, red #ff3131 for bugs and issues to fix, purple #5e17eb for contemplative shadows. Window showing dawn. Mood: determined builder. Perseverance energy.",
+      "output_name": "max/ending_build_app_neutral"
+    },
+    {
+      "category": "ENDINGS",
+      "strategy": "BUILD_APP",
+      "ending_type": "FAILURE",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, sitting at desk in dark room, head in hands, defeated posture. Monitor showing app dashboard with zeros everywhere - zero users, zero downloads, flat line graphs. Golden retriever Max lying beside the chair, looking up at owner with sympathetic compassionate eyes. Empty pizza box and cold coffee cup on desk. Crumpled sticky notes scattered. But through window: beautiful sunrise beginning, orange and pink light breaking through darkness - new day, new chance. Color palette: lime green #baf122 dimmed and minimal, red #ff3131 for warning indicators and zeros, purple #5e17eb dominant for shadows and melancholy atmosphere. Dawn light providing hope accent. Mood: setback but not defeat. Quiet failure moment with hope on horizon.",
+      "output_name": "max/ending_build_app_failure"
+    },
+
+    {
+      "category": "ENDINGS",
+      "strategy": "MERCH_BRAND",
+      "ending_type": "SUCCESS",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Main character: young entrepreneur with messy brown hair, round glasses, wearing their OWN branded green hoodie with dog paw travel logo, standing at bustling pop-up booth at dog fair. Golden retriever Max as brand mascot, wearing matching bandana, posing for photos with fans. Queue of customers at booth stretching into background. Clothing rack displaying hoodies, t-shirts, caps with dog travel designs. Phone showing many new followers notification. Influencers wearing the merch in floating photo frames. Pet shop wholesale order forms stacked. Wall of customer photos wearing merch with their dogs. Sales counter showing strong numbers. Color palette: lime green #baf122 for brand colors and success glow, red #ff3131 for heart reactions, purple #5e17eb for premium brand shadows. Festival energy with pixel confetti. Brand celebration energy.",
+      "output_name": "max/ending_merch_brand_success"
+    },
+    {
+      "category": "ENDINGS",
+      "strategy": "MERCH_BRAND",
+      "ending_type": "NEUTRAL",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, at home workspace designing new merch on tablet. Golden retriever Max modeling a prototype bandana, looking slightly unimpressed but cooperative. E-shop dashboard showing modest sales. Handful of happy customer review cards pinned to wall. Phone showing growing follower count. New design sketches scattered on desk. Print-on-demand website open on second monitor. First returning customer notification glowing. Photography setup in corner for product shots. Content calendar half-filled. Color palette: lime green #baf122 for completed sales and positive reviews, red #ff3131 for design accents and hearts, purple #5e17eb for creative workspace shadows. Morning light through window. Creative grind energy.",
+      "output_name": "max/ending_merch_brand_neutral"
+    },
+    {
+      "category": "ENDINGS",
+      "strategy": "MERCH_BRAND",
+      "ending_type": "FAILURE",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, standing in garage or small storage room surrounded by stacked cardboard boxes full of unsold merchandise - hoodies, t-shirts with dog travel logo. Golden retriever Max sitting on top of one box, wearing the company t-shirt himself - the only customer. Dusty shelves, cobwebs on corners, price tags still attached to everything. Inventory count showing high numbers, sales showing zero. But entrepreneur holds notebook in hand, sketching new ideas - planning next attempt. Determined expression despite circumstances. Color palette: lime green #baf122 subtle on the merch, red #ff3131 for unsold tags, purple #5e17eb for dusty shadows. Single light bulb illuminating the scene. Mood: inventory graveyard but entrepreneurial spirit alive. Unsold stock reality check.",
+      "output_name": "max/ending_merch_brand_failure"
+    },
+
+    {
+      "category": "ENDINGS",
+      "strategy": "ACCESSORIES",
+      "ending_type": "SUCCESS",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, standing proudly in pet shop aisle next to shelf displaying their branded products - travel bowls, backpacks, leashes with distinctive logo. Golden retriever Max wearing the premium travel backpack, looking majestic as product model. B2B order forms stacked high. Quality certificate badge shining. Customer holding product and giving thumbs up. Wholesale delivery truck visible through shop window. Product boxes with premium packaging. Repeat order notification on phone. Map showing distribution points across region. Color palette: lime green #baf122 for products on shelf and success indicators, red #ff3131 for popular items, purple #5e17eb for retail store shadows. Proud entrepreneur moment. Retail victory energy.",
+      "output_name": "max/ending_accessories_success"
+    },
+    {
+      "category": "ENDINGS",
+      "strategy": "ACCESSORIES",
+      "ending_type": "NEUTRAL",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, at workshop table surrounded by product prototypes - travel bowls, leashes, backpacks in various iterations. Golden retriever Max wearing test version of backpack, tilting head as if giving feedback with thought bubble showing paw up or down. Customer feedback forms spread on table - mix of green checkmarks and yellow suggestions. E-shop showing first sales trickling in. Pet shop contact list with meeting notes. Quality testing in progress. 3D design software on laptop. Material samples in organized bins. Color palette: lime green #baf122 for approved features and positive feedback, red #ff3131 for iteration markers, purple #5e17eb for workshop shadows. Garage workshop setting with tools. Product development energy.",
+      "output_name": "max/ending_accessories_neutral"
+    },
+    {
+      "category": "ENDINGS",
+      "strategy": "ACCESSORIES",
+      "ending_type": "FAILURE",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, sitting at desk looking at laptop showing e-shop with zero orders notification. Around the desk: unsold product samples - travel bowls, leashes, dog backpacks, all with price tags still on. Golden retriever Max happily playing with one of the products, chewing on travel bowl - at least someone enjoys them. Stack of supplier invoices on desk, empty cash register. Through window: successful bustling pet shop across the street with customers entering, contrast to empty room. Entrepreneur gazing at competitor with contemplative expression. Color palette: lime green #baf122 on products but muted, red #ff3131 for zero notifications and invoices, purple #5e17eb for dejected shadows. Afternoon light. Mood: product graveyard, competitor envy, lessons to learn. Unsold inventory reality.",
+      "output_name": "max/ending_accessories_failure"
+    },
+
+    {
+      "category": "ENDINGS",
+      "strategy": "CONTENT_CREATOR",
+      "ending_type": "SUCCESS",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, in professional home studio setup with ring light, microphone, camera - but still authentic vibe. Golden retriever Max as co-host star, sitting on special chair with own tiny microphone. Multiple platform dashboards floating showing large follower counts. Sponsor logos floating with money symbols (pet food, insurance, gear brands). Affiliate link clicks counter rising. Fan mail and messages of gratitude flooding in. World map showing global audience reach. Authentic content moments in floating frames - real adventures, not staged. Color palette: lime green #baf122 for follower counts and sponsor deals, red #ff3131 for hearts, likes and engagement, purple #5e17eb for creator studio shadows. Golden play button on wall. Creator victory energy.",
+      "output_name": "max/ending_content_creator_success"
+    },
+    {
+      "category": "ENDINGS",
+      "strategy": "CONTENT_CREATOR",
+      "ending_type": "NEUTRAL",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, at desk recording content with smartphone setup - scrappy but consistent. Golden retriever Max in frame, being a good boy for camera, treat visible as motivation. Dashboard showing modest but growing follower count. Engagement graph with ups and downs but overall upward trend. Content calendar on wall - many boxes filled, some empty. First sponsor email open on screen. Batch of scheduled posts ready to go. Comments showing small but engaged community. Analytics showing which content performs best. Color palette: lime green #baf122 for growth indicators and scheduled content, red #ff3131 for notifications and hearts, purple #5e17eb for home studio shadows. Morning coffee indicating early routine. Creator grind energy.",
+      "output_name": "max/ending_content_creator_neutral"
+    },
+    {
+      "category": "ENDINGS",
+      "strategy": "CONTENT_CREATOR",
+      "ending_type": "FAILURE",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, sitting dejected looking at phone showing social media profile with very low follower count. On desk: dusty ring light, unused microphone covered in cobwebs, camera gathering dust. Golden retriever Max lying next to setup, bored expression, looking at camera with disinterest. Bulletin board on wall covered with content ideas but all crossed out with red X marks. Notification bubbles showing zero likes, zero comments floating. But in corner of phone screen: one new message notification blinking green - maybe inspiration, maybe opportunity. Color palette: lime green #baf122 only for that hopeful notification, red #ff3131 for crossed out ideas and zero metrics, purple #5e17eb for dusty abandoned equipment shadows. Late night atmosphere. Mood: creator burnout but spark of hope. Abandoned creator setup.",
+      "output_name": "max/ending_content_creator_failure"
+    },
+
+    {
+      "category": "ENDINGS",
+      "strategy": "FOCUS_SERVICES",
+      "ending_type": "SUCCESS",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, in elegant home office with fully booked calendar showing months of reservations. Golden retriever Max wearing premium travel gear, photos of his adventures covering wall - mountains, beaches, cities across Europe. Waiting list visualization with happy customers queuing. Premium price tag glowing. Five star reviews floating like golden badges. Returning customer notifications. Quality over quantity visualization: fewer clients but exceptional. Thank you cards from satisfied customers. Referral chain showing word-of-mouth growth. Dog travel photo album showing dozens of successful trips. Color palette: lime green #baf122 for bookings and premium indicators, red #ff3131 for five star ratings and hearts, purple #5e17eb for elegant office shadows. Champagne glasses suggesting celebration. Boutique success energy.",
+      "output_name": "max/ending_focus_services_success"
+    },
+    {
+      "category": "ENDINGS",
+      "strategy": "FOCUS_SERVICES",
+      "ending_type": "NEUTRAL",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, at organized desk with booking system showing steady stream of customers. Golden retriever Max resting after another successful trip, travel photos pinned nearby. Customer satisfaction chart showing consistently good ratings. Price list with arrow pointing up and question mark. Process documentation being written. Returning customer percentage indicator. Solid margins on calculator. To-do sticky notes about systematizing and automation. Several happy customer testimonials framed. Dog-friendly hotel partnership certificates. Color palette: lime green #baf122 for completed bookings and satisfied customers, red #ff3131 for growth opportunities marked, purple #5e17eb for working office shadows. Afternoon light - productive day. Sustainable service energy.",
+      "output_name": "max/ending_focus_services_neutral"
+    },
+    {
+      "category": "ENDINGS",
+      "strategy": "FOCUS_SERVICES",
+      "ending_type": "FAILURE",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, sitting behind desk in empty waiting room or small travel agency office. Silent phone on desk, wall calendar completely empty - no bookings. Laptop showing empty email inbox. Golden retriever Max lying by the entrance door, head on paws, watching door hopefully, waiting for customers who never come. Through window: people walking past on street, ignoring the shop sign, going about their day. Empty chairs in waiting area. But on desk: book with paw print and travel icon visible - time to learn and try again. Entrepreneur reaching for the book with curious expression. Color palette: lime green #baf122 for the hopeful book glow, red #ff3131 for empty calendar and inbox, purple #5e17eb for lonely office shadows. Quiet afternoon light. Mood: empty business but wisdom awaits. No customers reality with learning opportunity.",
+      "output_name": "max/ending_focus_services_failure"
+    },
+
+    {
+      "category": "ENDINGS",
+      "strategy": "DEFAULT",
+      "ending_type": "DEFAULT",
+      "prompt": "16-bit pixel art scene, SNES game style, visible pixels, no smoothing. No text overlays, no title bars, no scene labels, no banners, no UI frames. Clean game scene only. Main character: young entrepreneur with messy brown hair, round glasses, green hoodie with dog paw logo, standing at crossroads visualization - multiple glowing paths ahead representing different futures. Golden retriever Max sitting beside, looking up at owner with encouraging expression, tail wagging. Behind them: montage of journey so far in small frames (website, first customer, podcast, fair). Ahead: sunrise over horizon with Brno skyline silhouette. Floating elements: skill badges collected, mindset icons glowing. Multiple doors of opportunity open, each glowing with potential. Backpack ready for next adventure. Phone showing community messages of support. Color palette: lime green #baf122 for opportunities ahead and skills earned, red #ff3131 for passion indicators and hearts from community, purple #5e17eb for journey shadows and unknown future. Inspirational dawn light. Adventure continues energy.",
+      "output_name": "max/ending_default"
+    }
+  ]
+}

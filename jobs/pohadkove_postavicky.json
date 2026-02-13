@@ -1,0 +1,20 @@
+{
+  "defaults": {
+    "aspect_ratio": "4:3",
+    "resolution": "1K"
+  },
+  "jobs": [
+    {
+      "prompt": "Cute cartoon steam locomotive named MONIK, large friendly train engine with big expressive eyes, the word MONIK written prominently on the side in playful letters, colorful painted illustration style, soft pastel colors, children's book illustration, whimsical fairy tale aesthetic, happy cheerful mood, gentle watercolor texture, rounded friendly shapes",
+      "output_name": "masinka_monik"
+    },
+    {
+      "prompt": "Adorable cartoon puffin named Thomas, cute fairy tale bird character with colorful beak in orange and yellow, big round friendly eyes, soft fluffy feathers, standing on a seaside rock, children's storybook illustration style, warm gentle lighting, playful whimsical design, pastel background with soft clouds, hand-painted watercolor aesthetic",
+      "output_name": "papuchalk_tomas"
+    },
+    {
+      "prompt": "Cute cartoon brown bear named MONIK who loves honey, extremely large adorable round eyes with sparkles, holding a honey pot, golden honey dripping, soft fluffy fur, happy joyful expression, children's book illustration style, warm cozy colors, fairy tale aesthetic, gentle lighting, whimsical painted style, friendly rounded shapes",
+      "output_name": "medved_monik"
+    }
+  ]
+}
