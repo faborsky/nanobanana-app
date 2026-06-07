@@ -247,7 +247,7 @@ def describe(
     """Analyze an image and generate a text description suitable as a prompt."""
     from google import genai
 
-    from nanobanana.config import get_api_key
+    from nanobanana.config import DESCRIBE_MODEL_NAME, get_api_key
 
     if not image_path.exists():
         console.print(f"[red]Image not found: {image_path}[/red]")
@@ -298,7 +298,7 @@ def describe(
 
     try:
         response = client.models.generate_content(
-            model="gemini-2.0-flash",
+            model=DESCRIBE_MODEL_NAME,
             contents=[prompt, image],
         )
         description = response.text

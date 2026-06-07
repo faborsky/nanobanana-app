@@ -36,6 +36,7 @@ wheels/
 output/*.png
 output/*.jpg
 output/*.jpeg
+generated_images/
 
 # OS
 .DS_Store

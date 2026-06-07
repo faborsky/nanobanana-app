@@ -14,7 +14,13 @@ load_dotenv()
 
 # API Configuration
 GEMINI_API_KEY_ENV = "GEMINI_API_KEY"
-MODEL_NAME = "gemini-3-pro-image-preview"
+# Image generation model (Nano Banana Pro). GA / stable ID.
+# The old "gemini-3-pro-image-preview" was retired on 2026-06-25.
+MODEL_NAME = "gemini-3-pro-image"
+# Multimodal model used by the `describe` command for image analysis.
+# gemini-2.0-flash was shut down on 2026-06-01; gemini-3.5-flash is the
+# current stable flash model with vision support.
+DESCRIBE_MODEL_NAME = "gemini-3.5-flash"
 
 # Default values
 DEFAULT_ASPECT_RATIO = "1:1"
