@@ -94,70 +94,92 @@ nanobanana/
 
 ### Core Principles
 
-1. **Be specific** - the more detailed the description, the better the result
-2. **Describe visual elements** - colors, lighting, composition, style
-3. **Use artistic terminology** - helps define the aesthetic
+Gemini 3 Pro Image reasons over the prompt ("Thinking"), so it responds best to
+**descriptive narrative prompts, not keyword lists**. Describe the finished image
+the way you'd describe a photo to a person.
+
+1. **Write a scene, not a tag list** - full sentences describing subject, setting, and how it looks beat a comma-separated pile of keywords
+2. **Be specific** - the more concrete the description, the better the result
+3. **State the intent** when useful - e.g. "a hero banner for a fintech landing page" helps the model compose appropriately
+4. **Set aspect ratio/resolution via flags** (`-a`, `-r`), not in the prompt text
 
 ### Effective Prompt Structure
 
+Describe, in a sentence or two, this flow:
+
 ```
-[Main subject] + [Environment/Background] + [Lighting] + [Style/Mood] + [Technical details]
+[Subject + what it's doing] in [environment], [composition & camera angle],
+[lighting], [style/mood], [key material/detail].
 ```
 
 ### Good Prompt Examples
 
 **Landscape:**
 ```
-Majestic mountain range at golden hour, snow-capped peaks reflecting warm sunlight,
-alpine meadow with wildflowers in foreground, dramatic clouds,
-photorealistic, high detail, cinematic composition
+A majestic snow-capped mountain range at golden hour, warm sunlight reflecting
+off the peaks, an alpine meadow full of wildflowers in the foreground, dramatic
+clouds overhead, shot as a wide cinematic photorealistic composition.
 ```
 
 **Portrait/Character:**
 ```
-Portrait of an elderly fisherman, weathered face with deep wrinkles,
-kind eyes, wearing a worn cable-knit sweater,
-soft natural window light from the side, shallow depth of field,
-documentary photography style
+A portrait of an elderly fisherman with a weathered, deeply wrinkled face and
+kind eyes, wearing a worn cable-knit sweater, lit by soft natural window light
+from the side with a shallow depth of field, in a documentary photography style.
 ```
 
 **Abstract:**
 ```
-Fluid abstract composition, vibrant gradients flowing from deep purple
-to electric blue to warm orange, organic shapes,
-metallic accents, contemporary digital art style
+A fluid abstract composition with vibrant gradients flowing from deep purple
+into electric blue and warm orange, organic shapes accented with metallic
+highlights, in a contemporary digital art style.
 ```
 
 **Product/Object:**
 ```
-Minimalist product shot of a ceramic coffee mug,
-matte white finish, soft shadows on light gray background,
-studio lighting, clean aesthetic, commercial photography
+A minimalist product shot of a matte white ceramic coffee mug on a light gray
+background, soft shadows and clean studio lighting, commercial photography with
+a sharp, clean aesthetic.
 ```
 
-### Quality Keywords
+### Text Inside the Image (strong capability)
 
-| Category | Keywords |
-|----------|----------|
-| Quality | `high detail`, `ultra detailed`, `sharp focus`, `8K`, `photorealistic` |
+Gemini 3 image models render legible, stylized text well — ideal for logos,
+posters, infographics, menus, and marketing assets. Put the **exact text in
+quotes** and describe its placement and look:
+
+```
+A minimal glossy magazine cover, the title "NANO BANANA" in large bold
+sans-serif at the top, clean editorial layout, soft studio lighting.
+```
+
+### Useful Vocabulary
+
+Weave these into the narrative — don't dump them as a bare list:
+
+| Category | Terms |
+|----------|-------|
+| Camera/Quality | `shallow depth of field`, `wide angle`, `close-up`, `sharp focus`, `photorealistic` |
 | Lighting | `golden hour`, `soft light`, `dramatic lighting`, `backlit`, `rim light`, `studio lighting` |
-| Style | `cinematic`, `editorial`, `documentary`, `fine art`, `commercial` |
-| Composition | `rule of thirds`, `symmetrical`, `wide angle`, `close-up`, `aerial view` |
+| Style | `cinematic`, `editorial`, `documentary`, `fine art`, `commercial`, `3D render`, `flat vector` |
+| Composition | `rule of thirds`, `symmetrical`, `aerial view` |
 | Mood | `moody`, `ethereal`, `vibrant`, `serene`, `dramatic` |
 
 ### What to Avoid
 
+- Bare keyword lists with no scene ("cat, 8K, cinematic, detailed")
 - Too short prompts ("a cat") - results will be generic
 - Conflicting instructions ("realistic cartoon style")
 - Too many subjects at once
-- Negative phrasing ("no people") - model may not respect these
+- For exclusions, give a clear positive instruction ("plain seamless background, no text") rather than a vague negative — Gemini 3 respects explicit constraints, but describing what you DO want still works best
 
 ### Tips for Consistent Series
 
 For batch jobs with the same style:
-1. Define a common "style suffix" and add it to each prompt
-2. Use the same lighting and technical terms
-3. Keep consistent aspect ratio
+1. Reuse the same descriptive style sentence across every prompt
+2. Keep the same lighting and camera language
+3. Keep a consistent aspect ratio
+4. For tight subject/style consistency, pass the same reference image (`reference_path`)
 
 ```json
 {
@@ -167,15 +189,15 @@ For batch jobs with the same style:
   },
   "jobs": [
     {
-      "prompt": "Ocean waves at sunset, dramatic sky, cinematic photography, warm tones, high detail",
+      "prompt": "Ocean waves breaking at sunset under a dramatic sky, warm golden tones, shot as a cinematic wide photograph.",
       "output_name": "ocean"
     },
     {
-      "prompt": "Desert dunes at sunset, dramatic sky, cinematic photography, warm tones, high detail",
+      "prompt": "Rolling desert dunes at sunset under a dramatic sky, warm golden tones, shot as a cinematic wide photograph.",
       "output_name": "desert"
     },
     {
-      "prompt": "Mountain lake at sunset, dramatic sky, cinematic photography, warm tones, high detail",
+      "prompt": "A still mountain lake at sunset under a dramatic sky, warm golden tones, shot as a cinematic wide photograph.",
       "output_name": "mountain"
     }
   ]
