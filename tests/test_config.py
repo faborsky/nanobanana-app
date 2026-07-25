@@ -108,3 +108,15 @@ class TestRetryClassification:
 
     def test_does_not_retry_unrecognised_error(self) -> None:
         assert is_retryable_error(ValueError("prompt too long")) is False
+
+
+class TestOutputStreamDiscipline:
+    """--json promises a clean, parseable stdout. Retry notices must not break it."""
+
+    def test_retry_notices_go_to_stderr(self) -> None:
+        # Regression guard: these notices used to print to stdout, which corrupted
+        # the --json payload whenever a request was retried (found during a real
+        # upstream outage). They are diagnostics, so stderr is the correct stream.
+        from nanobanana.generator import console
+
+        assert console.stderr is True, "generator console must write to stderr"

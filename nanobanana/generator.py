@@ -33,7 +33,9 @@ if TYPE_CHECKING:
 
 from PIL import Image
 
-console = Console()
+# Retry notices are progress diagnostics, not results — they always belong on
+# stderr, so that `--json` keeps stdout a clean, parseable payload.
+console = Console(stderr=True)
 
 
 @dataclass

@@ -2,6 +2,19 @@
 
 All notable changes to this project are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/); versions follow [Semantic Versioning](https://semver.org/).
 
+## [1.0.1] — 2026-07-25
+
+### Fixed
+
+- **`--json` no longer emits invalid JSON when a request is retried.** Retry
+  notices from `generator.py` were printed to stdout, so any retried call
+  interleaved human text with the JSON payload and broke parsing. They now go to
+  stderr, where diagnostics belong — stdout stays a clean, parseable result.
+
+  Found while an OpenAI-wide outage made every call retry, which is exactly the
+  condition that triggers it. A regression test asserts the generator console
+  writes to stderr.
+
 ## [1.0.0] — 2026-07-25
 
 First production release. The tool becomes safe to hand to someone else: correct model IDs, honest cost reporting, retry logic that doesn't waste quota, a documented API surface, and a bundled Claude Code skill.

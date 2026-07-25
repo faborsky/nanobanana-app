@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nanobanana"
-version = "1.0.0"
+version = "1.0.1"
 description = "CLI for image generation using Google Gemini 3 Pro Image (Nano Banana Pro)"
 readme = "README.md"
 requires-python = ">=3.11"
