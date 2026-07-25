@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from enum import Enum
+from enum import StrEnum
 from pathlib import Path
 from typing import Literal
 
@@ -30,9 +30,22 @@ DEFAULT_OUTPUT_DIR = Path("./output")
 DEFAULT_DELAY_SECONDS = 1.0
 DEFAULT_MAX_RETRIES = 3
 DEFAULT_RETRY_BASE_DELAY = 2.0
+DEFAULT_RETRY_MAX_DELAY = 60.0
+
+# Per-image price in USD, source: https://ai.google.dev/gemini-api/docs/pricing
+# (verified 2026-07-25). 1K and 2K cost the same — only 4K is more expensive.
+# These are standard-tier prices for direct API calls, which is what this CLI makes.
+# Google's Batch API is ~50% cheaper but is a different, asynchronous endpoint;
+# the `batch` command here is a sequential loop over the standard endpoint.
+PRICE_PER_IMAGE_USD: dict[str, float] = {"1K": 0.134, "2K": 0.134, "4K": 0.24}
+
+# HTTP status codes worth retrying: 429 = rate limit (RESOURCE_EXHAUSTED),
+# 5xx = transient server-side failures. Everything else (400 invalid argument,
+# 403 permission, 404 model not found) is a hard error — retrying only wastes time.
+RETRYABLE_STATUS_CODES: frozenset[int] = frozenset({429, 500, 502, 503, 504})
 
 
-class AspectRatio(str, Enum):
+class AspectRatio(StrEnum):
     """Supported aspect ratios for image generation."""
 
     SQUARE = "1:1"
@@ -47,7 +60,7 @@ class AspectRatio(str, Enum):
     ULTRAWIDE = "21:9"
 
 
-class Resolution(str, Enum):
+class Resolution(StrEnum):
     """Supported resolutions for image generation."""
 
     RES_1K = "1K"
@@ -55,7 +68,7 @@ class Resolution(str, Enum):
     RES_4K = "4K"
 
 
-class OutputFormat(str, Enum):
+class OutputFormat(StrEnum):
     """Supported output image formats."""
 
     WEBP = "webp"
@@ -175,6 +188,48 @@ def validate_output_format(output_format: str) -> str:
             f"Invalid output format '{output_format}'. Valid options: {valid_options}"
         )
     return output_format
+
+
+def estimate_cost(resolution: str, count: int = 1) -> float:
+    """
+    Estimate the USD cost of generating images at a given resolution.
+
+    Nano Banana Pro is billed per image, not per token, so the estimate is exact
+    for successful generations. Failed attempts are not billed and are excluded
+    by the caller.
+
+    Args:
+        resolution: The resolution ("1K", "2K", "4K").
+        count: Number of images.
+
+    Returns:
+        Estimated cost in USD.
+    """
+    return PRICE_PER_IMAGE_USD.get(resolution, PRICE_PER_IMAGE_USD[DEFAULT_RESOLUTION]) * count
+
+
+def is_retryable_error(error: Exception) -> bool:
+    """
+    Decide whether a failed API call is worth retrying.
+
+    Retries 429 (rate limit) and 5xx (transient server errors) plus network-level
+    failures. Hard errors — invalid arguments, bad API key, missing model — are not
+    retried, because the same request will fail identically every time.
+
+    Args:
+        error: The exception raised by the API call.
+
+    Returns:
+        True if the call should be retried.
+    """
+    code = getattr(error, "code", None)
+    if isinstance(code, int):
+        return code in RETRYABLE_STATUS_CODES
+
+    # Network-level failures carry no status code but are usually transient.
+    transient_markers = ("timeout", "timed out", "connection", "temporarily unavailable")
+    message = str(error).lower()
+    return any(marker in message for marker in transient_markers)
 
 
 def validate_reference_path(reference_path: Path) -> Path:

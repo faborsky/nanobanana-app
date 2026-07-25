@@ -2,18 +2,21 @@
 
 from __future__ import annotations
 
+import json as jsonlib
 from pathlib import Path
-from typing import Annotated, Optional
+from typing import Annotated
 
 import typer
 from rich.console import Console
 
+from nanobanana import __version__
 from nanobanana.config import (
     DEFAULT_ASPECT_RATIO,
     DEFAULT_DELAY_SECONDS,
     DEFAULT_OUTPUT_DIR,
     DEFAULT_OUTPUT_FORMAT,
     DEFAULT_RESOLUTION,
+    MODEL_NAME,
     SUPPORTED_IMAGE_FORMATS,
     VALID_ASPECT_RATIOS,
     VALID_OUTPUT_FORMATS,
@@ -24,10 +27,41 @@ from nanobanana.generator import ImageGenerator
 
 app = typer.Typer(
     name="nanobanana",
-    help="CLI for batch image generation using Google Gemini 3 Pro Image model.",
+    help="CLI for image generation using Google Gemini 3 Pro Image (Nano Banana Pro).",
     add_completion=False,
 )
 console = Console()
+
+# Human-readable output goes to stderr so that --json keeps stdout clean and parseable.
+err_console = Console(stderr=True)
+
+
+def emit_json(payload: dict[str, object]) -> None:
+    """Print a machine-readable result to stdout."""
+    print(jsonlib.dumps(payload, ensure_ascii=False, indent=2))
+
+
+def version_callback(value: bool) -> None:
+    """Print the version and exit."""
+    if value:
+        console.print(f"nanobanana {__version__} (model: {MODEL_NAME})")
+        raise typer.Exit()
+
+
+@app.callback()
+def main(
+    version: Annotated[
+        bool,
+        typer.Option(
+            "--version",
+            "-V",
+            help="Show the version and exit",
+            callback=version_callback,
+            is_eager=True,
+        ),
+    ] = False,
+) -> None:
+    """CLI for image generation using Google Gemini 3 Pro Image (Nano Banana Pro)."""
 
 
 def validate_aspect_ratio_callback(value: str) -> str:
@@ -103,7 +137,7 @@ def generate(
         ),
     ] = DEFAULT_OUTPUT_DIR,
     name: Annotated[
-        Optional[str],
+        str | None,
         typer.Option(
             "--name",
             "-n",
@@ -120,7 +154,7 @@ def generate(
         ),
     ] = DEFAULT_OUTPUT_FORMAT,
     reference: Annotated[
-        Optional[Path],
+        Path | None,
         typer.Option(
             "--reference",
             "-ref",
@@ -128,21 +162,33 @@ def generate(
             callback=validate_reference_callback,
         ),
     ] = None,
+    json_output: Annotated[
+        bool,
+        typer.Option(
+            "--json",
+            help="Emit a machine-readable JSON result on stdout",
+        ),
+    ] = False,
 ) -> None:
     """Generate a single image from a text prompt with optional reference image."""
+    out = err_console if json_output else console
+
     try:
         generator = ImageGenerator()
     except ConfigError as e:
-        console.print(f"[red]Configuration error: {e}[/red]")
+        if json_output:
+            emit_json({"error": str(e)})
+        else:
+            console.print(f"[red]Configuration error: {e}[/red]")
         raise typer.Exit(code=1) from e
 
-    console.print(f"[blue]Generating image...[/blue]")
-    console.print(f"  Prompt: {prompt}")
-    console.print(f"  Aspect ratio: {aspect}")
-    console.print(f"  Resolution: {resolution}")
-    console.print(f"  Format: {format.upper()}")
+    out.print("[blue]Generating image...[/blue]")
+    out.print(f"  Prompt: {prompt}")
+    out.print(f"  Aspect ratio: {aspect}")
+    out.print(f"  Resolution: {resolution}")
+    out.print(f"  Format: {format.upper()}")
     if reference:
-        console.print(f"  Reference: {reference}")
+        out.print(f"  Reference: {reference}")
 
     result = generator.generate(
         prompt=prompt,
@@ -155,11 +201,30 @@ def generate(
     )
 
     if result.success:
-        console.print(f"[green]Image saved to: {result.output_path}[/green]")
-        if result.text_response:
-            console.print(f"[dim]Model response: {result.text_response}[/dim]")
+        if json_output:
+            emit_json(
+                {
+                    "success": True,
+                    "output_path": str(result.output_path),
+                    "aspect_ratio": aspect,
+                    "resolution": resolution,
+                    "format": format,
+                    "cost_usd": round(result.cost_usd, 4),
+                    "attempts": result.attempts,
+                    "model": MODEL_NAME,
+                    "text_response": result.text_response,
+                }
+            )
+        else:
+            console.print(f"[green]Image saved to: {result.output_path}[/green]")
+            console.print(f"[dim]Cost: ${result.cost_usd:.3f}[/dim]")
+            if result.text_response:
+                console.print(f"[dim]Model response: {result.text_response}[/dim]")
     else:
-        console.print(f"[red]Generation failed: {result.error_message}[/red]")
+        if json_output:
+            emit_json({"success": False, "error": result.error_message})
+        else:
+            console.print(f"[red]Generation failed: {result.error_message}[/red]")
         raise typer.Exit(code=1)
 
 
@@ -182,18 +247,31 @@ def batch(
             help="Output directory (overrides job file defaults)",
         ),
     ] = DEFAULT_OUTPUT_DIR,
+    json_output: Annotated[
+        bool,
+        typer.Option(
+            "--json",
+            help="Emit a machine-readable JSON summary on stdout",
+        ),
+    ] = False,
 ) -> None:
     """Run a batch job from a JSON file."""
     from nanobanana.batch import run_batch
 
     if not job_file.exists():
-        console.print(f"[red]Job file not found: {job_file}[/red]")
+        if json_output:
+            emit_json({"error": f"Job file not found: {job_file}"})
+        else:
+            console.print(f"[red]Job file not found: {job_file}[/red]")
         raise typer.Exit(code=1)
 
     try:
         generator = ImageGenerator()
     except ConfigError as e:
-        console.print(f"[red]Configuration error: {e}[/red]")
+        if json_output:
+            emit_json({"error": str(e)})
+        else:
+            console.print(f"[red]Configuration error: {e}[/red]")
         raise typer.Exit(code=1) from e
 
     success = run_batch(
@@ -201,6 +279,7 @@ def batch(
         generator=generator,
         output_dir=output,
         delay=delay,
+        json_output=json_output,
     )
 
     if not success:

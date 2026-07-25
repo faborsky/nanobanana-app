@@ -36,7 +36,11 @@ wheels/
 output/*.png
 output/*.jpg
 output/*.jpeg
+output/*.webp
 generated_images/
+
+# Claude Code local settings
+.claude/settings.local.json
 
 # OS
 .DS_Store

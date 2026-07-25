@@ -4,17 +4,17 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nanobanana"
-version = "0.1.0"
-description = "CLI application for batch image generation using Google Gemini 3 Pro Image model"
+version = "1.0.0"
+description = "CLI for image generation using Google Gemini 3 Pro Image (Nano Banana Pro)"
 readme = "README.md"
 requires-python = ">=3.11"
 license = {text = "MIT"}
 authors = [
-    {name = "Nanobanana Team"}
+    {name = "Jindrich Faborsky", email = "faborsky@gmail.com"}
 ]
 keywords = ["gemini", "image-generation", "cli", "ai", "google"]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 5 - Production/Stable",
     "Environment :: Console",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",

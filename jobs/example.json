@@ -1,0 +1,23 @@
+{
+  "defaults": {
+    "aspect_ratio": "16:9",
+    "resolution": "2K",
+    "format": "webp"
+  },
+  "jobs": [
+    {
+      "prompt": "Majestic mountain range at golden hour, snow-capped peaks reflecting warm sunlight, alpine meadow with wildflowers in foreground, dramatic clouds, photorealistic, high detail, cinematic composition",
+      "output_name": "mountain_golden_hour"
+    },
+    {
+      "prompt": "Tropical beach with crystal clear turquoise water, white sand, palm trees swaying in breeze, aerial drone perspective, vibrant saturated colors, travel photography",
+      "output_name": "tropical_beach",
+      "aspect_ratio": "21:9",
+      "resolution": "4K"
+    },
+    {
+      "prompt": "Cozy coffee shop interior, steaming latte art on wooden table, warm ambient lighting, bokeh background with bookshelves, soft natural window light, lifestyle photography",
+      "output_name": "coffee_shop"
+    }
+  ]
+}

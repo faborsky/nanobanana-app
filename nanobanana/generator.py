@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import random
 import time
 from dataclasses import dataclass
 from pathlib import Path
@@ -15,9 +16,11 @@ from nanobanana.config import (
     DEFAULT_MAX_RETRIES,
     DEFAULT_OUTPUT_FORMAT,
     DEFAULT_RETRY_BASE_DELAY,
+    DEFAULT_RETRY_MAX_DELAY,
     MODEL_NAME,
-    ConfigError,
+    estimate_cost,
     get_api_key,
+    is_retryable_error,
     validate_aspect_ratio,
     validate_output_format,
     validate_reference_path,
@@ -41,6 +44,8 @@ class GenerationResult:
     output_path: Path | None = None
     error_message: str | None = None
     text_response: str | None = None
+    cost_usd: float = 0.0
+    attempts: int = 0
 
 
 class ImageGenerationError(Exception):
@@ -132,30 +137,59 @@ class ImageGenerator:
                     reference_image=reference_image,
                     output_format=output_format,
                 )
+                result.cost_usd = estimate_cost(resolution)
+                result.attempts = attempt + 1
                 return result
 
             except Exception as e:
                 last_error = str(e)
 
-                # Check for content filtering
+                # Content filtering is a verdict on the prompt — retrying is pointless.
                 if "blocked" in last_error.lower() or "safety" in last_error.lower():
                     return GenerationResult(
                         success=False,
                         error_message=f"Content filtered: {last_error}",
+                        attempts=attempt + 1,
                     )
 
-                # Check if we should retry
+                # Hard errors (invalid argument, bad key, unknown model) fail identically
+                # on every attempt — surface them immediately instead of burning retries.
+                if not is_retryable_error(e):
+                    return GenerationResult(
+                        success=False,
+                        error_message=last_error,
+                        attempts=attempt + 1,
+                    )
+
                 if attempt < self._max_retries - 1:
-                    delay = self._retry_base_delay * (2**attempt)
+                    delay = self._backoff_delay(attempt)
                     console.print(
-                        f"[yellow]Attempt {attempt + 1} failed, retrying in {delay:.1f}s...[/yellow]"
+                        f"[yellow]Attempt {attempt + 1} failed ({last_error[:80]}), "
+                        f"retrying in {delay:.1f}s...[/yellow]"
                     )
                     time.sleep(delay)
 
         return GenerationResult(
             success=False,
             error_message=f"Failed after {self._max_retries} attempts: {last_error}",
+            attempts=self._max_retries,
         )
+
+    def _backoff_delay(self, attempt: int) -> float:
+        """
+        Exponential backoff with jitter, capped at DEFAULT_RETRY_MAX_DELAY.
+
+        Jitter keeps concurrent batch runs from retrying in lockstep and hitting the
+        same rate limit again together — the strategy both Google and OpenAI recommend.
+
+        Args:
+            attempt: Zero-based attempt index.
+
+        Returns:
+            Delay in seconds.
+        """
+        delay = min(self._retry_base_delay * (2**attempt), DEFAULT_RETRY_MAX_DELAY)
+        return delay * (0.5 + random.random() * 0.5)
 
     def _load_reference_image(self, reference_path: Path) -> Image.Image:
         """
@@ -247,7 +281,6 @@ class ImageGenerator:
         # Gemini SDK's as_image() returns a wrapper with .save(path) only,
         # not a standard PIL Image. Convert via temp PNG first, then re-open
         # as PIL for format-specific saving with quality params.
-        import io
         import tempfile
 
         with tempfile.NamedTemporaryFile(suffix=".png", delete=True) as tmp:

@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import json
 import signal
-import sys
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -64,6 +63,7 @@ class BatchResult:
     successful: int = 0
     failed: int = 0
     interrupted: bool = False
+    cost_usd: float = 0.0
     results: list[tuple[JobConfig, GenerationResult]] = field(default_factory=list)
 
 
@@ -75,6 +75,7 @@ class BatchProcessor:
         generator: ImageGenerator,
         output_dir: Path,
         delay: float,
+        out: Console | None = None,
     ) -> None:
         """
         Initialize the batch processor.
@@ -83,10 +84,13 @@ class BatchProcessor:
             generator: The image generator instance.
             output_dir: Directory for output images.
             delay: Delay between requests in seconds.
+            out: Console for progress output. Pass a stderr console when stdout is
+                reserved for machine-readable JSON.
         """
         self._generator = generator
         self._output_dir = output_dir
         self._delay = delay
+        self._console = out or console
         self._interrupted = False
 
         # Set up signal handler for graceful interrupt
@@ -95,7 +99,7 @@ class BatchProcessor:
     def _handle_interrupt(self, signum: int, frame: object) -> None:
         """Handle Ctrl+C interrupt."""
         self._interrupted = True
-        console.print("\n[yellow]Interrupt received, finishing current job...[/yellow]")
+        self._console.print("\n[yellow]Interrupt received, finishing current job...[/yellow]")
 
     def process(self, batch_config: BatchConfig) -> BatchResult:
         """
@@ -115,21 +119,24 @@ class BatchProcessor:
             BarColumn(),
             TaskProgressColumn(),
             TimeRemainingColumn(),
-            console=console,
+            console=self._console,
         ) as progress:
             task = progress.add_task("Processing jobs", total=len(batch_config.jobs))
 
             for i, job in enumerate(batch_config.jobs):
                 if self._interrupted:
                     result.interrupted = True
-                    console.print(
+                    self._console.print(
                         f"[yellow]Stopped at job {i + 1}/{len(batch_config.jobs)}[/yellow]"
                     )
                     break
 
                 # Update progress description
                 prompt_preview = truncate_prompt(job.prompt, 40)
-                progress.update(task, description=f"[{i + 1}/{len(batch_config.jobs)}] {prompt_preview}")
+                progress.update(
+                    task,
+                    description=f"[{i + 1}/{len(batch_config.jobs)}] {prompt_preview}",
+                )
 
                 # Generate image
                 gen_result = self._generator.generate(
@@ -146,10 +153,12 @@ class BatchProcessor:
 
                 if gen_result.success:
                     result.successful += 1
+                    result.cost_usd += gen_result.cost_usd
                 else:
                     result.failed += 1
-                    console.print(
-                        f"\n[red]Failed: {truncate_prompt(job.prompt, 30)} - {gen_result.error_message}[/red]"
+                    self._console.print(
+                        f"\n[red]Failed: {truncate_prompt(job.prompt, 30)} - "
+                        f"{gen_result.error_message}[/red]"
                     )
 
                 progress.advance(task)
@@ -318,6 +327,7 @@ def run_batch(
     generator: ImageGenerator,
     output_dir: Path,
     delay: float,
+    json_output: bool = False,
 ) -> bool:
     """
     Run a batch job from a file.
@@ -327,46 +337,91 @@ def run_batch(
         generator: The image generator.
         output_dir: Output directory.
         delay: Delay between requests.
+        json_output: Emit a machine-readable summary on stdout instead of prose.
 
     Returns:
         True if all jobs succeeded, False otherwise.
     """
+    out = Console(stderr=True) if json_output else console
+
+    def fail(message: str, errors: list[str] | None = None) -> bool:
+        if json_output:
+            payload: dict[str, object] = {"success": False, "error": message}
+            if errors:
+                payload["validation_errors"] = errors
+            print(json.dumps(payload, ensure_ascii=False, indent=2))
+        else:
+            out.print(f"[red]{message}[/red]")
+            for error in errors or []:
+                out.print(f"  - {error}")
+        return False
+
     # Validate first
     errors = validate_job_file(job_file)
     if errors:
-        console.print("[red]Validation errors:[/red]")
-        for error in errors:
-            console.print(f"  - {error}")
-        return False
+        return fail("Validation errors", errors)
 
     # Parse and process
     try:
         batch_config = parse_job_file(job_file)
     except ValueError as e:
-        console.print(f"[red]Error parsing job file: {e}[/red]")
-        return False
+        return fail(f"Error parsing job file: {e}")
 
     if not batch_config.jobs:
-        console.print("[yellow]No jobs to process[/yellow]")
+        if json_output:
+            print(json.dumps({"success": True, "total": 0, "cost_usd": 0.0}, indent=2))
+        else:
+            out.print("[yellow]No jobs to process[/yellow]")
         return True
 
-    console.print(f"[blue]Processing {len(batch_config.jobs)} jobs...[/blue]")
+    out.print(f"[blue]Processing {len(batch_config.jobs)} jobs...[/blue]")
 
     processor = BatchProcessor(
         generator=generator,
         output_dir=output_dir,
         delay=delay,
+        out=out,
     )
 
     result = processor.process(batch_config)
+    ok = result.failed == 0 and not result.interrupted
+
+    if json_output:
+        print(
+            json.dumps(
+                {
+                    "success": ok,
+                    "total": result.total,
+                    "successful": result.successful,
+                    "failed": result.failed,
+                    "interrupted": result.interrupted,
+                    "cost_usd": round(result.cost_usd, 4),
+                    "images": [
+                        {
+                            "prompt": job.prompt,
+                            "output_path": str(res.output_path) if res.output_path else None,
+                            "aspect_ratio": job.aspect_ratio,
+                            "resolution": job.resolution,
+                            "success": res.success,
+                            "error": res.error_message,
+                        }
+                        for job, res in result.results
+                    ],
+                },
+                ensure_ascii=False,
+                indent=2,
+            )
+        )
+        return ok
 
     # Print summary
-    console.print()
+    out.print()
     if result.interrupted:
-        console.print("[yellow]Batch interrupted[/yellow]")
+        out.print("[yellow]Batch interrupted[/yellow]")
 
-    console.print(f"[green]Successful: {result.successful}[/green]")
+    out.print(f"[green]Successful: {result.successful}[/green]")
     if result.failed > 0:
-        console.print(f"[red]Failed: {result.failed}[/red]")
+        out.print(f"[red]Failed: {result.failed}[/red]")
+    out.print(f"[dim]Total cost: ${result.cost_usd:.3f}[/dim]")
 
-    return result.failed == 0 and not result.interrupted
+    return ok
