@@ -1,40 +1,45 @@
 # Nanobanana
 
-CLI for AI image generation using Google's **Gemini 3 Pro Image** model (Nano Banana Pro). Single images or batches, visual references, image analysis — designed to be driven both by a human and by an AI agent like Claude Code.
+CLI na generování obrázků modelem **Gemini 3 Pro Image** od Googlu (Nano Banana Pro). Jeden obrázek nebo celá dávka, vizuální reference, analýza obrázku. Navržené tak, aby to zvládl řídit člověk i AI agent typu Claude Code.
 
-Ships with a **[Claude Code skill](skill/INSTALL.md)** so your agent knows the pricing, the formats, the prompting rules, and what the model can and cannot do.
+Součástí je **[skill pro Claude Code](skill/INSTALL.md)**, takže tvůj agent zná ceny, formáty, pravidla promptování a to, co model umí a co ne.
 
 ```bash
 ./run.sh generate "A weathered fisherman mending nets on a wooden dock at golden hour, warm rim light catching the salt spray, documentary photography" -a 16:9 -r 2K
 ```
 
-- **Per-image pricing built in** — every run reports what it cost.
-- **Machine-readable `--json`** on stdout, human output on stderr.
-- **Retries only what's worth retrying** — rate limits and server errors, with exponential backoff and jitter. A bad prompt fails immediately instead of burning quota three times.
-- **Batch jobs from a JSON file**, with a free offline `validate` dry run.
+- **Ceny za obrázek zabudované uvnitř.** Každé spuštění ti řekne, kolik stálo.
+- **Strojově čitelný `--json`** na stdout, výstup pro člověka na stderr.
+- **Opakuje jen to, co má smysl opakovat:** rate limity a chyby serveru, s exponenciálním backoffem a jitterem. Špatný prompt spadne hned, místo aby třikrát pálil kvótu.
+- **Dávkové úlohy z JSON souboru**, k tomu offline `validate` jako dry run zdarma.
+
+> [!TIP]
+> **Appka je zdarma a je tvoje.** Naklonuj si ji, používej ji, přestav si ji po svém.
+>
+> Nevíš, jak ji rozjet? Nebo chceš AI v marketingu používat systematicky: řídit z jednoho místa všechny kanály, automatizovat rutinu, postavit si vlastní znalostní bázi a vibe codovat si nástroje na míru své firmě? To učím v kurzu **[AI First](https://aifirst.cz)**. Tahle appka je v něm vysvětlená i s tím, jak si postavit vlastní.
 
 ---
 
-## Contents
+## Obsah
 
-- [Setup](#setup)
-- [Commands](#commands)
-- [Parameters](#parameters)
-- [Pricing](#pricing)
-- [Batch job format](#batch-job-format)
-- [JSON output](#json-output)
-- [Reference images](#reference-images)
-- [Prompting guide](#prompting-guide)
-- [Rate limits and reliability](#rate-limits-and-reliability)
-- [Claude Code skill](#claude-code-skill)
-- [Development](#development)
-- [Troubleshooting](#troubleshooting)
+- [Instalace](#instalace)
+- [Příkazy](#příkazy)
+- [Parametry](#parametry)
+- [Ceny](#ceny)
+- [Formát souboru s dávkou](#formát-souboru-s-dávkou)
+- [Výstup v JSON](#výstup-v-json)
+- [Referenční obrázky](#referenční-obrázky)
+- [Jak psát prompty](#jak-psát-prompty)
+- [Rate limity a spolehlivost](#rate-limity-a-spolehlivost)
+- [Skill pro Claude Code](#skill-pro-claude-code)
+- [Vývoj](#vývoj)
+- [Když něco nefunguje](#když-něco-nefunguje)
 
 ---
 
-## Setup
+## Instalace
 
-**Requirements:** Python 3.11+ and a Gemini API key.
+**Co potřebuješ:** Python 3.11+ a API klíč ke Gemini.
 
 ```bash
 git clone https://github.com/faborsky/nanobanana-app.git
@@ -42,24 +47,24 @@ cd nanobanana-app
 ./setup.sh
 ```
 
-`setup.sh` finds a suitable Python (3.11+), creates `.venv`, and installs the package.
+`setup.sh` najde vhodný Python (3.11+), vytvoří `.venv` a nainstaluje balíček.
 
-Then add your API key:
+Pak přidej svůj API klíč:
 
 ```bash
 cp .env.example .env
-# open .env and paste your key
+# otevři .env a vlož do něj klíč
 ```
 
 ```
 GEMINI_API_KEY=your-api-key-here
 ```
 
-Get a key at **[aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)**. Image generation is a **paid feature** — the key needs billing enabled on its Google Cloud project.
+Klíč získáš na **[aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)**. Generování obrázků je **placená funkce**, takže projekt v Google Cloudu, ke kterému klíč patří, musí mít zapnuté fakturování.
 
-> `.env` is gitignored. Never commit your key, and never paste it into code.
+> `.env` je v gitignore. Klíč nikdy necommituj a nikdy ho nelep do kódu.
 
-Verify the install without spending anything:
+Ověř si instalaci, aniž bys cokoli utratil:
 
 ```bash
 ./run.sh --version
@@ -68,16 +73,16 @@ Verify the install without spending anything:
 
 ---
 
-## Commands
+## Příkazy
 
-`run.sh` activates the virtualenv and forwards everything to the CLI, so it works from any directory.
+`run.sh` aktivuje virtualenv a všechno předá CLI, takže funguje z jakékoli složky.
 
-| Command | What it does | Costs money |
+| Příkaz | Co dělá | Stojí peníze |
 |---|---|---|
-| `generate` | Generate one image from a prompt | yes |
-| `batch` | Generate many images from a JSON job file | yes |
-| `validate` | Check a job file for errors, offline | no |
-| `describe` | Analyse an existing image and get a prompt back | yes (cheap) |
+| `generate` | Vygeneruje jeden obrázek z promptu | ano |
+| `batch` | Vygeneruje víc obrázků podle JSON souboru s úlohami | ano |
+| `validate` | Zkontroluje soubor s úlohami, offline | ne |
+| `describe` | Rozebere existující obrázek a vrátí prompt | ano (levně) |
 
 ### generate
 
@@ -85,28 +90,28 @@ Verify the install without spending anything:
 ./run.sh generate "PROMPT" [options]
 ```
 
-| Flag | Default | Description |
+| Flag | Výchozí | Popis |
 |---|---|---|
-| `-a`, `--aspect` | `1:1` | Aspect ratio |
+| `-a`, `--aspect` | `1:1` | Poměr stran |
 | `-r`, `--resolution` | `1K` | `1K`, `2K`, `4K` |
 | `-f`, `--format` | `webp` | `webp`, `png`, `jpeg` |
-| `-o`, `--output` | `./output` | Output directory (created if missing) |
-| `-n`, `--name` | derived from prompt | Custom filename, no extension |
-| `-ref`, `--reference` | — | Reference image for style/content |
-| `--json` | off | Machine-readable result on stdout |
+| `-o`, `--output` | `./output` | Výstupní složka (vytvoří se, když neexistuje) |
+| `-n`, `--name` | odvozeno z promptu | Vlastní název souboru, bez přípony |
+| `-ref`, `--reference` | žádná | Referenční obrázek pro styl nebo obsah |
+| `--json` | vypnuto | Strojově čitelný výsledek na stdout |
 
 ```bash
-# Wide 2K hero image as PNG
+# Široký hero obrázek v 2K jako PNG
 ./run.sh generate "A minimal glossy magazine cover, the title \"NANO BANANA\" in large bold sans-serif at the top, clean editorial layout, soft studio lighting" -a 16:9 -r 2K -f png
 
-# Named output into a specific folder
+# Pojmenovaný výstup do konkrétní složky
 ./run.sh generate "Serene Japanese garden at dawn, cherry blossoms falling, koi pond reflection" -n japanese_garden -o ./images
 
-# 4K ultrawide wallpaper
+# Ultraširoká tapeta ve 4K
 ./run.sh generate "Vast cosmic nebula with swirling purple and blue gases" -a 21:9 -r 4K
 ```
 
-Filenames are `<base>_<ratio>_<resolution>_<timestamp>.<ext>`, e.g. `japanese_garden_16x9_2K_20260725_104636.webp`. The timestamp means repeated runs never overwrite each other.
+Soubory se jmenují `<base>_<ratio>_<resolution>_<timestamp>.<ext>`, třeba `japanese_garden_16x9_2K_20260725_104636.webp`. Časové razítko znamená, že si opakovaná spuštění navzájem nikdy nepřepíšou výsledky.
 
 ### batch
 
@@ -114,15 +119,15 @@ Filenames are `<base>_<ratio>_<resolution>_<timestamp>.<ext>`, e.g. `japanese_ga
 ./run.sh batch jobs/example.json [-o ./images] [-d 1.0] [--json]
 ```
 
-| Flag | Default | Description |
+| Flag | Výchozí | Popis |
 |---|---|---|
-| `-o`, `--output` | `./output` | Output directory for all images |
-| `-d`, `--delay` | `1.0` | Seconds between requests |
-| `--json` | off | Machine-readable summary on stdout |
+| `-o`, `--output` | `./output` | Výstupní složka pro všechny obrázky |
+| `-d`, `--delay` | `1.0` | Sekundy mezi requesty |
+| `--json` | vypnuto | Strojově čitelné shrnutí na stdout |
 
-Runs jobs sequentially with a progress bar, reports per-job failures as they happen, and prints the **total cost** at the end. `Ctrl+C` finishes the current image and stops cleanly rather than dying mid-write.
+Úlohy běží po sobě, s ukazatelem průběhu, chyby jednotlivých úloh hlásí hned jak nastanou a na konci vypíše **celkovou cenu**. `Ctrl+C` dodělá rozdělaný obrázek a čistě skončí, místo aby to spadlo uprostřed zápisu.
 
-The job file is validated before the first API call, so a typo costs nothing.
+Soubor s úlohami se kontroluje před prvním voláním API, takže tě překlep nic nestojí.
 
 ### validate
 
@@ -130,54 +135,54 @@ The job file is validated before the first API call, so a typo costs nothing.
 ./run.sh validate jobs/example.json
 ```
 
-Checks structure, enum values and that every `reference_path` exists. **No API calls, no cost.** Run it before any large batch.
+Zkontroluje strukturu, povolené hodnoty a to, že každá `reference_path` existuje. **Žádné volání API, žádné náklady.** Pouštěj to před každou větší dávkou.
 
 ### describe
 
 ```bash
-./run.sh describe image.jpg              # short description, under 100 words
-./run.sh describe image.jpg --detailed   # full prompt-ready description
+./run.sh describe image.jpg              # krátký popis, do 100 slov
+./run.sh describe image.jpg --detailed   # podrobný popis rovnou použitelný jako prompt
 ```
 
-Analyses an existing image with `gemini-3.5-flash` and returns text you can feed back into `generate`. `--detailed` covers subject, composition, style, palette, lighting, mood and background — useful for recreating a look you like.
+Rozebere existující obrázek modelem `gemini-3.5-flash` a vrátí text, který můžeš poslat zpátky do `generate`. `--detailed` pokryje motiv, kompozici, styl, paletu, světlo, náladu i pozadí. Hodí se, když chceš zopakovat vzhled, který se ti líbí.
 
 ---
 
-## Parameters
+## Parametry
 
-**Aspect ratios:** `1:1`, `2:3`, `3:2`, `3:4`, `4:3`, `4:5`, `5:4`, `9:16`, `16:9`, `21:9`
+**Poměry stran:** `1:1`, `2:3`, `3:2`, `3:4`, `4:3`, `4:5`, `5:4`, `9:16`, `16:9`, `21:9`
 
-**Resolutions:** `1K`, `2K`, `4K`
+**Rozlišení:** `1K`, `2K`, `4K`
 
-**Output formats:** `webp` (default, quality 90), `png` (lossless), `jpeg` (quality 95)
+**Výstupní formáty:** `webp` (výchozí, kvalita 90), `png` (bezztrátový), `jpeg` (kvalita 95)
 
-**Reference image formats:** `.jpg`, `.jpeg`, `.png`, `.webp`, `.gif`
+**Formáty referenčních obrázků:** `.jpg`, `.jpeg`, `.png`, `.webp`, `.gif`
 
-Pick `webp` + `1K` for web and UI work; `png` + `2K`/`4K` for print and wallpapers. Set the ratio with `-a` — never write it into the prompt text.
+Na web a UI ber `webp` + `1K`, na tisk a tapety `png` + `2K`/`4K`. Poměr stran nastavuj přes `-a`, nikdy ho nepiš do textu promptu.
 
 ---
 
-## Pricing
+## Ceny
 
-Billed **per image**, not per token. Source: [ai.google.dev/gemini-api/docs/pricing](https://ai.google.dev/gemini-api/docs/pricing) (verified 2026-07-25).
+Účtuje se **za obrázek**, ne za tokeny. Zdroj: [ai.google.dev/gemini-api/docs/pricing](https://ai.google.dev/gemini-api/docs/pricing) (ověřeno 25. 7. 2026).
 
-| Resolution | Price per image |
+| Rozlišení | Cena za obrázek |
 |---|---|
 | 1K | **$0.134** |
 | 2K | **$0.134** |
 | 4K | **$0.24** |
 
-**1K and 2K cost exactly the same** — if you're paying either way, ask for 2K. Only 4K costs more.
+**1K a 2K stojí úplně stejně.** Když platíš tak jako tak, chtěj rovnou 2K. Dražší je jenom 4K.
 
-Every successful `generate` prints its cost; `batch` prints the total. Failed generations aren't billed and aren't counted. A 20-image 2K batch is about **$2.68**.
+Každý úspěšný `generate` vypíše svoji cenu, `batch` vypíše součet. Neúspěšné generování se neúčtuje a nepočítá se. Dávka 20 obrázků ve 2K vyjde zhruba na **$2.68**.
 
-`describe` is billed as tokens on `gemini-3.5-flash` ($1.50 per 1M input, $9.00 per 1M output) — fractions of a cent per image.
+`describe` se účtuje po tokenech na `gemini-3.5-flash` ($1.50 za 1M vstupních, $9.00 za 1M výstupních), takže jde o zlomky centu za obrázek.
 
-> Google's asynchronous **Batch API** is roughly 50 % cheaper, but it's a different endpoint with a queued delivery model. The `batch` command here is a sequential loop over the standard endpoint, so standard prices apply.
+> Asynchronní **Batch API** od Googlu je zhruba o 50&nbsp;% levnější, ale je to jiný endpoint s frontou a odloženým doručením. Příkaz `batch` je tady sekvenční smyčka nad standardním endpointem, takže platí běžné ceny.
 
 ---
 
-## Batch job format
+## Formát souboru s dávkou
 
 ```json
 {
@@ -205,15 +210,15 @@ Every successful `generate` prints its cost; `batch` prints the total. Failed ge
 }
 ```
 
-`defaults` is optional and applies to every job. Each job **must** have `prompt`; `output_name`, `aspect_ratio`, `resolution`, `format` and `reference_path` are optional and override the defaults.
+`defaults` je nepovinný a platí pro každou úlohu. Každá úloha **musí** mít `prompt`. Klíče `output_name`, `aspect_ratio`, `resolution`, `format` a `reference_path` jsou volitelné a přebijí výchozí hodnoty.
 
-A working example lives in [`jobs/example.json`](jobs/example.json).
+Funkční příklad najdeš v [`jobs/example.json`](jobs/example.json).
 
 ---
 
-## JSON output
+## Výstup v JSON
 
-`--json` puts a parseable result on **stdout** and moves all human-readable output to **stderr**, so you can pipe it safely.
+`--json` pošle strojově zpracovatelný výsledek na **stdout** a všechen výstup pro člověka přesune na **stderr**, takže to můžeš bezpečně poslat rourou dál.
 
 ```bash
 ./run.sh generate "a lake at dawn" --json | jq -r '.output_path'
@@ -233,7 +238,7 @@ A working example lives in [`jobs/example.json`](jobs/example.json).
 }
 ```
 
-Batch returns totals plus a per-image array:
+Batch vrací součty a k tomu pole s jednotlivými obrázky:
 
 ```json
 {
@@ -247,144 +252,144 @@ Batch returns totals plus a per-image array:
 }
 ```
 
-On failure you get `{"success": false, "error": "..."}` and a non-zero exit code.
+Když něco selže, dostaneš `{"success": false, "error": "..."}` a nenulový návratový kód.
 
 ---
 
-## Reference images
+## Referenční obrázky
 
-Pass an image alongside the prompt to guide style or content:
+Přilož k promptu obrázek a naveď tím model na styl nebo obsah:
 
 ```bash
 ./run.sh generate "Reimagine this scene at night, neon reflections on wet asphalt" -ref photo.jpg -a 16:9
 ```
 
-In batch jobs use `"reference_path": "references/photo.jpg"`.
+V dávkových úlohách použij `"reference_path": "references/photo.jpg"`.
 
-When editing from a reference, say **what changes and what stays the same** — that's the single biggest difference between generating and editing:
+Když z reference edituješ, řekni **co se má změnit a co má zůstat stejné**. To je největší rozdíl mezi generováním a editací:
 
-> "Replace the background with a seamless deep navy studio backdrop. Keep the product, its label, and the lighting exactly the same."
+> Replace the background with a seamless deep navy studio backdrop. Keep the product, its label, and the lighting exactly the same.
 
-This CLI sends **one** reference image per job. The underlying model accepts more (Nano Banana Pro takes up to 6 objects and 5 characters), so if you need multi-reference compositing, call the API directly.
+Tohle CLI posílá **jednu** referenci na úlohu. Samotný model jich zvládne víc (Nano Banana Pro bere až 6 objektů a 5 postav), takže na skládání z několika referencí volej API napřímo.
 
 ---
 
-## Prompting guide
+## Jak psát prompty
 
-Based on Google's [Nano Banana prompting guide](https://cloud.google.com/blog/products/ai-machine-learning/ultimate-prompting-guide-for-nano-banana) and the [image generation docs](https://ai.google.dev/gemini-api/docs/image-generation).
+Vychází z [promptovacího průvodce k Nano Banana](https://cloud.google.com/blog/products/ai-machine-learning/ultimate-prompting-guide-for-nano-banana) od Googlu a z [dokumentace ke generování obrázků](https://ai.google.dev/gemini-api/docs/image-generation).
 
-**The model reasons over your prompt, so describe a scene — don't list keywords.** A narrative paragraph beats a pile of comma-separated tags almost every time.
+**Model nad promptem přemýšlí, takže mu popiš scénu místo výčtu klíčových slov.** Souvislý odstavec skoro vždycky porazí hromadu tagů oddělených čárkami.
 
-### Formula
+### Vzorec
 
 ```
 [Subject] + [Action] + [Location/context] + [Composition] + [Style]
 ```
 
-> "A striking fashion model wearing a tailored brown dress **[subject]**, posing with a confident, statuesque stance **[action]**, against a seamless deep cherry red studio backdrop **[context]**, medium-full shot, centre-framed **[composition]**, fashion editorial style shot on medium-format analog film with pronounced grain **[style]**."
+> A striking fashion model wearing a tailored brown dress **[subject]**, posing with a confident, statuesque stance **[action]**, against a seamless deep cherry red studio backdrop **[context]**, medium-full shot, centre-framed **[composition]**, fashion editorial style shot on medium-format analog film with pronounced grain **[style]**.
 
-### DO and DON'T
+### Co dělat a co ne
 
-| DO | DON'T |
+| Dělej | Nedělej |
 |---|---|
-| Write full sentences describing a scene | Dump keyword lists (`cat, 8K, cinematic, detailed`) |
-| **Frame positively** — "an empty street" | Rely on negatives — "no cars, no people" |
-| Direct the camera — "low-angle shot", "macro", "f/1.8" | Leave framing and lighting to chance |
-| Name materials — "navy blue tweed", "ornate etched silver" | Say "a jacket", "armor" |
-| Put exact copy in quotes and name the font | Hope the text comes out right on its own |
-| Iterate with small single-change follow-ups | Cram every idea into one giant prompt |
-| Reuse one style sentence across a series | Vary the wording and wonder why the set doesn't match |
-| State the purpose — "a hero banner for a fintech landing page" | Assume the model infers the use case |
+| Piš celé věty, které popisují scénu | Sypat výčty klíčových slov (`cat, 8K, cinematic, detailed`) |
+| **Formuluj kladně:** „prázdná ulice“ | Spoléhat na zápory: „žádná auta, žádní lidé“ |
+| Řiď kameru: „záběr z podhledu“, „makro“, „f/1.8“ | Nechávat kompozici a světlo náhodě |
+| Pojmenuj materiály: „tmavě modrý tvíd“, „zdobené ryté stříbro“ | Říct jen „bunda“, „brnění“ |
+| Přesný text dej do uvozovek a pojmenuj font | Doufat, že text vyjde sám od sebe |
+| Iteruj krátkými úpravami po jedné změně | Cpát všechny nápady do jednoho obřího promptu |
+| Použij jednu stylovou větu napříč celou sérií | Měnit formulace a divit se, že série nedrží pohromadu |
+| Řekni účel: „hero banner na landing page fintechu“ | Předpokládat, že model účel odvodí sám |
 
-**The one lesson that matters most:** describe what you *want*, not what you don't. "A plain seamless background" works; "no clutter, no text, no logos" often produces exactly what you excluded.
+**Nejdůležitější poučení:** popisuj, co *chceš*, ne co nechceš. „Čisté jednolité pozadí“ funguje, zatímco „bez nepořádku, bez textu, bez log“ ti často vyrobí přesně to, co jsi vyloučil.
 
-### Text inside images
+### Text v obrázcích
 
-These models render legible, stylized text well — logos, posters, infographics, menus.
+Tyhle modely umí vysázet čitelný stylizovaný text: loga, plakáty, infografiky, jídelní lístky.
 
-1. Put the exact words in **quotes**.
-2. Describe the typography: *"in a heavy, blocky Impact font"*, *"thin minimalist sans-serif"*.
-3. Say where it goes: *"across the top third"*.
+1. Přesná slova dej do **uvozovek**.
+2. Popiš typografii: *„těžkým hranatým fontem Impact“*, *„tenkým minimalistickým bezpatkovým písmem“*.
+3. Řekni, kam patří: *„přes horní třetinu“*.
 
-> "A high-end glossy commercial beauty shot of a minimalist nude-coloured moisturiser jar on a warm studio background. Render the word \"GLOW\" in a flowing elegant brush script above the product, and \"10% OFF\" in a heavy blocky font beneath it."
+> A high-end glossy commercial beauty shot of a minimalist nude-coloured moisturiser jar on a warm studio background. Render the word „GLOW“ in a flowing elegant brush script above the product, and „10% OFF“ in a heavy blocky font beneath it.
 
-### Consistency across a series
+### Konzistence napříč sérií
 
-Reuse the same style sentence, the same lighting language and the same aspect ratio in every prompt of the set. For tighter subject consistency, pass the same reference image to every job.
+Používej v každém promptu série stejnou stylovou větu, stejný slovník pro světlo a stejný poměr stran. Když potřebuješ držet i motiv, pošli do každé úlohy tutéž referenci.
 
-### Known weaknesses
+### Známé slabiny
 
-- Dense or very small text can still come out imperfect — keep layouts simple and iterate.
-- The model's knowledge cuts off in January 2025.
-- Thinking tokens are billed even though you never see them (already included in the per-image price above).
-
----
-
-## Rate limits and reliability
-
-Limits depend on your billing tier and are visible in the [AI Studio rate limit dashboard](https://aistudio.google.com/rate-limit). Image models are additionally metered in **IPM** (images per minute), not just requests and tokens.
-
-How this CLI behaves:
-
-- **429 (rate limit) and 5xx** → retried up to 3 times with exponential backoff **plus jitter**, capped at 60 s. Jitter matters when several batches run at once — without it they all retry in lockstep and hit the same wall together.
-- **400 / 401 / 403 / 404** → failed immediately. An invalid prompt or a bad key fails the same way every time; retrying just wastes your quota.
-- **Safety-filtered prompts** → reported as `Content filtered`, not retried.
-- **Batch** waits `--delay` seconds between images (1 s default). Raise it if you hit IPM limits.
+- Hustý nebo hodně malý text může pořád vyjít nedokonale, takže drž layout jednoduchý a iteruj.
+- Znalosti modelu končí v lednu 2025.
+- Přemýšlecí tokeny se účtují, i když je nikdy neuvidíš (jsou už započítané v ceně za obrázek výš).
 
 ---
 
-## Claude Code skill
+## Rate limity a spolehlivost
 
-[`skill/`](skill/) contains a Claude Code skill that teaches your agent this tool: the commands, the pricing, the prompting rules, and what the model can and cannot do. Install instructions (in Czech): **[skill/INSTALL.md](skill/INSTALL.md)**.
+Limity závisí na tvém fakturačním tieru a vidíš je v [dashboardu rate limitů v AI Studiu](https://aistudio.google.com/rate-limit). Obrázkové modely se navíc měří v **IPM** (images per minute), ne jenom v requestech a tokenech.
+
+Jak se chová tohle CLI:
+
+- **429 (rate limit) a 5xx** → zkusí to znovu, nejvýš třikrát, s exponenciálním backoffem **a jitterem**, strop je 60&nbsp;s. Jitter má smysl ve chvíli, kdy běží víc dávek naráz. Bez něj by opakovaly všechny ve stejnou chvíli a narazily na tutéž zeď.
+- **400 / 401 / 403 / 404** → selže hned. Neplatný prompt nebo špatný klíč dopadne pokaždé stejně, opakovat ho jenom pálí kvótu.
+- **Prompty zachycené bezpečnostním filtrem** → hlásí se jako `Content filtered` a neopakují se.
+- **Batch** čeká mezi obrázky `--delay` sekund (výchozí 1&nbsp;s). Když narážíš na limity IPM, zvyš to.
+
+---
+
+## Skill pro Claude Code
+
+Ve složce [`skill/`](skill/) je skill pro Claude Code, který tvého agenta naučí tenhle nástroj: příkazy, ceny, pravidla promptování a to, co model umí a co ne. Návod na instalaci: **[skill/INSTALL.md](skill/INSTALL.md)**.
 
 ```bash
 mkdir -p ~/.claude/skills
 cp -R skill/nanobanana ~/.claude/skills/nanobanana
-# then replace <NANOBANANA_APP_DIR> in the skill with the path to this repo
+# pak ve skillu nahraď <NANOBANANA_APP_DIR> cestou k tomuhle repu
 ```
 
-After that, ask Claude Code for an image and it drives this CLI for you.
+Potom si v Claude Code řekni o obrázek a agent tohle CLI obslouží za tebe.
 
 ---
 
-## Development
+## Vývoj
 
 ```bash
 source .venv/bin/activate
-python -m pytest tests/ -q     # offline tests, no API calls
+python -m pytest tests/ -q     # offline testy, žádné volání API
 ruff check nanobanana/         # lint
 ```
 
-Code layout:
+Rozložení kódu:
 
-| File | Responsibility |
+| Soubor | Za co odpovídá |
 |---|---|
-| `nanobanana/config.py` | Models, defaults, enums, validators, pricing, retry classification |
-| `nanobanana/generator.py` | Gemini API call, retry/backoff, saving in the requested format |
-| `nanobanana/batch.py` | Job file parsing/validation, sequential batch runner |
-| `nanobanana/cli.py` | Typer commands, human and `--json` output |
-| `nanobanana/utils.py` | Filename sanitising and generation |
+| `nanobanana/config.py` | Modely, výchozí hodnoty, enumy, validátory, ceny, rozhodování o opakování |
+| `nanobanana/generator.py` | Volání Gemini API, opakování a backoff, uložení ve zvoleném formátu |
+| `nanobanana/batch.py` | Parsování a validace souboru s úlohami, sekvenční průběh dávky |
+| `nanobanana/cli.py` | Příkazy Typeru, výstup pro člověka i `--json` |
+| `nanobanana/utils.py` | Čištění a skládání názvů souborů |
 
-See **[CLAUDE.md](CLAUDE.md)** for the architecture notes an AI agent needs, and **[docs/api-notes.md](docs/api-notes.md)** for how the Gemini image API actually behaves.
-
----
-
-## Troubleshooting
-
-**`Missing API key`** — `.env` doesn't exist or has no `GEMINI_API_KEY`. Copy `.env.example` to `.env` and paste your key.
-
-**`404` / model not found** — your key's project may not have access to image generation, or the model ID has been retired. Check the current ID in `nanobanana/config.py` against [the model list](https://ai.google.dev/gemini-api/docs/models).
-
-**`429 RESOURCE_EXHAUSTED`** — you hit a rate limit or spend cap. The CLI retries with backoff; if it persists, raise `--delay` or check your tier in AI Studio.
-
-**`Content filtered`** — the prompt tripped a safety filter. Rephrase; retrying the same words won't help.
-
-**`Virtual environment not found`** — run `./setup.sh`.
-
-**Python too old** — needs 3.11+. `setup.sh` reports which interpreters it found.
+Architektonické poznámky, které potřebuje AI agent, najdeš v **[CLAUDE.md](CLAUDE.md)**, a to, jak se Gemini API na obrázky reálně chová, v **[docs/api-notes.md](docs/api-notes.md)**.
 
 ---
 
-## License
+## Když něco nefunguje
 
-MIT — see [LICENSE](LICENSE).
+**`Missing API key`**: `.env` neexistuje nebo v něm chybí `GEMINI_API_KEY`. Zkopíruj `.env.example` na `.env` a vlož do něj klíč.
+
+**`404` / model nenalezen**: projekt, ke kterému klíč patří, nemusí mít přístup ke generování obrázků, nebo bylo ID modelu vyřazeno. Porovnej aktuální ID v `nanobanana/config.py` se [seznamem modelů](https://ai.google.dev/gemini-api/docs/models).
+
+**`429 RESOURCE_EXHAUSTED`**: narazil jsi na rate limit nebo na strop útraty. CLI to zkusí znovu s backoffem. Když to trvá dál, zvyš `--delay` nebo si zkontroluj svůj tier v AI Studiu.
+
+**`Content filtered`**: prompt spustil bezpečnostní filtr. Přeformuluj ho, opakovat stejná slova nepomůže.
+
+**`Virtual environment not found`**: spusť `./setup.sh`.
+
+**Starý Python**: potřebuje 3.11+. `setup.sh` vypíše, jaké interpretery našel.
+
+---
+
+## Licence
+
+MIT, viz [LICENSE](LICENSE).
