@@ -1,3 +1,3 @@
-"""Nanobanana - CLI for image generation using Google Gemini 3 Pro Image."""
+"""Nanobanana - CLI for image generation using Google's Nano Banana models (2.1, Pro, Lite)."""
 
-__version__ = "1.0.1"
+__version__ = "1.1.0"

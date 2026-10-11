@@ -14,14 +14,18 @@ from rich.console import Console
 
 from nanobanana.config import (
     DEFAULT_MAX_RETRIES,
+    DEFAULT_MODEL,
     DEFAULT_OUTPUT_FORMAT,
     DEFAULT_RETRY_BASE_DELAY,
     DEFAULT_RETRY_MAX_DELAY,
-    MODEL_NAME,
+    ModelSpec,
+    cost_from_usage,
     estimate_cost,
     get_api_key,
+    get_model,
     is_retryable_error,
     validate_aspect_ratio,
+    validate_for_model,
     validate_output_format,
     validate_reference_path,
     validate_resolution,
@@ -48,6 +52,8 @@ class GenerationResult:
     text_response: str | None = None
     cost_usd: float = 0.0
     attempts: int = 0
+    model_id: str | None = None
+    seconds: float = 0.0
 
 
 class ImageGenerationError(Exception):
@@ -92,6 +98,8 @@ class ImageGenerator:
         custom_name: str | None = None,
         reference_path: Path | None = None,
         output_format: str = DEFAULT_OUTPUT_FORMAT,
+        model: str = DEFAULT_MODEL,
+        thinking: str | None = None,
     ) -> GenerationResult:
         """
         Generate an image from a text prompt with optional reference image.
@@ -104,14 +112,18 @@ class ImageGenerator:
             custom_name: Optional custom filename (without extension).
             reference_path: Optional path to a reference image.
             output_format: Output image format (webp, png, jpeg).
+            model: Model alias ("2.1", "pro", "lite").
+            thinking: Thinking level, or None for the model's default.
 
         Returns:
             GenerationResult with success status and output path or error.
         """
         # Validate parameters
         try:
+            spec = get_model(model)
             validate_aspect_ratio(aspect_ratio)
             validate_resolution(resolution)
+            validate_for_model(spec, aspect_ratio, resolution, thinking)
             validate_output_format(output_format)
             if reference_path:
                 validate_reference_path(reference_path)
@@ -129,8 +141,11 @@ class ImageGenerator:
         # Attempt generation with retries
         last_error: str | None = None
         for attempt in range(self._max_retries):
+            started = time.monotonic()
             try:
                 result = self._generate_with_api(
+                    spec=spec,
+                    thinking=thinking,
                     prompt=prompt,
                     aspect_ratio=aspect_ratio,
                     resolution=resolution,
@@ -139,8 +154,11 @@ class ImageGenerator:
                     reference_image=reference_image,
                     output_format=output_format,
                 )
-                result.cost_usd = estimate_cost(resolution)
+                if result.cost_usd == 0.0:
+                    result.cost_usd = estimate_cost(resolution, model=model)
                 result.attempts = attempt + 1
+                result.model_id = spec.model_id
+                result.seconds = time.monotonic() - started
                 return result
 
             except Exception as e:
@@ -213,6 +231,8 @@ class ImageGenerator:
 
     def _generate_with_api(
         self,
+        spec: ModelSpec,
+        thinking: str | None,
         prompt: str,
         aspect_ratio: str,
         resolution: str,
@@ -244,13 +264,16 @@ class ImageGenerator:
             contents.append(reference_image)
 
         response = self._client.models.generate_content(
-            model=MODEL_NAME,
+            model=spec.model_id,
             contents=contents,
             config=types.GenerateContentConfig(
                 image_config=types.ImageConfig(
                     aspect_ratio=aspect_ratio,
                     image_size=resolution,
-                )
+                ),
+                thinking_config=(
+                    types.ThinkingConfig(thinking_level=thinking) if thinking else None
+                ),
             ),
         )
 
@@ -259,7 +282,10 @@ class ImageGenerator:
         saved_image: PILImage | None = None
         output_path: Path | None = None
 
-        for part in response.parts:
+        for part in response.parts or []:
+            # Interim "thought" images are drafts, not the final render.
+            if part.thought:
+                continue
             if part.text is not None:
                 text_response = part.text
             elif (image := part.as_image()) is not None:
@@ -300,4 +326,31 @@ class ImageGenerator:
             success=True,
             output_path=output_path,
             text_response=text_response,
+            cost_usd=self._actual_cost(spec, response),
+        )
+
+    @staticmethod
+    def _actual_cost(spec: ModelSpec, response: types.GenerateContentResponse) -> float:
+        """
+        Bill of one call from usage metadata; 0.0 if the API didn't report usage.
+
+        Text and thinking tokens are cheap but not free — with thinking on,
+        the real cost is a little above the published per-image price.
+        """
+        usage = response.usage_metadata
+        if usage is None or not usage.candidates_token_count:
+            return 0.0
+        image_tokens = sum(
+            d.token_count or 0
+            for d in usage.candidates_tokens_details or []
+            if d.modality == types.MediaModality.IMAGE
+        )
+        other_tokens = (usage.candidates_token_count - image_tokens) + (
+            usage.thoughts_token_count or 0
+        )
+        return cost_from_usage(
+            spec,
+            prompt_tokens=usage.prompt_token_count or 0,
+            image_output_tokens=image_tokens,
+            other_output_tokens=other_tokens,
         )

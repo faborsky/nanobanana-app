@@ -65,6 +65,22 @@ class TestValidateJobFile:
         assert any("resolution" in e for e in errors)
         assert any("format" in e for e in errors)
 
+    def test_rejects_ratio_the_job_model_cannot_do(self, tmp_path: Path) -> None:
+        job_file = write_job(
+            tmp_path,
+            {
+                "defaults": {"model": "pro"},
+                "jobs": [{"prompt": "x", "aspect_ratio": "8:1"}, {"prompt": "y", "model": "nope"}],
+            },
+        )
+        errors = validate_job_file(job_file)
+        assert any("Job 1" in e and "panoramic" in e for e in errors)
+        assert any("Job 2" in e and "invalid model" in e for e in errors)
+
+    def test_accepts_panoramic_ratio_on_default_model(self, tmp_path: Path) -> None:
+        job_file = write_job(tmp_path, {"jobs": [{"prompt": "x", "aspect_ratio": "8:1"}]})
+        assert validate_job_file(job_file) == []
+
     def test_rejects_missing_reference_image(self, tmp_path: Path) -> None:
         job_file = write_job(
             tmp_path, {"jobs": [{"prompt": "x", "reference_path": "does/not/exist.png"}]}
@@ -111,7 +127,7 @@ class TestParseJobFile:
     def test_falls_back_to_library_defaults_without_defaults_block(self, tmp_path: Path) -> None:
         job_file = write_job(tmp_path, {"jobs": [{"prompt": "a dune"}]})
         job = parse_job_file(job_file).jobs[0]
-        assert (job.aspect_ratio, job.resolution, job.output_format) == ("1:1", "1K", "webp")
+        assert (job.aspect_ratio, job.resolution, job.output_format) == ("1:1", "2K", "webp")
 
     def test_reference_path_becomes_a_path(self, tmp_path: Path) -> None:
         job_file = write_job(tmp_path, {"jobs": [{"prompt": "x", "reference_path": "a/b.png"}]})

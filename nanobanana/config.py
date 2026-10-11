@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+from dataclasses import dataclass
 from enum import StrEnum
 from pathlib import Path
 from typing import Literal
@@ -14,30 +15,20 @@ load_dotenv()
 
 # API Configuration
 GEMINI_API_KEY_ENV = "GEMINI_API_KEY"
-# Image generation model (Nano Banana Pro). GA / stable ID.
-# The old "gemini-3-pro-image-preview" was retired on 2026-06-25.
-MODEL_NAME = "gemini-3-pro-image"
 # Multimodal model used by the `describe` command for image analysis.
-# gemini-2.0-flash was shut down on 2026-06-01; gemini-3.5-flash is the
-# current stable flash model with vision support.
-DESCRIBE_MODEL_NAME = "gemini-3.5-flash"
+# gemini-3.5-flash was deprecated on 2026-10-08 (auto-routed to 3.6);
+# gemini-3.8-flash is the current Flash model, same price.
+DESCRIBE_MODEL_NAME = "gemini-3.8-flash"
 
 # Default values
 DEFAULT_ASPECT_RATIO = "1:1"
-DEFAULT_RESOLUTION = "1K"
+DEFAULT_RESOLUTION = "2K"
 DEFAULT_OUTPUT_FORMAT = "webp"
 DEFAULT_OUTPUT_DIR = Path("./output")
 DEFAULT_DELAY_SECONDS = 1.0
 DEFAULT_MAX_RETRIES = 3
 DEFAULT_RETRY_BASE_DELAY = 2.0
 DEFAULT_RETRY_MAX_DELAY = 60.0
-
-# Per-image price in USD, source: https://ai.google.dev/gemini-api/docs/pricing
-# (verified 2026-07-25). 1K and 2K cost the same — only 4K is more expensive.
-# These are standard-tier prices for direct API calls, which is what this CLI makes.
-# Google's Batch API is ~50% cheaper but is a different, asynchronous endpoint;
-# the `batch` command here is a sequential loop over the standard endpoint.
-PRICE_PER_IMAGE_USD: dict[str, float] = {"1K": 0.134, "2K": 0.134, "4K": 0.24}
 
 # HTTP status codes worth retrying: 429 = rate limit (RESOURCE_EXHAUSTED),
 # 5xx = transient server-side failures. Everything else (400 invalid argument,
@@ -58,6 +49,10 @@ class AspectRatio(StrEnum):
     PORTRAIT_9_16 = "9:16"
     LANDSCAPE_16_9 = "16:9"
     ULTRAWIDE = "21:9"
+    PORTRAIT_1_4 = "1:4"
+    LANDSCAPE_4_1 = "4:1"
+    PORTRAIT_1_8 = "1:8"
+    LANDSCAPE_8_1 = "8:1"
 
 
 class Resolution(StrEnum):
@@ -81,11 +76,94 @@ VALID_ASPECT_RATIOS: set[str] = {ratio.value for ratio in AspectRatio}
 VALID_RESOLUTIONS: set[str] = {res.value for res in Resolution}
 VALID_OUTPUT_FORMATS: set[str] = {fmt.value for fmt in OutputFormat}
 
+# Aspect ratios every model supports; the panoramic ones are Nano Banana 2.1 only.
+STANDARD_ASPECT_RATIOS: frozenset[str] = frozenset(
+    {"1:1", "2:3", "3:2", "3:4", "4:3", "4:5", "5:4", "9:16", "16:9", "21:9"}
+)
+PANORAMIC_ASPECT_RATIOS: frozenset[str] = frozenset({"1:4", "4:1", "1:8", "8:1"})
+
+
+@dataclass(frozen=True)
+class ModelSpec:
+    """
+    One Nano Banana model: its API ID, capabilities and token prices.
+
+    Prices are USD per 1M tokens, standard (non-batch) paid tier, from
+    https://ai.google.dev/gemini-api/docs/pricing (verified 2026-10-11).
+    All image models are billed per token; an output image is a fixed number
+    of tokens per resolution, which is where the "per image" prices come from.
+    """
+
+    alias: str
+    model_id: str
+    label: str
+    aspect_ratios: frozenset[str]
+    resolutions: tuple[str, ...]
+    # Published per-image output price — the up-front estimate.
+    price_per_image_usd: dict[str, float]
+    input_per_m: float
+    text_output_per_m: float  # text and thinking tokens
+    image_output_per_m: float
+    thinking_levels: tuple[str, ...] = ()  # empty = not configurable via the API
+    default_thinking: str | None = None
+
+
+MODELS: dict[str, ModelSpec] = {
+    # Nano Banana 2.1 — GA 2026-10-06. Google's "primary workhorse".
+    "2.1": ModelSpec(
+        alias="2.1",
+        model_id="gemini-nano-banana-2.1",
+        label="Nano Banana 2.1",
+        aspect_ratios=STANDARD_ASPECT_RATIOS | PANORAMIC_ASPECT_RATIOS,
+        resolutions=("1K", "2K", "4K"),
+        price_per_image_usd={"1K": 0.0336, "2K": 0.0504, "4K": 0.113},
+        input_per_m=1.50,
+        text_output_per_m=7.50,
+        image_output_per_m=30.00,
+        thinking_levels=("minimal", "medium", "high"),
+        default_thinking="medium",
+    ),
+    # Nano Banana Pro — premium model for the most complex tasks.
+    # The old "gemini-3-pro-image-preview" was retired on 2026-06-25.
+    "pro": ModelSpec(
+        alias="pro",
+        model_id="gemini-3-pro-image",
+        label="Nano Banana Pro",
+        aspect_ratios=STANDARD_ASPECT_RATIOS,
+        resolutions=("1K", "2K", "4K"),
+        price_per_image_usd={"1K": 0.134, "2K": 0.134, "4K": 0.24},
+        input_per_m=2.00,
+        text_output_per_m=12.00,
+        image_output_per_m=120.00,
+    ),
+    # Nano Banana 2 Lite — cheapest and fastest, 1K only, no search grounding.
+    "lite": ModelSpec(
+        alias="lite",
+        model_id="gemini-3.1-flash-lite-image",
+        label="Nano Banana 2 Lite",
+        aspect_ratios=STANDARD_ASPECT_RATIOS,
+        resolutions=("1K",),
+        price_per_image_usd={"1K": 0.0336},
+        input_per_m=0.25,
+        text_output_per_m=1.50,
+        image_output_per_m=30.00,
+        thinking_levels=("minimal", "high"),
+        default_thinking="minimal",
+    ),
+}
+DEFAULT_MODEL = "2.1"
+VALID_MODELS: set[str] = set(MODELS)
+VALID_THINKING_LEVELS: set[str] = {"minimal", "medium", "high"}
+
+
 # Supported image formats for reference images
 SUPPORTED_IMAGE_FORMATS: frozenset[str] = frozenset({".jpg", ".jpeg", ".png", ".webp", ".gif"})
 
 # Type aliases
-AspectRatioType = Literal["1:1", "2:3", "3:2", "3:4", "4:3", "4:5", "5:4", "9:16", "16:9", "21:9"]
+AspectRatioType = Literal[
+    "1:1", "2:3", "3:2", "3:4", "4:3", "4:5", "5:4", "9:16", "16:9", "21:9",
+    "1:4", "4:1", "1:8", "8:1",
+]
 ResolutionType = Literal["1K", "2K", "4K"]
 OutputFormatType = Literal["webp", "png", "jpeg"]
 
@@ -190,22 +268,81 @@ def validate_output_format(output_format: str) -> str:
     return output_format
 
 
-def estimate_cost(resolution: str, count: int = 1) -> float:
+def get_model(alias: str) -> ModelSpec:
     """
-    Estimate the USD cost of generating images at a given resolution.
+    Look up a model by its CLI alias ("2.1", "pro", "lite").
 
-    Nano Banana Pro is billed per image, not per token, so the estimate is exact
-    for successful generations. Failed attempts are not billed and are excluded
-    by the caller.
+    Raises:
+        ValueError: If the alias is unknown.
+    """
+    if alias not in MODELS:
+        raise ValueError(f"Invalid model '{alias}'. Valid options: {', '.join(sorted(MODELS))}")
+    return MODELS[alias]
+
+
+def validate_for_model(
+    model: ModelSpec, aspect_ratio: str, resolution: str, thinking: str | None = None
+) -> None:
+    """
+    Check that a model supports the requested ratio, resolution and thinking level.
+
+    Raises:
+        ValueError: With a message naming the model and its valid options.
+    """
+    if aspect_ratio not in model.aspect_ratios:
+        hint = " (panoramic ratios need -m 2.1)" if aspect_ratio in PANORAMIC_ASPECT_RATIOS else ""
+        raise ValueError(f"{model.label} does not support aspect ratio '{aspect_ratio}'{hint}")
+    if resolution not in model.resolutions:
+        raise ValueError(
+            f"{model.label} does not support resolution '{resolution}'. "
+            f"Valid options: {', '.join(model.resolutions)}"
+        )
+    if thinking is not None and thinking not in model.thinking_levels:
+        if not model.thinking_levels:
+            raise ValueError(f"{model.label} does not support setting a thinking level")
+        raise ValueError(
+            f"{model.label} does not support thinking level '{thinking}'. "
+            f"Valid options: {', '.join(model.thinking_levels)}"
+        )
+
+
+def estimate_cost(resolution: str, count: int = 1, model: str = DEFAULT_MODEL) -> float:
+    """
+    Up-front USD estimate from the published per-image price.
+
+    Excludes input and thinking tokens — use `cost_from_usage()` for the
+    actual bill of a finished call.
 
     Args:
         resolution: The resolution ("1K", "2K", "4K").
         count: Number of images.
+        model: Model alias.
 
     Returns:
         Estimated cost in USD.
     """
-    return PRICE_PER_IMAGE_USD.get(resolution, PRICE_PER_IMAGE_USD[DEFAULT_RESOLUTION]) * count
+    prices = get_model(model).price_per_image_usd
+    return prices.get(resolution, max(prices.values())) * count
+
+
+def cost_from_usage(
+    model: ModelSpec,
+    prompt_tokens: int,
+    image_output_tokens: int,
+    other_output_tokens: int,
+) -> float:
+    """
+    Actual USD cost of one call from the API's usage metadata.
+
+    `other_output_tokens` covers text and thinking tokens, which are billed at
+    the (much cheaper) text output rate. Input images are counted in
+    `prompt_tokens` and billed at the input rate.
+    """
+    return (
+        prompt_tokens * model.input_per_m
+        + image_output_tokens * model.image_output_per_m
+        + other_output_tokens * model.text_output_per_m
+    ) / 1_000_000
 
 
 def is_retryable_error(error: Exception) -> bool:

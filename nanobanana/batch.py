@@ -20,12 +20,16 @@ from rich.progress import (
 
 from nanobanana.config import (
     DEFAULT_ASPECT_RATIO,
+    DEFAULT_MODEL,
     DEFAULT_OUTPUT_FORMAT,
     DEFAULT_RESOLUTION,
     SUPPORTED_IMAGE_FORMATS,
     VALID_ASPECT_RATIOS,
+    VALID_MODELS,
     VALID_OUTPUT_FORMATS,
     VALID_RESOLUTIONS,
+    get_model,
+    validate_for_model,
 )
 from nanobanana.generator import GenerationResult, ImageGenerator
 from nanobanana.utils import truncate_prompt
@@ -43,6 +47,8 @@ class JobConfig:
     output_name: str | None = None
     reference_path: Path | None = None
     output_format: str = DEFAULT_OUTPUT_FORMAT
+    model: str = DEFAULT_MODEL
+    thinking: str | None = None
 
 
 @dataclass
@@ -147,6 +153,8 @@ class BatchProcessor:
                     custom_name=job.output_name,
                     reference_path=job.reference_path,
                     output_format=job.output_format,
+                    model=job.model,
+                    thinking=job.thinking,
                 )
 
                 result.results.append((job, gen_result))
@@ -197,6 +205,8 @@ def parse_job_file(job_file: Path) -> BatchConfig:
     default_aspect = defaults.get("aspect_ratio", DEFAULT_ASPECT_RATIO)
     default_resolution = defaults.get("resolution", DEFAULT_RESOLUTION)
     default_format = defaults.get("format", DEFAULT_OUTPUT_FORMAT)
+    default_model = defaults.get("model", DEFAULT_MODEL)
+    default_thinking = defaults.get("thinking")
 
     # Parse jobs
     jobs: list[JobConfig] = []
@@ -220,6 +230,8 @@ def parse_job_file(job_file: Path) -> BatchConfig:
                 output_name=job_data.get("output_name"),
                 reference_path=ref_path,
                 output_format=job_data.get("format", default_format),
+                model=job_data.get("model", default_model),
+                thinking=job_data.get("thinking", default_thinking),
             )
         )
 
@@ -273,6 +285,8 @@ def validate_job_file(job_file: Path) -> list[str]:
             errors.append(f"Invalid default resolution: {defaults['resolution']}")
         if "format" in defaults and defaults["format"] not in VALID_OUTPUT_FORMATS:
             errors.append(f"Invalid default format: {defaults['format']}")
+        if "model" in defaults and defaults["model"] not in VALID_MODELS:
+            errors.append(f"Invalid default model: {defaults['model']}")
 
     # Validate jobs
     for i, job in enumerate(data["jobs"]):
@@ -297,6 +311,25 @@ def validate_job_file(job_file: Path) -> list[str]:
 
         if "format" in job and job["format"] not in VALID_OUTPUT_FORMATS:
             errors.append(f"Job {job_num}: invalid format '{job['format']}'")
+
+        if "model" in job and job["model"] not in VALID_MODELS:
+            errors.append(f"Job {job_num}: invalid model '{job['model']}'")
+        else:
+            # Ratio/resolution/thinking must be supported by the model this job resolves to.
+            defaults_obj = defaults if isinstance(defaults, dict) else {}
+            model_alias = job.get("model", defaults_obj.get("model", DEFAULT_MODEL))
+            if model_alias in VALID_MODELS:
+                try:
+                    validate_for_model(
+                        get_model(model_alias),
+                        job.get(
+                            "aspect_ratio", defaults_obj.get("aspect_ratio", DEFAULT_ASPECT_RATIO)
+                        ),
+                        job.get("resolution", defaults_obj.get("resolution", DEFAULT_RESOLUTION)),
+                        job.get("thinking", defaults_obj.get("thinking")),
+                    )
+                except ValueError as e:
+                    errors.append(f"Job {job_num}: {e}")
 
         if "output_name" in job and not isinstance(job["output_name"], str):
             errors.append(f"Job {job_num}: 'output_name' must be a string")
@@ -402,6 +435,9 @@ def run_batch(
                             "output_path": str(res.output_path) if res.output_path else None,
                             "aspect_ratio": job.aspect_ratio,
                             "resolution": job.resolution,
+                            "model": res.model_id,
+                            "cost_usd": round(res.cost_usd, 4),
+                            "seconds": round(res.seconds, 1),
                             "success": res.success,
                             "error": res.error_message,
                         }
@@ -422,6 +458,6 @@ def run_batch(
     out.print(f"[green]Successful: {result.successful}[/green]")
     if result.failed > 0:
         out.print(f"[red]Failed: {result.failed}[/red]")
-    out.print(f"[dim]Total cost: ${result.cost_usd:.3f}[/dim]")
+    out.print(f"[dim]Total cost: ${result.cost_usd:.4f}[/dim]")
 
     return ok

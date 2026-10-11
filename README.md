@@ -1,6 +1,6 @@
 # Nanobanana
 
-CLI na generování obrázků modelem **Gemini 3 Pro Image** od Googlu (Nano Banana Pro). Jeden obrázek nebo celá dávka, vizuální reference, analýza obrázku. Navržené tak, aby to zvládl řídit člověk i AI agent typu Claude Code.
+CLI na generování obrázků modely **Nano Banana** od Googlu: **Nano Banana 2.1** (výchozí), **Nano Banana Pro** a **Nano Banana 2 Lite**. Jeden obrázek nebo celá dávka, vizuální reference, analýza obrázku. Navržené tak, aby to zvládl řídit člověk i AI agent typu Claude Code.
 
 Součástí je **[skill pro Claude Code](skill/INSTALL.md)**, takže tvůj agent zná ceny, formáty, pravidla promptování a to, co model umí a co ne.
 
@@ -8,7 +8,8 @@ Součástí je **[skill pro Claude Code](skill/INSTALL.md)**, takže tvůj agent
 ./run.sh generate "A weathered fisherman mending nets on a wooden dock at golden hour, warm rim light catching the salt spray, documentary photography" -a 16:9 -r 2K
 ```
 
-- **Ceny za obrázek zabudované uvnitř.** Každé spuštění ti řekne, kolik stálo.
+- **Výběr modelu jedním přepínačem** (`-m 2.1` / `pro` / `lite`), včetně panoramat `8:1` a `4:1` na 2.1.
+- **Skutečná cena každého obrázku**, spočítaná z tokenů, které Google opravdu naúčtoval.
 - **Strojově čitelný `--json`** na stdout, výstup pro člověka na stderr.
 - **Opakuje jen to, co má smysl opakovat:** rate limity a chyby serveru, s exponenciálním backoffem a jitterem. Špatný prompt spadne hned, místo aby třikrát pálil kvótu.
 - **Dávkové úlohy z JSON souboru**, k tomu offline `validate` jako dry run zdarma.
@@ -92,8 +93,10 @@ Ověř si instalaci, aniž bys cokoli utratil:
 
 | Flag | Výchozí | Popis |
 |---|---|---|
+| `-m`, `--model` | `2.1` | `2.1` (Nano Banana 2.1), `pro` (Nano Banana Pro), `lite` (Nano Banana 2 Lite) |
+| `-t`, `--thinking` | `medium` na 2.1 | `minimal`, `medium`, `high` (2.1); `minimal`, `high` (Lite); Pro nejde nastavit |
 | `-a`, `--aspect` | `1:1` | Poměr stran |
-| `-r`, `--resolution` | `1K` | `1K`, `2K`, `4K` |
+| `-r`, `--resolution` | `2K` | `1K`, `2K`, `4K` (Lite jen `1K`) |
 | `-f`, `--format` | `webp` | `webp`, `png`, `jpeg` |
 | `-o`, `--output` | `./output` | Výstupní složka (vytvoří se, když neexistuje) |
 | `-n`, `--name` | odvozeno z promptu | Vlastní název souboru, bez přípony |
@@ -107,8 +110,11 @@ Ověř si instalaci, aniž bys cokoli utratil:
 # Pojmenovaný výstup do konkrétní složky
 ./run.sh generate "Serene Japanese garden at dawn, cherry blossoms falling, koi pond reflection" -n japanese_garden -o ./images
 
-# Ultraširoká tapeta ve 4K
-./run.sh generate "Vast cosmic nebula with swirling purple and blue gases" -a 21:9 -r 4K
+# Panoramatický banner do hlavičky webu (jen 2.1)
+./run.sh generate "A seamless panoramic photograph of a mountain ridge at dawn, one continuous perspective" -a 8:1
+
+# Stejný prompt na Nano Banana Pro
+./run.sh generate "Vast cosmic nebula with swirling purple and blue gases" -a 21:9 -m pro
 ```
 
 Soubory se jmenují `<base>_<ratio>_<resolution>_<timestamp>.<ext>`, třeba `japanese_garden_16x9_2K_20260725_104636.webp`. Časové razítko znamená, že si opakovaná spuštění navzájem nikdy nepřepíšou výsledky.
@@ -144,39 +150,49 @@ Zkontroluje strukturu, povolené hodnoty a to, že každá `reference_path` exis
 ./run.sh describe image.jpg --detailed   # podrobný popis rovnou použitelný jako prompt
 ```
 
-Rozebere existující obrázek modelem `gemini-3.5-flash` a vrátí text, který můžeš poslat zpátky do `generate`. `--detailed` pokryje motiv, kompozici, styl, paletu, světlo, náladu i pozadí. Hodí se, když chceš zopakovat vzhled, který se ti líbí.
+Rozebere existující obrázek modelem `gemini-3.8-flash` a vrátí text, který můžeš poslat zpátky do `generate`. `--detailed` pokryje motiv, kompozici, styl, paletu, světlo, náladu i pozadí. Hodí se, když chceš zopakovat vzhled, který se ti líbí.
 
 ---
 
 ## Parametry
 
-**Poměry stran:** `1:1`, `2:3`, `3:2`, `3:4`, `4:3`, `4:5`, `5:4`, `9:16`, `16:9`, `21:9`
+**Modely:**
 
-**Rozlišení:** `1K`, `2K`, `4K`
+| `-m` | Model | Kdy ho vzít |
+|---|---|---|
+| `2.1` | Nano Banana 2.1 (`gemini-nano-banana-2.1`) | Skoro vždycky. Levný, rychlý, čeština v obrázku bez chyb, jediný umí panoramata |
+| `pro` | Nano Banana Pro (`gemini-3-pro-image`) | Složité zadání: hodně znalostí o světě, víc stylových referencí, přísná konzistence značky |
+| `lite` | Nano Banana 2 Lite (`gemini-3.1-flash-lite-image`) | Hromada rychlých draftů, kde stačí 1K |
+
+Srovnání na stejných promptech: [docs/benchmark-2026-10.md](docs/benchmark-2026-10.md).
+
+**Poměry stran:** `1:1`, `2:3`, `3:2`, `3:4`, `4:3`, `4:5`, `5:4`, `9:16`, `16:9`, `21:9`, a jen na 2.1 navíc `1:4`, `4:1`, `1:8`, `8:1`
+
+**Rozlišení:** `1K`, `2K`, `4K` (Lite jen `1K`)
 
 **Výstupní formáty:** `webp` (výchozí, kvalita 90), `png` (bezztrátový), `jpeg` (kvalita 95)
 
 **Formáty referenčních obrázků:** `.jpg`, `.jpeg`, `.png`, `.webp`, `.gif`
 
-Na web a UI ber `webp` + `1K`, na tisk a tapety `png` + `2K`/`4K`. Poměr stran nastavuj přes `-a`, nikdy ho nepiš do textu promptu.
+Na web a UI ber `webp` + `2K`, kde potřebuješ ostré hrany bez ztráty, ber `png`. Poměr stran nastavuj přes `-a`, nikdy ho nepiš do textu promptu.
 
 ---
 
 ## Ceny
 
-Účtuje se **za obrázek**, ne za tokeny. Zdroj: [ai.google.dev/gemini-api/docs/pricing](https://ai.google.dev/gemini-api/docs/pricing) (ověřeno 25. 7. 2026).
+Všechny modely se účtují **po tokenech**, obrázek má pro každé rozlišení pevný počet tokenů, z toho vychází ceníková cena za kus. Zdroj: [ai.google.dev/gemini-api/docs/pricing](https://ai.google.dev/gemini-api/docs/pricing) (ověřeno 11. 10. 2026).
 
-| Rozlišení | Cena za obrázek |
-|---|---|
-| 1K | **$0.134** |
-| 2K | **$0.134** |
-| 4K | **$0.24** |
+| Model | 1K | 2K | 4K |
+|---|---|---|---|
+| **Nano Banana 2.1** | $0.034 | **$0.050** | $0.113 |
+| Nano Banana Pro | $0.134 | $0.134 | $0.24 |
+| Nano Banana 2 Lite | $0.034 | — | — |
 
-**1K a 2K stojí úplně stejně.** Když platíš tak jako tak, chtěj rovnou 2K. Dražší je jenom 4K.
+**Skutečná cena je o kousek vyšší než ceník**, protože se platí i tokeny přemýšlení a textu. Naměřeno ve 2K: 2.1 vyšlo na $0.060–0.068 (o 20–36&nbsp;% nad ceníkem), Pro kolem $0.14. CLI proto počítá `cost_usd` z tokenů, které API reálně vrátí, takže účtenka sedí přesně.
 
-Každý úspěšný `generate` vypíše svoji cenu, `batch` vypíše součet. Neúspěšné generování se neúčtuje a nepočítá se. Dávka 20 obrázků ve 2K vyjde zhruba na **$2.68**.
+Každý úspěšný `generate` vypíše svoji cenu, `batch` vypíše součet. Neúspěšné generování se neúčtuje a nepočítá se. Dávka 20 obrázků ve 2K na 2.1 vyjde zhruba na **$1.30**, na Pro na **$2.80**.
 
-`describe` se účtuje po tokenech na `gemini-3.5-flash` ($1.50 za 1M vstupních, $9.00 za 1M výstupních), takže jde o zlomky centu za obrázek.
+`describe` běží na `gemini-3.8-flash` ($0.75 za 1M vstupních, $3.75 za 1M výstupních do konce roku 2026), takže jde o zlomky centu za obrázek.
 
 > Asynchronní **Batch API** od Googlu je zhruba o 50&nbsp;% levnější, ale je to jiný endpoint s frontou a odloženým doručením. Příkaz `batch` je tady sekvenční smyčka nad standardním endpointem, takže platí běžné ceny.
 
@@ -227,13 +243,15 @@ Funkční příklad najdeš v [`jobs/example.json`](jobs/example.json).
 ```json
 {
   "success": true,
-  "output_path": "/path/to/output/a_lake_at_dawn_1x1_1K_20260725_104636.webp",
+  "output_path": "/path/to/output/a_lake_at_dawn_1x1_2K_20261011_104636.webp",
   "aspect_ratio": "1:1",
-  "resolution": "1K",
+  "resolution": "2K",
   "format": "webp",
-  "cost_usd": 0.134,
+  "cost_usd": 0.0612,
   "attempts": 1,
-  "model": "gemini-3-pro-image",
+  "seconds": 21.4,
+  "model": "gemini-nano-banana-2.1",
+  "thinking": null,
   "text_response": null
 }
 ```
@@ -270,7 +288,7 @@ Když z reference edituješ, řekni **co se má změnit a co má zůstat stejné
 
 > Replace the background with a seamless deep navy studio backdrop. Keep the product, its label, and the lighting exactly the same.
 
-Tohle CLI posílá **jednu** referenci na úlohu. Samotný model jich zvládne víc (Nano Banana Pro bere až 6 objektů a 5 postav), takže na skládání z několika referencí volej API napřímo.
+Tohle CLI posílá **jednu** referenci na úlohu. Samotné modely jich zvládnou víc (2.1 až 10 objektů a 4 postavy, Pro 6 objektů, 5 postav a 3 stylové reference), takže na skládání z několika referencí volej API napřímo.
 
 ---
 
@@ -320,8 +338,9 @@ Používej v každém promptu série stejnou stylovou větu, stejný slovník pr
 ### Známé slabiny
 
 - Hustý nebo hodně malý text může pořád vyjít nedokonale, takže drž layout jednoduchý a iteruj.
-- Znalosti modelu končí v lednu 2025.
-- Přemýšlecí tokeny se účtují, i když je nikdy neuvidíš (jsou už započítané v ceně za obrázek výš).
+- Modely neznají nejnovější lidi, produkty a události (2.1 umí grounding přes Google Search, ale tohle CLI ho nezapíná).
+- Přemýšlecí tokeny se účtují, i když je nikdy neuvidíš. CLI je započítává do `cost_usd`.
+- Čeština není na seznamu jazyků, které Google uvádí jako nejlépe podporované. V testu vyšla bez chyby, ale každý řetězec si zkontroluj. Modely rády převedou nadpis na VERZÁLKY.
 
 ---
 

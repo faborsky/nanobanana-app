@@ -1,22 +1,34 @@
 ---
 name: nanobanana
-description: Generate images with Google's Gemini 3 Pro Image (Nano Banana Pro) — single images or batches, from a text prompt or a reference image. Knows the per-image pricing, the supported formats and resolutions, the official prompting rules, and what the model can and cannot do. Use when the user asks to create, generate or produce images, graphics, illustrations, covers, banners, wallpapers or any visual content, or to analyse an existing image into a reusable prompt.
+description: Generate images with Google's Nano Banana models — Nano Banana 2.1 (default), Nano Banana Pro and Nano Banana 2 Lite — single images or batches, from a text prompt or a reference image. Knows which model to pick, the real per-image pricing, the supported formats and resolutions, the official prompting rules, and what the model can and cannot do. Use when the user asks to create, generate or produce images, graphics, illustrations, covers, banners, wallpapers or any visual content, or to analyse an existing image into a reusable prompt.
 argument-hint: <image description or task>
 allowed-tools: Bash, Read, Write, Glob
 ---
 
-# Nanobanana — image generation via Gemini 3 Pro Image
+# Nanobanana — image generation via Google's Nano Banana models
 
-Drives the Nanobanana CLI at `<NANOBANANA_APP_DIR>`. Model: **`gemini-3-pro-image`** (Nano Banana Pro).
+Drives the Nanobanana CLI (v1.1.0+) at `<NANOBANANA_APP_DIR>`. Default model: **`gemini-nano-banana-2.1`** (Nano Banana 2.1).
+
+## Which model (`-m`)
+
+| `-m` | Model | Real cost at 2K | Use it for |
+|---|---|---|---|
+| `2.1` *(default)* | Nano Banana 2.1 — `gemini-nano-banana-2.1` | ~$0.06–0.07 | Almost everything: photos, illustrations, text-in-image, and the **only** model for panoramic `1:4` / `4:1` / `1:8` / `8:1` |
+| `pro` | Nano Banana Pro — `gemini-3-pro-image` | ~$0.14 | The user asks for Pro, or 2.1 failed on a hard brief (heavy world knowledge, many style references, strict brand consistency) |
+| `lite` | Nano Banana 2 Lite — `gemini-3.1-flash-lite-image` | $0.034 (1K only) | Bulk drafts where 1K is enough |
+
+In a same-prompt test (2026-10-11) 2.1 matched Pro on Czech text-in-image at less than half the price, and rendered a clean 8:1 panorama where its predecessor showed tiling artifacts. Pro has no panoramic ratios.
+
+**Thinking (`-t`, 2.1 and Lite):** 2.1 defaults to `medium`. `minimal` is faster and slightly cheaper. Avoid `high` unless asked — in testing it doubled the time and didn't improve the result.
 
 > If a command fails with "Missing API key", the user needs `GEMINI_API_KEY` in `<NANOBANANA_APP_DIR>/.env` (template in `.env.example`, key from [aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey), billing must be enabled). Tell them — don't try to work around it.
 
 ## Before you generate
 
-**Images cost real money — roughly $0.134 each.** So:
+**Images cost real money — ~$0.06 each on 2.1, ~$0.14 on Pro.** So:
 
 1. **Confirm the brief once** if anything material is unstated (subject, format, where it will be used). Don't ask twice.
-2. **State the expected cost** before generating more than ~3 images. `10 images at 2K ≈ $1.34`.
+2. **State the expected cost** before generating more than ~3 images. `10 images at 2K on 2.1 ≈ $0.65`.
 3. **Never silently regenerate.** If the user dislikes a result, propose the prompt change and confirm before spending again.
 
 ## Workflow
@@ -36,6 +48,7 @@ Create the directories before running anything.
 mkdir -p ./generated_images
 <NANOBANANA_APP_DIR>/run.sh generate "<prompt>" \
   -a <aspect> -r <resolution> -f <format> -o ./generated_images --json
+# optional: -m pro | -m lite, -t minimal|medium|high
 ```
 
 ### Batch (2 or more images)
@@ -57,7 +70,7 @@ Generation is slow (tens of seconds per image). Use `run_in_background: true` on
 
 ### Use `--json`
 
-`--json` puts the result on stdout and all prose on stderr, so you get a clean parseable payload: `output_path`, `cost_usd`, `attempts`, plus a per-image array for batches. Parse it instead of scraping the human output.
+`--json` puts the result on stdout and all prose on stderr, so you get a clean parseable payload: `output_path`, `cost_usd`, `model`, `seconds`, `attempts`, plus a per-image array for batches. Parse it instead of scraping the human output.
 
 ### After generating
 
@@ -69,23 +82,26 @@ Generation is slow (tens of seconds per image). Use `run_in_background: true` on
 
 | Parameter | Default | When to change it |
 |---|---|---|
-| Resolution | `2K` | `4K` only for print or large wallpapers; `1K` never (see below) |
-| Aspect ratio | `1:1` | Match the destination: `16:9` covers/thumbnails, `9:16` stories, `21:9` ultrawide |
+| Model | `2.1` | See *Which model* |
+| Resolution | `2K` | `4K` only when the user asks for it |
+| Aspect ratio | `1:1` | Match the destination: `16:9` covers/thumbnails, `9:16` stories, `21:9` ultrawide, `8:1` / `4:1` web headers and banners (2.1) |
 | Format | `webp` | `png` for transparency-free lossless or print, `jpeg` for photos where size matters |
 
-**Default to `2K`, not `1K` — they cost exactly the same ($0.134).** Asking for 1K saves nothing and gives you less. Only go to 4K when the extra $0.106 buys something real.
+**Default to `2K`.** On Pro 1K and 2K cost the same; on 2.1 1K saves about a third but 2K is the sensible default. 4K roughly doubles the price — only when it buys something real.
 
 ## Pricing
 
-Billed **per image**, not per token. [Source](https://ai.google.dev/gemini-api/docs/pricing), verified 2026-07-25.
+All models are billed **per token**; an output image is a fixed token count per resolution. [Source](https://ai.google.dev/gemini-api/docs/pricing), verified 2026-10-11.
 
-| Resolution | Price per image | 10 images |
-|---|---|---|
-| 1K | $0.134 | $1.34 |
-| 2K | **$0.134** | $1.34 |
-| 4K | $0.24 | $2.40 |
+| Model | 1K | 2K | 4K |
+|---|---|---|---|
+| 2.1 (list) | $0.034 | $0.050 | $0.113 |
+| Pro (list) | $0.134 | $0.134 | $0.24 |
+| Lite (list) | $0.034 | — | — |
 
-Failed generations are not billed. `describe` runs on `gemini-3.5-flash` and costs a fraction of a cent.
+**The real bill is a bit higher** — thinking and text tokens are billed too. Measured at 2K: 2.1 $0.060–0.068, Pro ~$0.14. The CLI computes `cost_usd` from the token usage the API reports, so the JSON receipt is exact.
+
+Failed generations are not billed. `describe` runs on `gemini-3.8-flash` and costs a fraction of a cent.
 
 ## What it can and cannot do
 
@@ -100,16 +116,16 @@ Failed generations are not billed. `describe` runs on `gemini-3.5-flash` and cos
 
 - **Dense or very small text** still degrades — keep text layouts simple and few words.
 - **No transparent backgrounds.** If the user needs transparency, generate on a flat, uniform background and remove it afterwards in an image editor.
-- **One reference image per job** through this CLI (the model itself accepts more; multi-reference compositing needs direct API calls).
-- **No 512px option** on this model (only 1K/2K/4K).
-- **Knowledge cutoff January 2025** — it doesn't know newer people, products or events.
+- **One reference image per job** through this CLI (2.1 accepts up to 10 objects + 4 characters, Pro 6 objects + 5 characters + 3 style refs; multi-reference compositing needs direct API calls).
+- **No 512px option** (1K/2K/4K; Lite 1K only).
+- **No recent world knowledge** — Google Search grounding exists on 2.1 but this CLI doesn't enable it.
 - Exact brand logos, precise charts with real data, and specific real people's likenesses are unreliable and often blocked.
 - Safety filters can refuse a prompt. That's a verdict, not a transient error — rephrase rather than retry.
 
 ## Parameters
 
-**Aspect ratios:** `1:1`, `2:3`, `3:2`, `3:4`, `4:3`, `4:5`, `5:4`, `9:16`, `16:9`, `21:9`
-**Resolutions:** `1K`, `2K`, `4K`
+**Aspect ratios:** `1:1`, `2:3`, `3:2`, `3:4`, `4:3`, `4:5`, `5:4`, `9:16`, `16:9`, `21:9` — plus `1:4`, `4:1`, `1:8`, `8:1` on 2.1 only
+**Resolutions:** `1K`, `2K`, `4K` (Lite: `1K`)
 **Formats:** `webp` (default), `png`, `jpeg`
 **Reference formats:** `.jpg`, `.jpeg`, `.png`, `.webp`, `.gif`
 
@@ -157,7 +173,7 @@ From Google's [official Nano Banana prompting guide](https://cloud.google.com/bl
 
 > "A minimal glossy magazine cover, the title \"NANO BANANA\" in large bold sans-serif across the top, clean editorial layout, soft studio lighting."
 
-For Czech or other non-English text, write the prompt in English and specify the exact string in quotes plus the target language — the model renders diacritics reliably when the string is quoted verbatim.
+For Czech or other non-English text, write the prompt in English and specify the exact string in quotes plus the target language — the model renders diacritics reliably when the string is quoted verbatim. Watch the casing — models like to turn a title into ALL CAPS; say "in sentence case, exactly as written" if it matters.
 
 ### Editing vs generating
 
@@ -202,13 +218,15 @@ Reuse the same style sentence, the same lighting language and the same aspect ra
       "aspect_ratio": "1:1",
       "resolution": "4K",
       "format": "png",
+      "model": "pro",
+      "thinking": "minimal",
       "reference_path": "path/to/reference.jpg"
     }
   ]
 }
 ```
 
-`defaults` is optional and applies to all jobs. Every job **must** have `prompt`; everything else is optional and overrides the defaults.
+`defaults` is optional and applies to all jobs. Every job **must** have `prompt`; everything else is optional and overrides the defaults (`model` and `thinking` work in `defaults` too). `validate` also checks each job against its model — e.g. `8:1` on Pro fails offline, for free.
 
 ## Errors
 
@@ -217,6 +235,7 @@ Reuse the same style sentence, the same lighting language and the same aspect ra
 | `Missing API key` | no `GEMINI_API_KEY` in `.env` | tell the user to add it — don't work around it |
 | `Content filtered` | safety filter refused the prompt | rephrase; retrying identical wording won't help |
 | `429 RESOURCE_EXHAUSTED` | rate limit (or spend cap) | the CLI already retries with backoff; for batches raise `-d` |
+| `does not support aspect ratio` / `resolution` / `thinking` | the chosen `-m` can't do it | switch to `-m 2.1` or a supported value — nothing was sent or billed |
 | `404` model not found | model ID retired | check the ID in `config.py` against the current model list |
 
 Image models are metered in **images per minute (IPM)**, so a batch can hit 429 while well under the request limit. The fix is a longer `--delay`, never parallel calls.

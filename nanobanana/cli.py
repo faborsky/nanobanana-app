@@ -13,21 +13,24 @@ from nanobanana import __version__
 from nanobanana.config import (
     DEFAULT_ASPECT_RATIO,
     DEFAULT_DELAY_SECONDS,
+    DEFAULT_MODEL,
     DEFAULT_OUTPUT_DIR,
     DEFAULT_OUTPUT_FORMAT,
     DEFAULT_RESOLUTION,
-    MODEL_NAME,
+    MODELS,
     SUPPORTED_IMAGE_FORMATS,
     VALID_ASPECT_RATIOS,
+    VALID_MODELS,
     VALID_OUTPUT_FORMATS,
     VALID_RESOLUTIONS,
+    VALID_THINKING_LEVELS,
     ConfigError,
 )
 from nanobanana.generator import ImageGenerator
 
 app = typer.Typer(
     name="nanobanana",
-    help="CLI for image generation using Google Gemini 3 Pro Image (Nano Banana Pro).",
+    help="CLI for image generation using Google's Nano Banana models (2.1, Pro, Lite).",
     add_completion=False,
 )
 console = Console()
@@ -44,7 +47,8 @@ def emit_json(payload: dict[str, object]) -> None:
 def version_callback(value: bool) -> None:
     """Print the version and exit."""
     if value:
-        console.print(f"nanobanana {__version__} (model: {MODEL_NAME})")
+        default = MODELS[DEFAULT_MODEL].model_id
+        console.print(f"nanobanana {__version__} (default model: {default})")
         raise typer.Exit()
 
 
@@ -61,7 +65,7 @@ def main(
         ),
     ] = False,
 ) -> None:
-    """CLI for image generation using Google Gemini 3 Pro Image (Nano Banana Pro)."""
+    """CLI for image generation using Google's Nano Banana models (2.1, Pro, Lite)."""
 
 
 def validate_aspect_ratio_callback(value: str) -> str:
@@ -77,6 +81,21 @@ def validate_resolution_callback(value: str) -> str:
     if value not in VALID_RESOLUTIONS:
         valid_options = ", ".join(sorted(VALID_RESOLUTIONS))
         raise typer.BadParameter(f"Invalid resolution. Valid options: {valid_options}")
+    return value
+
+
+def validate_model_callback(value: str) -> str:
+    """Validate model alias CLI argument."""
+    if value not in VALID_MODELS:
+        raise typer.BadParameter(f"Invalid model. Valid options: {', '.join(sorted(VALID_MODELS))}")
+    return value
+
+
+def validate_thinking_callback(value: str | None) -> str | None:
+    """Validate thinking level CLI argument."""
+    if value is not None and value not in VALID_THINKING_LEVELS:
+        valid_options = ", ".join(sorted(VALID_THINKING_LEVELS))
+        raise typer.BadParameter(f"Invalid thinking level. Valid options: {valid_options}")
     return value
 
 
@@ -115,7 +134,8 @@ def generate(
         typer.Option(
             "--aspect",
             "-a",
-            help="Aspect ratio (1:1, 2:3, 3:2, 3:4, 4:3, 4:5, 5:4, 9:16, 16:9, 21:9)",
+            help="Aspect ratio (1:1, 2:3, 3:2, 3:4, 4:3, 4:5, 5:4, 9:16, 16:9, 21:9; "
+            "2.1 only: 1:4, 4:1, 1:8, 8:1)",
             callback=validate_aspect_ratio_callback,
         ),
     ] = DEFAULT_ASPECT_RATIO,
@@ -162,6 +182,24 @@ def generate(
             callback=validate_reference_callback,
         ),
     ] = None,
+    model: Annotated[
+        str,
+        typer.Option(
+            "--model",
+            "-m",
+            help="Model: 2.1 (Nano Banana 2.1), pro (Nano Banana Pro), lite (Nano Banana 2 Lite)",
+            callback=validate_model_callback,
+        ),
+    ] = DEFAULT_MODEL,
+    thinking: Annotated[
+        str | None,
+        typer.Option(
+            "--thinking",
+            "-t",
+            help="Thinking level (2.1: minimal/medium/high, default medium; lite: minimal/high)",
+            callback=validate_thinking_callback,
+        ),
+    ] = None,
     json_output: Annotated[
         bool,
         typer.Option(
@@ -183,6 +221,7 @@ def generate(
         raise typer.Exit(code=1) from e
 
     out.print("[blue]Generating image...[/blue]")
+    out.print(f"  Model: {MODELS[model].label}" + (f" (thinking: {thinking})" if thinking else ""))
     out.print(f"  Prompt: {prompt}")
     out.print(f"  Aspect ratio: {aspect}")
     out.print(f"  Resolution: {resolution}")
@@ -198,6 +237,8 @@ def generate(
         custom_name=name,
         reference_path=reference,
         output_format=format,
+        model=model,
+        thinking=thinking,
     )
 
     if result.success:
@@ -211,13 +252,15 @@ def generate(
                     "format": format,
                     "cost_usd": round(result.cost_usd, 4),
                     "attempts": result.attempts,
-                    "model": MODEL_NAME,
+                    "seconds": round(result.seconds, 1),
+                    "model": result.model_id,
+                    "thinking": thinking,
                     "text_response": result.text_response,
                 }
             )
         else:
             console.print(f"[green]Image saved to: {result.output_path}[/green]")
-            console.print(f"[dim]Cost: ${result.cost_usd:.3f}[/dim]")
+            console.print(f"[dim]Cost: ${result.cost_usd:.4f} · {result.seconds:.1f}s[/dim]")
             if result.text_response:
                 console.print(f"[dim]Model response: {result.text_response}[/dim]")
     else:

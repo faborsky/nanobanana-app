@@ -5,13 +5,16 @@ from __future__ import annotations
 import pytest
 
 from nanobanana.config import (
-    PRICE_PER_IMAGE_USD,
+    MODELS,
     VALID_ASPECT_RATIOS,
     VALID_OUTPUT_FORMATS,
     VALID_RESOLUTIONS,
+    cost_from_usage,
     estimate_cost,
+    get_model,
     is_retryable_error,
     validate_aspect_ratio,
+    validate_for_model,
     validate_output_format,
     validate_reference_path,
     validate_resolution,
@@ -28,9 +31,10 @@ class _ApiError(Exception):
 
 class TestValidators:
     def test_accepts_every_documented_aspect_ratio(self) -> None:
-        # These 10 ratios are the ones the Gemini image API documents as supported.
+        # 10 standard ratios + 4 panoramic ones added with Nano Banana 2.1.
         assert VALID_ASPECT_RATIOS == {
             "1:1", "2:3", "3:2", "3:4", "4:3", "4:5", "5:4", "9:16", "16:9", "21:9",
+            "1:4", "4:1", "1:8", "8:1",
         }
         for ratio in VALID_ASPECT_RATIOS:
             assert validate_aspect_ratio(ratio) == ratio
@@ -71,22 +75,62 @@ class TestValidators:
             validate_reference_path(tmp_path)
 
 
+class TestModels:
+    def test_model_ids(self) -> None:
+        assert MODELS["2.1"].model_id == "gemini-nano-banana-2.1"
+        assert MODELS["pro"].model_id == "gemini-3-pro-image"
+        assert MODELS["lite"].model_id == "gemini-3.1-flash-lite-image"
+
+    def test_panoramic_ratios_are_2_1_only(self) -> None:
+        validate_for_model(get_model("2.1"), "8:1", "2K")
+        with pytest.raises(ValueError, match="panoramic"):
+            validate_for_model(get_model("pro"), "8:1", "2K")
+
+    def test_lite_is_1k_only(self) -> None:
+        validate_for_model(get_model("lite"), "1:1", "1K")
+        with pytest.raises(ValueError, match="resolution"):
+            validate_for_model(get_model("lite"), "1:1", "2K")
+
+    def test_thinking_levels(self) -> None:
+        validate_for_model(get_model("2.1"), "1:1", "2K", "high")
+        with pytest.raises(ValueError, match="thinking"):
+            validate_for_model(get_model("pro"), "1:1", "2K", "high")
+        with pytest.raises(ValueError, match="thinking level 'medium'"):
+            validate_for_model(get_model("lite"), "1:1", "1K", "medium")
+
+    def test_unknown_model(self) -> None:
+        with pytest.raises(ValueError, match="Invalid model"):
+            get_model("flash")
+
+
 class TestPricing:
     def test_matches_published_per_image_prices(self) -> None:
-        # Source: https://ai.google.dev/gemini-api/docs/pricing (verified 2026-07-25).
-        assert PRICE_PER_IMAGE_USD == {"1K": 0.134, "2K": 0.134, "4K": 0.24}
+        # Source: https://ai.google.dev/gemini-api/docs/pricing (verified 2026-10-11).
+        assert MODELS["2.1"].price_per_image_usd == {"1K": 0.0336, "2K": 0.0504, "4K": 0.113}
+        assert MODELS["pro"].price_per_image_usd == {"1K": 0.134, "2K": 0.134, "4K": 0.24}
+        assert MODELS["lite"].price_per_image_usd == {"1K": 0.0336}
 
-    def test_1k_and_2k_cost_the_same(self) -> None:
-        assert estimate_cost("1K") == estimate_cost("2K")
+    def test_pro_1k_and_2k_cost_the_same(self) -> None:
+        assert estimate_cost("1K", model="pro") == estimate_cost("2K", model="pro")
 
-    def test_4k_is_more_expensive(self) -> None:
-        assert estimate_cost("4K") > estimate_cost("2K")
+    def test_2_1_is_cheaper_than_pro_at_every_resolution(self) -> None:
+        for res in ("1K", "2K", "4K"):
+            assert estimate_cost(res, model="2.1") < estimate_cost(res, model="pro")
 
     def test_scales_linearly_with_count(self) -> None:
-        assert estimate_cost("1K", 10) == pytest.approx(1.34)
+        assert estimate_cost("2K", 10, model="pro") == pytest.approx(1.34)
 
-    def test_unknown_resolution_falls_back_to_default(self) -> None:
-        assert estimate_cost("42K") == estimate_cost("1K")
+    def test_unknown_resolution_falls_back_to_most_expensive(self) -> None:
+        assert estimate_cost("42K", model="2.1") == estimate_cost("4K", model="2.1")
+
+    def test_usage_cost_matches_published_image_price(self) -> None:
+        # 1K image = 1120 output tokens at $30/1M = $0.0336 (pricing page footnote).
+        cost = cost_from_usage(MODELS["2.1"], 0, 1120, 0)
+        assert cost == pytest.approx(0.0336)
+
+    def test_usage_cost_includes_prompt_and_text_tokens(self) -> None:
+        base = cost_from_usage(MODELS["2.1"], 0, 1120, 0)
+        assert cost_from_usage(MODELS["2.1"], 100, 1120, 300) > base
 
 
 class TestRetryClassification:

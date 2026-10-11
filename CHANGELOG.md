@@ -2,6 +2,37 @@
 
 All notable changes to this project are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/); versions follow [Semantic Versioning](https://semver.org/).
 
+## [1.1.0] — 2026-10-11
+
+### Added
+
+- **Model choice: `-m` / `--model` with `2.1`, `pro`, `lite`** (and `"model"` in
+  batch defaults or per job). Each model has a spec in `config.MODELS`: API ID,
+  supported ratios, resolutions, thinking levels and token prices.
+  - `2.1` → `gemini-nano-banana-2.1` (Nano Banana 2.1, GA 2026-10-06) — **new default**
+  - `pro` → `gemini-3-pro-image` (Nano Banana Pro) — the previous default
+  - `lite` → `gemini-3.1-flash-lite-image` (Nano Banana 2 Lite, 1K only)
+- **Panoramic aspect ratios `1:4`, `4:1`, `1:8`, `8:1`** (Nano Banana 2.1 only).
+- **`-t` / `--thinking`** — `minimal` / `medium` / `high` on 2.1 (default
+  `medium`), `minimal` / `high` on Lite. Pro has no configurable thinking.
+- **Real cost from usage metadata.** `cost_usd` is now computed from the tokens
+  the API actually billed (prompt + image + text/thinking), not from the
+  per-image list price. Falls back to the list price if usage is missing.
+- `--json` adds `seconds` and `thinking`; batch JSON adds per-image `model`,
+  `cost_usd`, `seconds`.
+- `validate` checks that each job's ratio / resolution / thinking level is
+  supported by the model that job resolves to.
+
+### Changed
+
+- **Default model is Nano Banana 2.1** (was Nano Banana Pro). At 2K it costs
+  $0.0504 vs $0.134 — see README for when Pro is still worth it.
+- **Default resolution is 2K** (was 1K).
+- `describe` uses `gemini-3.8-flash` — `gemini-3.5-flash` was deprecated on
+  2026-10-08 and is auto-routed to 3.6.
+- Interim "thought" images in the response are skipped explicitly; only the
+  final render is saved.
+
 ## [1.0.1] — 2026-07-25
 
 ### Fixed
